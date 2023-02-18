@@ -1,0 +1,47 @@
+<div class="d-flex flex-column min-vh-100 min-vw-100" 
+    style="background-image: url('../../../../assets/images/fondomin.png'); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;">
+    <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div class="card text-center" style="width: 20rem;">
+            <div class="card-header text-bg-primary">
+                Sistema Integral | Panel de Administraci&oacute;n
+                <img src="" alt="">
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-person-circle"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Username" formControlName="usuario" [ngClass]="{ 'is-invalid': submitted && form.usuario.errors}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-lock-fill"></i>
+                        </span>
+                        <input type="password" class="form-control" placeholder="Contrase&ntilde;a" formControlName="password">
+                    </div>
+                </div>
+                <div class="card-footer d-grid">
+                    <button type="submit" class="btn btn-outline-primary">Iniciar Sesión</button>
+                    <p class="mt-3" *ngIf="error" style="color: red;">
+                        {{error}}
+                    </p>
+                </div>
+            </form>
+        </div> 
+    </div>
+</div>
+<div>
+
+</div>
+<footer class="pt-2 my-2 fixed-bottom">
+    <div class="row mx-auto">
+        <div class="col" style="color: white;">
+            Angular App &middot; &copy; 2023
+        </div>
+    </div>
+</footer>

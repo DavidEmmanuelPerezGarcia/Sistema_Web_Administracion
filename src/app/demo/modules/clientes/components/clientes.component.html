@@ -1,0 +1,93 @@
+<nav class="navbar bg-body-tertiary bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="../home">App Angular</a>
+      <div class="d-flex">
+        <button class="btn btn-secondary fw-bold" type="button" (click)="LogOut()">Log Out <i class="bi bi-box-arrow-in-right"></i></button>
+      </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Créditos Clientes | Formulario
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <form [formGroup]="clientesForm" id="form">
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label">*Sucursal:</label>
+                                <select name="IdSucursal" id="IdSucursal" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.idSucursal.errors}">
+                                    <option value="1">Matriz</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Créditos Clientes | Tabla
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col text-center">
+                        <table class="table table-striped table-hover table-bordered row-border hover datatables">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Id area</th>
+                                    <th>Id sucursal</th>
+                                    <th>Id usuario</th>
+                                    <th>Mueble</th>
+                                    <th>Zona</th>
+                                    <th>Cara</th>
+                                    <th>Area</th>
+                                    <th>Sucursal</th>
+                                    <th>Nombre de Usuario</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Estado</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listClientes">
+                                    <td>{{ item.Id }}</td>
+                                    <td>{{ item.IdArea}}</td>
+                                    <td>{{ item.IdSucursal }}</td>
+                                    <td>{{ item.IdUsuario }}</td>
+                                    <td>{{ item.Mueble }}</td>
+                                    <td>{{ item.Zona }}</td>
+                                    <td>{{ item.Cara }}</td>
+                                    <td>{{ item.Area }}</td>
+                                    <td>{{ item.Sucursal }}</td>
+                                    <td>{{ item.NombreUsuario }}</td>
+                                    <td>{{ item.Fecha }}</td>
+                                    <td>{{ item.Tipo }}</td>
+                                    <td>{{ item.Estado }}</td>
+                                    <td>
+                                        <a class="btn btn-secondary" href="#">Detalle</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

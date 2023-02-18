@@ -1,0 +1,17 @@
+<div class="cointainer">
+  <div class="row">
+    <div class="col-3" *ngFor="let pokemon of pokemons">
+      <mat-card class="card-pokemon">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{pokemon.name}}</mat-card-title>
+            <mat-card-subtitle>Pokémon</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <a mat-raised-button color="primary" [href]="pokemon.url">Pokemon!</a>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

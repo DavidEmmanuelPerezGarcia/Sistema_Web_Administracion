@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>Modulo de categoria</h1>
+   
+</div>
+
+
+<div class="container">
+    <div class="card p-fluid">
+        <div>
+            <form action="" class="p-formgrid grid">
+                <div class="row">
+
+                    <div class="col-3">
+                        <label htmlfor="name2">Nombre</label>
+                        <input pinputtext="" id="nombre"type="text" class="p-inputtext p-component p-element" placeholder="nombre"  name="nombre">
+                    </div>
+                    <div class="col-3">
+                        <label htmlfor="name2">Apellido paterno</label>
+                        <input pinputtext="" id="Ap_paterno" type="text" class="p-inputtext p-component p-element" placeholder="Apellido paterno" name="Apellido paterno">
+                    </div>
+                    <div class="col">
+                        <label htmlfor="name2">Apellido materno</label>
+                        <input pinputtext="" id="Ap_materno" type="text" class="p-inputtext p-component p-element" placeholder="Apellido materno" name="Apellido materno">
+                    </div>
+                    <div class="col">
+                        <label htmlfor="name2">Perfil</label>
+                        <input pinputtext="" id="Ap_paterno" type="text" class="p-inputtext p-component p-element" placeholder="Apellido paterno" name="Apellido paterno">
+                    </div>
+                    <div class="row">
+
+                        <div class="col">
+                            <label htmlfor="name2">Sede</label>
+                            <input pinputtext="" id="Ap_paterno" type="text" class="p-inputtext p-component p-element" placeholder="Apellido paterno" name="Apellido paterno">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+
+                <div class="formgroup-inline">
+
+                    <div class="col-sm-2">
+                        <button   label="Agregar" class="p-element p-ripple p-button p-component" type="Submit" (click)=" onSubmit()"><span class="p-button-label"><i class="pi pi-plus" style="font-size: 1rem"></i> Agregar</span><span class="p-ink"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th [height]="50" scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let cat of categoria; let i=index ">
+            <th [height]="50" scope="row">{{i+1}}        
+
+            </th>
+            <td>{{cat.nombre}}</td>
+            <td>{{cat.descripcion}}</td>
+           
+          </tr> -->
+        </tbody>
+      </table>
+    
+</div>
+
+
