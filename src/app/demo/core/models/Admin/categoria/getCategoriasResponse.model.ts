@@ -13,5 +13,6 @@ export interface Categoria{
     Id:number,
     Nombre:number,
     Categoria:number,
+    Modulos:any
     
 }

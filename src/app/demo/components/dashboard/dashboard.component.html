@@ -1,6 +1,11 @@
 <div class="col-12 md:col-12">
    <div class="card card-w-title">
        <h5>Panel de control | Lista de modulos</h5>
-       <p-panelMenu [model]="panelMenuItems"></p-panelMenu>
+       <div class="col">
+           <p-panelMenu [model]="panelMenuItems"></p-panelMenu>
+
+           <p-panelMenu [model]="listCategoria"></p-panelMenu>
+       </div>
+       
    </div>
 </div>

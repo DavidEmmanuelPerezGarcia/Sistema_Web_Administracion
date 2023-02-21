@@ -36,5 +36,5 @@ export const Categoria={
 
 export const Persona={
   insertPersona: `${environment.urlBase2}InsertPersona`,
-  getPersona:`${environment.urlBase2}GetCategorias`
+  getPersona:`${environment.urlBase2}GetUsuarios`
 }
