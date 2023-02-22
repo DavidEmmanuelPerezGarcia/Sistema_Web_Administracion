@@ -13,6 +13,7 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { FormsModule } from '@angular/forms';
 import { personaService } from './demo/core/services/persona/personaService.service';
+import { PanelMenuService } from './demo/core/services/panel-menu/panel-menu.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { personaService } from './demo/core/services/persona/personaService.serv
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService , personaService
+        PhotoService, ProductService , personaService , PanelMenuService
     ],
     bootstrap: [AppComponent]
 })

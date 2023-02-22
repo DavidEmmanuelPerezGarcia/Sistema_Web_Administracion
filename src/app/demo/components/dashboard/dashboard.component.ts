@@ -13,8 +13,6 @@ import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/ge
 })
 export class DashboardComponent implements OnInit  {
 
-    title=""
-
     constructor(private cagoriaSercive:categoriaService){};
 
     listCategoria:Categorias[]=[]
@@ -104,7 +102,6 @@ export class DashboardComponent implements OnInit  {
         this.listCategoria=[
             {
                 label: 'Adminitracion',
-               
                 items: [
                     {
                         styleClass:'card m-3 border-1 surface col-3',
@@ -115,6 +112,10 @@ export class DashboardComponent implements OnInit  {
             }
         ]
     }
+
+   cargarDatos(){
+        
+   }
 
     
 

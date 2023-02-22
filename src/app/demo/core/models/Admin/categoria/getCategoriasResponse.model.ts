@@ -11,8 +11,9 @@ interface Response{
 
 export interface Categoria{
     Id:number,
-    Nombre:number,
+    Nombre:string,
     Categoria:number,
-    Modulos:any
+    Modulos:any,
+    Descripcion:string
     
 }
