@@ -9,6 +9,17 @@ import { ButtonModule } from 'primeng/button';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashboardsRoutingModule } from './dashboard-routing.module';
+import { PanelModule } from 'primeng/panel';
+import { PanelsDemoRoutingModule } from '../uikit/panels/panelsdemo-routing.module';
+import { ToolbarModule } from 'primeng/toolbar';
+import { RippleModule } from 'primeng/ripple';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { AccordionModule } from 'primeng/accordion';
+import { TabViewModule } from 'primeng/tabview';
+import { DividerModule } from 'primeng/divider';
+import { FieldsetModule } from 'primeng/fieldset';
+import { InputTextModule } from 'primeng/inputtext';
+import { SplitterModule } from 'primeng/splitter';
 
 @NgModule({
     imports: [
@@ -20,7 +31,20 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
         StyleClassModule,
         PanelMenuModule,
         ButtonModule,
-        DashboardsRoutingModule
+        DashboardsRoutingModule,
+        PanelModule,
+        PanelsDemoRoutingModule,
+		ToolbarModule,
+		ButtonModule,
+		RippleModule,
+		SplitButtonModule,
+		AccordionModule,
+		TabViewModule,
+		FieldsetModule,
+		MenuModule,
+		InputTextModule,
+		DividerModule,
+		SplitterModule,
     ],
     declarations: [DashboardComponent]
 })

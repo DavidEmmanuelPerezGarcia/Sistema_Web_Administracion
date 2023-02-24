@@ -2,6 +2,7 @@ export interface GetCategoriaResponse{
     StatusCode:number;
     success: boolean;
     message: string;
+    Modulos:string;
     response: Response;
 }
 
@@ -13,7 +14,6 @@ export interface Categoria{
     Id:number,
     Nombre:string,
     Categoria:number,
-    Modulos:any,
     Descripcion:string
     
 }

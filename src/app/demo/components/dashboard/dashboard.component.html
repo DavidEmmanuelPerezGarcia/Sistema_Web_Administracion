@@ -4,11 +4,45 @@
        <div class="col">
            <p-panelMenu [model]="panelMenuItems"></p-panelMenu>
 
-           <p-panelMenu [model]="listCategoria"></p-panelMenu>
+           <!-- <p-panelMenu [model]="listCategoria"></p-panelMenu> -->
        </div>
 
-       <button class="btn btn-info" (click)="cargarDatos()">Agregar</button>
-       
+    
        
    </div>
+   <div class="card">
+    <h5>Modulos</h5>
+    <p-accordion>
+        <p-accordionTab header="Header I" [selected]="false" class="line-height-3 m-0" (click)="cargarDatos()">
+            <div *ngFor="let c of panelCategoria">
+                <div class="row">
+                    <div class="col">
+                        <div class="card m-3 border-2 col-4">
+                                {{ c.Nombre}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <app-panel></app-panel> -->
+        </p-accordionTab>
+        <!-- <p-accordionTab header="Header II" class="line-height-3 m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+            totam rem aperiam, eaque
+            ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
+            enim ipsam voluptatem quia
+            voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+            voluptatem sequi nesciunt.
+            Consectetur, adipisci velit, sed quia non numquam eius modi.
+        </p-accordionTab>
+        <p-accordionTab header="Header III" class="line-height-3 m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+            deleniti atque corrupti quos dolores
+            et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+            officia deserunt mollitia animi, id est laborum et dolorum fuga.
+            Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est
+            eligendi optio cumque nihil impedit
+            quo minus.
+        </p-accordionTab> -->
+    </p-accordion>
+</div>
 </div>

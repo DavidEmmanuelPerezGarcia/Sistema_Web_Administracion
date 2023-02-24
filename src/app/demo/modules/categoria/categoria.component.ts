@@ -91,7 +91,7 @@ export class CategoriaComponent implements OnInit {
   BuscarCategoria():void{
     if(this.Categoriaform.controls){
       const request1: getCategoriaRequest = {
-        Id: ["Id"]
+        Id:0,
       }
       this.categoriaService.getCategoria(request1).subscribe(res => {
         this.listaCategoria = res.response.data;

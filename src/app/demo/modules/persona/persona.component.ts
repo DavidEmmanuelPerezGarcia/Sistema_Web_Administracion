@@ -54,15 +54,14 @@ export class PersonaComponent implements OnInit {
     this.error = "";
     const request: InsertpersonaRequest = {
       id: 0,
-      idUsuario:0,
-      nombre: this.personaForm.controls['nombre'].value ,
+      nombre: this.personaForm.controls['nombre'].value,
       apPaterno: this.personaForm.controls['apPaterno'].value,
       apMaterno: this.personaForm.controls['apMaterno'].value,
       perfil: this.personaForm.controls['perfil'].value,
-      idSede:0,
-      nombreUsuario:this.personaForm.controls['nombreUsuario'].value,
       nombreSede: this.personaForm.controls['nombreSede'].value,
-      
+      idUsuario: 0,
+      idSede: 0,
+      nombreUsuario: ''
     }
     this.personaService.insertPersona(request).subscribe(res => {
       if(res.success == true){
