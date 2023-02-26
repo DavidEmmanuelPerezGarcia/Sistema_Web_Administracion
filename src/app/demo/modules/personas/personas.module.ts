@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ModulosRoutingModule } from './modulos-routing.module';
-import { ModulosComponent } from './components/modulos.component';
+import { PersonasRoutingModule } from './personas-routing.module';
+import { PersonasComponent } from './components/personas.component';
 
 // Complementos //
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,13 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    ModulosComponent
+    PersonasComponent
   ],
   imports: [
     CommonModule,
-    ModulosRoutingModule,
+    PersonasRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ]
 })
-export class ModulosModule { }
+export class PersonasModule { }

@@ -1,9 +1,5 @@
 import { environment } from '../../../environments/environment';
 
-export const pokemonEnpoints = {
-  pokemon: `${environment.urlBase}pokemon/`,
-};
-
 export const auth = {
   login: `${environment.urlBase}SignIn`,
 }
@@ -32,9 +28,15 @@ export const Categoria={
   getCategoria:`${environment.urlBase2}GetCategorias`
 }
 
+//Modulos
+export const modulos = {
+  insertModulos: `${environment.urlBase2}InsertModulo`,
+}
+
 //persona
 
-export const Persona={
-  insertPersona: `${environment.urlBase2}InsertPersona`,
-  getPersona:`${environment.urlBase2}GetUsuarios`
+export const personas={
+  insertPersonas: `${environment.urlBase2}InsertPersona`,
+  getPersonas:`${environment.urlBase2}GetUsuarios`
 }
+

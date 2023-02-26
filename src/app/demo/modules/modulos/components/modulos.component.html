@@ -1,0 +1,62 @@
+
+<div class="container">
+  <div class="row">
+      <div class="col">
+          <div class="card mt-4">
+              <div class="card-header">
+                  Modulos | Formulario
+              </div>
+              <div class="card-body">
+                  <div class="alert alert-danger" role="alert" *ngIf="error">
+                      {{error}}
+                  </div>
+                  <div class="alert alert-success" role="alert" *ngIf="message">
+                      {{message}}
+                  </div>
+                  <form [formGroup]="modulosForm" id="form">
+                      <div class="row mb-3">
+                          <div class="col me-3">
+                              <label class="form-label">*Nombre:</label>
+                              <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+                          </div>
+                          <div class="col me-3">
+                              <label class="form-label">*Descripcipón:</label>
+                              <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcipón">
+                          </div>
+                          <div class="col me-3">
+                            <label class="form-label">*Categoria:</label>
+                            <select formControlName="categoria" class="form-select">
+                                <option value="1">Administrador y seguridad</option>
+                                <option value="2">Seguridad</option>
+                            </select>
+                        </div>
+                          <div class="col me-3">
+                              <label class="form-label">*Tema:</label>
+                              <input type="text" class="form-control" formControlName="tema" placeholder="Tema">
+                          </div>
+                          
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col me-3">
+                            <label class="form-label">*Icono:</label>
+                            <input type="text" class="form-control" formControlName="icono" placeholder="Icono">
+                        </div>
+                        <div class="col me-3">
+                            <label class="form-label">*Ruta:</label>
+                            <input type="text" class="form-control" formControlName="ruta" placeholder="Ruta">
+                        </div>
+                          <div class="col me-3"></div>
+                          <div class="col me-3"></div>
+                      </div>
+                  </form>  
+              </div>
+              <div class="card-footer">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
+                      <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

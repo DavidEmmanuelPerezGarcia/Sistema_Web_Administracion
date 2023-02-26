@@ -1,37 +1,33 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {  MenuItem } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 
 // Services //
-import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
-import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
-import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/getCategorias.model';
-import { StyleClass } from 'primeng/styleclass';
+//import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
+//import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
+//import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/getCategorias.model';
 
 
 
 @Component({
-
     templateUrl: './dashboard.component.html',
-     selector: 'app-panel',
-    template:`
-    <div>
-      <h2>Panel de Módulos</h2>
-      <ul>
-        <li *ngFor="let c of panelCategoria">{{c}}</li>
-      </ul>
-    </div>
-  `
 })
 export class DashboardComponent implements OnInit  {
 
-    constructor(private cagoriaSercive:categoriaService){};
+    //constructor(private cagoriaSercive:categoriaService){};
 
-    // listCategoria:Categorias[]=[]
-    panelCategoria:Categoria[]=[]
+    //listCategoria:Categorias[]=[]
+    //panelCategoria:Categoria[]=[]
     
     panelMenuItems: MenuItem[] = []
 
     ngOnInit() {
+        //const request1: getCategoriaRequest = {
+            //Modulos: ["modulos"]
+          //}
+          //this.cagoriaSercive.getCategoria(request1).subscribe(res => {
+            //this.panelCategoria = res.response.data;
+         // })
+        
         this.panelMenuItems = [
             {
                 label: 'Administracion',
@@ -47,9 +43,9 @@ export class DashboardComponent implements OnInit  {
                     },
                     {
                         styleClass:'card m-3 border-1 surface col-5',
-                        label: 'personas',
+                        label: 'Personas',
                         icon: 'pi pi-fw pi-tags',
-                        routerLink:['/persona']
+                        routerLink:['/personas']
                         
                     },
                     {   
@@ -103,27 +99,22 @@ export class DashboardComponent implements OnInit  {
            
         ];
 
-        // this.listCategoria=[
-        //     {
-        //         label: 'Adminitracion',
-        //         items: [
-        //             {
-        //                 styleClass:'card m-3 border-1 surface col-3',
-        //                 label: "categoria",
-        //                 routerLink: ['/categoria'],
-        //             },
-        //         ]
-        //     }
-        // ]
+       //this.listCategoria=[
+            //{
+                //label: 'Adminitracion',
+                //items: [
+                   // {
+                        //styleClass:'card m-3 border-1 surface col-3',
+                       // label: "categoria",
+                       // routerLink: ['/categoria'],
+                   // },
+               // ]
+           // }
+        //]
     }
 
    cargarDatos(){
-    const request1: getCategoriaRequest = {
-        Id:0
-      }
-      this.cagoriaSercive.getCategoria(request1).subscribe(res => {
-        this.panelCategoria = res.response.data;    
-      })
+        
    }
 
     
