@@ -1,3 +1,5 @@
+import { Modulos } from "../../modulos/get-modulos-response-modules";
+
 export interface GetCategoriaResponse{
     StatusCode:number;
     success: boolean;
@@ -13,7 +15,7 @@ export interface Categoria{
     Id:number,
     Nombre:string,
     Categoria:number,
-    Modulos:any,
+    Modulos:Modulos[],
     Descripcion:string
     
 }

@@ -1,5 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { getCategoriaRequest } from '../../core/models/Admin/categoria/getCategorias.model';
+import { Categoria } from '../../core/models/Admin/categoria/getCategoriasResponse.model';
+import { Modulos } from '../../core/models/modulos/get-modulos-response-modules';
+import { getModulosRequest } from '../../core/models/modulos/get-modulos.model';
+import { categoriaService } from '../../core/services/categoria/categoria.service';
+import { ModulosService } from '../../core/services/modulos/modulos.service';
 
 // Services //
 //import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
@@ -13,12 +19,14 @@ import { MenuItem } from 'primeng/api';
 })
 export class DashboardComponent implements OnInit  {
 
-    //constructor(private cagoriaSercive:categoriaService){};
+    constructor(private cagoriaSercive:categoriaService, private modulosService:ModulosService){};
 
     //listCategoria:Categorias[]=[]
-    //panelCategoria:Categoria[]=[]
-    
+    panelCategoria:Categoria[]=[]
     panelMenuItems: MenuItem[] = []
+    listModulos: Modulos[] = [];
+
+
 
     ngOnInit() {
         //const request1: getCategoriaRequest = {
@@ -114,10 +122,17 @@ export class DashboardComponent implements OnInit  {
     }
 
    cargarDatos(){
-        
-   }
-
-    
-
-    
+    const request: getCategoriaRequest = {
+        id: ["id"]
+      }
+  
+      this.cagoriaSercive.getCategoria(request).subscribe(res => {
+        this.panelCategoria = res.response.data;
+      })
+   } 
 }
+
+    
+
+    
+
