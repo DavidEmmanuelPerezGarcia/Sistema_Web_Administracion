@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,19 +15,27 @@ import { PhotoService } from './demo/service/photo.service';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuService } from './demo/core/services/panel-menu/panel-menu.service';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MaterialModule } from './demo/material/material.module';
+import { LayoutModule } from './demo/layout/layout.module';
+//import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
     declarations: [
         AppComponent, NotfoundComponent,
     ],
     imports: [
+        
         AppRoutingModule,
         AppLayoutModule,
         FormsModule,
+
         
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: LocationStrategy, 
+          useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, PanelMenuService
     ],

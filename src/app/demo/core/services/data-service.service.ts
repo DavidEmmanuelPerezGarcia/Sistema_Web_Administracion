@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 //Endpoint
-import {getInventario} from 'src/app/global/endpoints';
+import {getInventario} from 'src/app/demo/global/endpoints';
 
 @Injectable()
 

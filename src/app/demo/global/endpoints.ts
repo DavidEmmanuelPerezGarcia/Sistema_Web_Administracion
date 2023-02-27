@@ -31,6 +31,7 @@ export const Categoria={
 //Modulos
 export const modulos = {
   insertModulos: `${environment.urlBase2}InsertModulo`,
+  getModulos:`${environment.urlBase2}GetCategorias`
 }
 
 //persona

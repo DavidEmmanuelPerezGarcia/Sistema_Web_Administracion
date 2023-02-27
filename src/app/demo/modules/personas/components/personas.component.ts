@@ -98,7 +98,7 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
     Cargar():void{
       if(this.personasForm.controls){
         const request2: getPersonasRequest = {
-          Id: this.personasForm.controls['Id'].value
+          Id: ['Id']
         }
         this.personasService.getPersonas(request2).subscribe(res => {
           this.listPersonas = res.response.data;
@@ -116,7 +116,7 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
         apPaterno: '',
         apMaterno: '',
         perfil: localStorage.getItem('perfil'),
-        idSede: localStorage.getItem('idSede'),
+        nombreSede: localStorage.getItem('nombreSede'),
       });
     }
     

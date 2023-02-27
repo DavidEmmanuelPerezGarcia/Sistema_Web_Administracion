@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 
 // Models //
 import { InsertModulosRequest } from 'src/app/demo/core/models/modulos/insert-modulos.model';
+import { GetModulosResponse, Modulos } from 'src/app/demo/core/models/modulos/get-modulos-response-modules';
+import { getModulosRequest } from 'src/app/demo/core/models/modulos/get-modulos.model';
 
 
 // Services //
@@ -17,7 +19,7 @@ import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.servi
     styleUrls: ['./modulos.component.scss']
   })
   export class ModulosComponent implements OnInit {
-    //listClientes: Personas[] = [];
+    listModulos: Modulos[] = [];
     submitted = false;
   
     
@@ -88,19 +90,19 @@ import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.servi
       })
     }
   
-    //Cargar(): void {
-      //if(this.personasForm.controls){
-        //const request: personasRequest = {
-          //idSucursal: this.personasForm.controls['idSucursal'].value
-       // }
+    Cargar(): void {
+      if(this.modulosForm.controls){
+        const request: getModulosRequest = {
+          id: ["id"]
+        }
     
-        //this.PersonasService.getPersonas(request).subscribe(res => {
-          //this.listClientes = res.response.data;
-        //})
-      //}else if(this.PersonasForm.invalid){
-       // return;
-      //}
-    //}
+        this.modulosService.getModulos(request).subscribe(res => {
+          this.listModulos = res.response.data;
+        })
+      }else if(this.modulosForm.invalid){
+        return;
+      }
+    }
   
   
     Reset():void {

@@ -9,6 +9,8 @@ interface Response{
     data: Personas[];
 }
 
+
+
 export interface Personas{
     Id: number,
     IdUsuario: number,

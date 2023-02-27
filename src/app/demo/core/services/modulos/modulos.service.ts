@@ -8,8 +8,8 @@ import { InsertModulosRequest } from 'src/app/demo/core/models/modulos/insert-mo
 
 //endpoints//
 import { mapeos, modulos, personas } from 'src/app/demo/global/endpoints';
-//import { GetMapeosResponse } from '../../models/personas/get-personas-response-modules';
-//import { MapeosRequest } from '../../models/personas/get-personas.model';
+import { GetModulosResponse } from '../../models/modulos/get-modulos-response-modules';
+import { getModulosRequest } from '../../models/modulos/get-modulos.model';
 
 
 @Injectable({
@@ -28,6 +28,16 @@ export class ModulosService {
   insertModulos(data:InsertModulosRequest): Observable<InsertModulosResponse> {
     const httpOptions = {headers:this.headers}
     return this.http.post<InsertModulosResponse>(modulos.insertModulos, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  getModulos(data:getModulosRequest): Observable<GetModulosResponse> {
+    const httpOptions = {headers:this.headers}
+    return this.http.post<GetModulosResponse>(modulos.getModulos, data, httpOptions)
     .pipe(
       map(res => {
         return res;
