@@ -15,7 +15,8 @@ export interface Categoria{
     Id:number,
     Nombre:string,
     Categoria:number,
-    Modulos:Modulos[],
     Descripcion:string
+    Modulos:Modulos[],
+   
     
 }

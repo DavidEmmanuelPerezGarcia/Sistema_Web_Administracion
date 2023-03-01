@@ -123,7 +123,7 @@ export class DashboardComponent implements OnInit  {
 
    cargarDatos(){
     const request: getCategoriaRequest = {
-        id: ["id"]
+        Id: ["Id"]
       }
   
       this.cagoriaSercive.getCategoria(request).subscribe(res => {

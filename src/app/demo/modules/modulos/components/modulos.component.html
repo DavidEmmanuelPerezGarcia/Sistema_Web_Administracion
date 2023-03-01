@@ -79,21 +79,21 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
+                                <th>Descripcion</th>
                                 <th>Categoria</th>
                                 <th>Detalle</th>
                             </tr>
                         </thead>
-                        <tbody>
-                             <tr *ngFor="let item of listModulos">
-                                <th>{{ item.Id }}</th>
-                                <td>{{ item.Nombre}}</td>
-                                <td>{{ item.Descripcion}}</td>
-                                <td>{{ item.NombreCategoria}}</td>
-                                <td>
-                                    <a class="btn btn-secondary" href="#">Detalle</a>
-                                </td>
-                            </tr> 
+                        <tbody *ngFor="let c of listModulos">
+                            <tr *ngFor="let m of c.Modulos">
+                               <td>{{ m.Id }}</td>
+                               <td>{{ m.Nombre}}</td>
+                               <td>{{ m.Descripcion}}</td>
+                               <td>{{m.Categoria}}</td>
+                               <td>
+                                   <a class="btn btn-secondary" href="#">Detalle</a>
+                               </td>
+                           </tr> 
                         </tbody>
                     </table>
                 </div>

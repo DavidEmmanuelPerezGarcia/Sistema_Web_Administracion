@@ -11,6 +11,8 @@ import { getModulosRequest } from 'src/app/demo/core/models/modulos/get-modulos.
 
 // Services //
 import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.service';
+import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
+import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
 
 
 @Component({
@@ -19,8 +21,10 @@ import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.servi
     styleUrls: ['./modulos.component.scss']
   })
   export class ModulosComponent implements OnInit {
-    listModulos: Modulos[] = [];
+    // listModulos: Modulos[] = [];
     submitted = false;
+
+    listModulos:Categoria[]=[]
   
     
     modulosForm: FormGroup;
@@ -30,6 +34,7 @@ import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.servi
     constructor(
       //private http: HttpClient,
       private modulosService: ModulosService,
+      private categoriaService: categoriaService,
       private readonly router: Router,
       private FormBuilder: FormBuilder,
     ) {
@@ -96,7 +101,7 @@ import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.servi
           id: ["id"]
         }
     
-        this.modulosService.getModulos(request).subscribe(res => {
+        this.categoriaService.getCategoria(request).subscribe(res => {
           this.listModulos = res.response.data;
         })
       }else if(this.modulosForm.invalid){
