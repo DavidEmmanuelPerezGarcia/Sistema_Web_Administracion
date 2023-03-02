@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('idSucursal', data.Usuario.IdSucursal.toString());
         localStorage.setItem('idPerfil', data.Usuario.IdPerfil.toString());
         localStorage.setItem('nombreSucursal', data.Usuario.NombreSucursal);
-        this.router.navigate(['/home'])
+        this.router.navigate(['/dashboard'])
       }
     })
   }

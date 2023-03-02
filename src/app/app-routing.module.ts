@@ -10,7 +10,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 path: '', component: AppLayoutComponent,
                 children: [
                     
-                    { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+                    { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
@@ -19,6 +19,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     {path: 'categoria', loadChildren:()=> import('./demo/modules/categoria/categoria.module').then(m => m.CategoriaModule)},
                     {path: 'personas', loadChildren:()=> import('./demo/modules/personas/personas.module').then(m => m.PersonasModule)},
                     {path: 'modulos', loadChildren:()=> import('./demo/modules/modulos/modulos.module').then(m => m.ModulosModule)},
+                    {path: '', loadChildren:()=> import('./demo/modules/auth/auth.module').then(m => m.AuthModule)},
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
