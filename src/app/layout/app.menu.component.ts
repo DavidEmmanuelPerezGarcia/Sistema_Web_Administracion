@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Opciones de navegacion',
                 items: [
-                    { label: 'Panel de control', icon: 'pi pi-fw pi-palette', routerLink: [''] }
+                    { label: 'Panel de control', icon: 'pi pi-fw pi-palette', routerLink: ['dashboard'] }
                 ]
             },
             {

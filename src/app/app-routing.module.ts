@@ -6,6 +6,12 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
 @NgModule({
     imports: [
         RouterModule.forRoot([
+           
+            {path: '', loadChildren:()=> import('./demo/modules/auth/auth.module').then(m => m.AuthModule)},
+            // { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
+            { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
+           
+
             {
                 path: '', component: AppLayoutComponent,
                 children: [
@@ -19,11 +25,10 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                     {path: 'categoria', loadChildren:()=> import('./demo/modules/categoria/categoria.module').then(m => m.CategoriaModule)},
                     {path: 'personas', loadChildren:()=> import('./demo/modules/personas/personas.module').then(m => m.PersonasModule)},
                     {path: 'modulos', loadChildren:()=> import('./demo/modules/modulos/modulos.module').then(m => m.ModulosModule)},
-                    {path: '', loadChildren:()=> import('./demo/modules/auth/auth.module').then(m => m.AuthModule)},
+                  
                 ]
+          
             },
-            { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
-            { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })

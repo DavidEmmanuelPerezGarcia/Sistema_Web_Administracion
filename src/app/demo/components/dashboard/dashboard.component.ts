@@ -6,6 +6,7 @@ import { Modulos } from '../../core/models/modulos/get-modulos-response-modules'
 import { getModulosRequest } from '../../core/models/modulos/get-modulos.model';
 import { categoriaService } from '../../core/services/categoria/categoria.service';
 import { ModulosService } from '../../core/services/modulos/modulos.service';
+import { LayoutService } from '../../../layout/service/app.layout.service';
 
 // Services //
 //import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
@@ -19,7 +20,7 @@ import { ModulosService } from '../../core/services/modulos/modulos.service';
 })
 export class DashboardComponent implements OnInit  {
 
-    constructor(private cagoriaSercive:categoriaService, private modulosService:ModulosService){};
+    constructor(private cagoriaSercive:categoriaService, private modulosService:ModulosService,public layoutService: LayoutService){};
 
     //listCategoria:Categorias[]=[]
     panelCategoria:Categoria[]=[]
