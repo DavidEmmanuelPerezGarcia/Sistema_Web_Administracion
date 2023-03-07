@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,18 +14,15 @@ import { PhotoService } from './demo/service/photo.service';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuService } from './demo/core/services/panel-menu/panel-menu.service';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MaterialModule } from './demo/material/material.module';
-import { LayoutModule } from './demo/layout/layout.module';
+import { LoginGuardian } from './demo/modules/auth/components/login/login-guardian.service';
+import { AuthService } from './demo/core/services/auth/auth.service';
 //import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent,
+        AppComponent, NotfoundComponent, 
     ],
     imports: [
-        
         AppRoutingModule,
         AppLayoutModule,
         FormsModule,
@@ -37,7 +33,7 @@ import { LayoutModule } from './demo/layout/layout.module';
         { provide: LocationStrategy, 
           useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, PanelMenuService
+        PhotoService, ProductService, PanelMenuService,LoginGuardian,AuthService
     ],
     bootstrap: [AppComponent]
 })
