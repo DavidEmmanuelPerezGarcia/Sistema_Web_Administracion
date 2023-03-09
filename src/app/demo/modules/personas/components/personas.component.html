@@ -29,7 +29,7 @@
                             </div>
                             <div class="col me-3">
                                 <label class="form-label">*Perfil:</label>
-                                <select formControlName="perfil" class="form-select">
+                                <select formControlName="perfil" class="form-control">
                                     <option value="0" selected disabled hidden>Selecciona perfil</option>
                                     <option value="1">Administrador</option>
                                     <option value="2">Cliente</option>
@@ -39,7 +39,7 @@
                         <div class="row mb-3">
                             <div class="col me-3">
                                 <label class="form-label">*Sede:</label>
-                                <select formControlName="idSede" class="form-select">
+                                <select formControlName="idSede" class="form-control">
                                     <option value="0" selected disabled hidden>Selecciona sede</option>
                                     <option value="1">Matriz</option>
                                     <option value="2">""</option>
@@ -72,6 +72,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="spinner-border spinner-border-sm" role="status"></div>
                   <div class="row">
                     <div class="col text-center">
                         <table class="table table-striped table-hover table-bordered row-border hover datatables">
@@ -84,6 +85,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                             
                                  <tr *ngFor="let item of listPersonas">
                                     <td>{{ item.Nombre}}</td>
                                     <td>{{ item.NombreUsuario}}</td>
