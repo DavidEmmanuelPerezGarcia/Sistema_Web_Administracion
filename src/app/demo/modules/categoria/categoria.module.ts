@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from "angular-datatables";
+
 
 import { CateogoriaRoutingModule } from './categoria-routing.module';
 import { CategoriaComponent } from './categoria.component';
@@ -16,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CateogoriaRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule 
   ]
 })
 export class CategoriaModule { }

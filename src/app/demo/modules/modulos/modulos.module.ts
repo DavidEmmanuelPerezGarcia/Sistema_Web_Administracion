@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from "angular-datatables";
 
 import { ModulosRoutingModule } from './modulos-routing.module';
 import { ModulosComponent } from './components/modulos.component';
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ModulosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule 
   ]
 })
 export class ModulosModule { }
