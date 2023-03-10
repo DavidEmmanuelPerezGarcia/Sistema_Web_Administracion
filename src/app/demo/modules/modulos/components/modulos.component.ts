@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { Personas } from 'src/app/core/models/personas/get-personas-response-modules';
 
 // Models //
 import { InsertModulosRequest } from 'src/app/demo/core/models/modulos/insert-modulos.model';
@@ -21,7 +20,8 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
     styleUrls: ['./modulos.component.scss']
   })
   export class ModulosComponent implements OnInit {
-    // listModulos: Modulos[] = [];
+    dtOptions: DataTables.Settings = {};
+
     submitted = false;
 
     listModulos:Categoria[]=[]
@@ -54,9 +54,22 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
     }
   
     ngOnInit(): void {
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+      };
       this.Reset();
       this.modulosForm.get('nombreCategoria')?.disable();
       //this.modulosForm.reset({idSucursal: 1});
+
+      const request: getModulosRequest = {
+        id: ["id"]
+      }
+  
+      this.categoriaService.getCategoria(request).subscribe(res => {
+        this.listModulos = res.response.data;
+      })
     }
   
     onSubmit(): void {
@@ -95,19 +108,19 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
       })
     }
   
-    Cargar(): void {
-      if(this.modulosForm.controls){
-        const request: getModulosRequest = {
-          id: ["id"]
-        }
+    // Cargar(): void {
+    //   if(this.modulosForm.controls){
+    //     const request: getModulosRequest = {
+    //       id: ["id"]
+    //     }
     
-        this.categoriaService.getCategoria(request).subscribe(res => {
-          this.listModulos = res.response.data;
-        })
-      }else if(this.modulosForm.invalid){
-        return;
-      }
-    }
+    //     this.categoriaService.getCategoria(request).subscribe(res => {
+    //       this.listModulos = res.response.data;
+    //     })
+    //   }else if(this.modulosForm.invalid){
+    //     return;
+    //   }
+    // }
   
   
     Reset():void {

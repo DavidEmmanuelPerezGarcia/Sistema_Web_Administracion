@@ -1,4 +1,4 @@
-
+ 
 <div class="container">
     <div class="row">
         <div class="col">
@@ -66,22 +66,23 @@
             <div class="card mt-4">
                 <div class="card-header">
                     Usuarios | Tabla
-                </div><div class="card-footer">
+                </div>
+                <!-- <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
                     </div>
-                </div>
+                </div> -->
                 <div class="card-body">
-                    <div class="spinner-border spinner-border-sm" role="status"></div>
+                
                   <div class="row">
                     <div class="col text-center">
-                        <table class="table table-striped table-hover table-bordered row-border hover datatables">
+                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
                             <thead>
                                 <tr>
                                     <th>Usuario</th>
                                     <th>Nombre</th>
                                     <th>Sucursal</th>
-                                    <th>Detalle</th>
+                                    <th>Detalle</th> 
                                 </tr>
                             </thead>
                             <tbody>

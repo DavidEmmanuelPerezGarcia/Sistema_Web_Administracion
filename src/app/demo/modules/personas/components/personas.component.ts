@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 
 
 // Models //
@@ -14,12 +13,17 @@ import { Personas } from 'src/app/demo/core/models/personas/get-personas-respons
 import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
 
 
+
+
 @Component({
     selector: 'app-personas',
     templateUrl: './personas.component.html',
     styleUrls: ['./personas.component.scss']
   })
-  export class PersonasComponent implements OnInit {
+  export class PersonasComponent implements  OnInit {
+    dtOptions: DataTables.Settings = {};
+    
+
     listPersonas: Personas[] = [];
     submitted = false;
   
@@ -51,13 +55,26 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
     }
   
     ngOnInit(): void {
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+      };
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();
       this.personasForm.get('nombreUsuario')?.disable();
       this.personasForm.get('nombreSede')?.disable();
       //this.personasForm.reset({idSucursal: 1});
+      const request2: getPersonasRequest = {
+        Id: ['Id']
+      }
+      this.personasService.getPersonas(request2).subscribe(res => {
+        this.listPersonas = res.response.data;
+
+      }) 
     }
-  
+
+
     onSubmit(): void {
       if(this.personasForm.invalid){
         this.error = "!Valida Campos!";
@@ -95,18 +112,20 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
       })
     }
 
-    Cargar():void{
-      if(this.personasForm.controls){
-        const request2: getPersonasRequest = {
-          Id: ['Id']
-        }
-        this.personasService.getPersonas(request2).subscribe(res => {
-          this.listPersonas = res.response.data;
-        }) 
-      }else if(this, this.personasForm.invalid){
-        return;
-      }
-    }
+    // Cargar():void{
+    
+    //   if(this.personasForm.controls){
+    //     const request2: getPersonasRequest = {
+    //       Id: ['Id']
+    //     }
+    //     this.personasService.getPersonas(request2).subscribe(res => {
+    //       this.listPersonas = res.response.data;
+
+    //     }) 
+    //   }else if(this, this.personasForm.invalid){
+    //     return;
+    //   }
+    // }
   
   
     Reset():void {

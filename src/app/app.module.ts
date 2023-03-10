@@ -14,9 +14,11 @@ import { PhotoService } from './demo/service/photo.service';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuService } from './demo/core/services/panel-menu/panel-menu.service';
 
+import { DataTablesModule } from "angular-datatables";
+
 import { LoginGuardian } from './demo/modules/auth/components/login/login-guardian.service';
 import { AuthService } from './demo/core/services/auth/auth.service';
-//import { DataTablesModule } from "angular-datatables";
+
 
 @NgModule({
     declarations: [
@@ -26,8 +28,7 @@ import { AuthService } from './demo/core/services/auth/auth.service';
         AppRoutingModule,
         AppLayoutModule,
         FormsModule,
-
-        
+        DataTablesModule 
     ],
     providers: [
         { provide: LocationStrategy, 

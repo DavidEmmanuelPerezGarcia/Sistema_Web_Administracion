@@ -66,20 +66,21 @@
         <div class="card mt-4">
             <div class="card-header">
                 Modulos | Tabla
-            </div><div class="card-footer">
+            </div>
+            <!-- <div class="card-footer">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
                 </div>
-            </div>
+            </div> -->
             <div class="card-body">
               <div class="row">
                 <div class="col text-center">
-                    <table class="table table-striped table-hover table-bordered row-border hover datatables">
+                    <table datatable [dtOptions]="dtOptions"  class="table table-striped table-hover table-bordered row-border hover datatables">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Descripcion</th>
+                                <!-- <th>Descripcion</th> -->
                                 <th>Categoria</th>
                                 <th>Detalle</th>
                             </tr>
@@ -88,7 +89,7 @@
                             <tr *ngFor="let m of c.Modulos">
                                <td>{{ m.Id }}</td>
                                <td>{{ m.Nombre}}</td>
-                               <td>{{ m.Descripcion}}</td>
+                               <!-- <td>{{ m.Descripcion}}</td> -->
                                <td>{{c.Nombre}}</td>
                                <td>
                                    <a class="btn btn-secondary" href="#">Detalle</a>

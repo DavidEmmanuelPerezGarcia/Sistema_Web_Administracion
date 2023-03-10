@@ -15,6 +15,8 @@ import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/ge
   styleUrls: ['./categoria.component.scss']
 })
 export class CategoriaComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+
   listaCategoria:Categoria[]=[]
   Categoriaform: FormGroup;
   public error = '';
@@ -36,8 +38,20 @@ export class CategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+    };
     this.Reset();
     this.Categoriaform.reset({Id: 1});
+
+    const request1: getCategoriaRequest = {
+      Id: ["Id"]
+    }
+    this.categoriaService.getCategoria(request1).subscribe(res => {
+      this.listaCategoria = res.response.data;
+    })
    
     
   }
@@ -88,17 +102,17 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
-  BuscarCategoria():void{
-    if(this.Categoriaform.controls){
-      const request1: getCategoriaRequest = {
-        Id: ["Id"]
-      }
-      this.categoriaService.getCategoria(request1).subscribe(res => {
-        this.listaCategoria = res.response.data;
-      })
-    }else if(this,this.Categoriaform.invalid){
-      return;
-    }
+  // Cargar():void{
+  //   if(this.Categoriaform.controls){
+  //     const request1: getCategoriaRequest = {
+  //       Id: ["Id"]
+  //     }
+  //     this.categoriaService.getCategoria(request1).subscribe(res => {
+  //       this.listaCategoria = res.response.data;
+  //     })
+  //   }else if(this.Categoriaform.invalid){
+  //     return;
+  //   }
 
-  }
+  // }
 }
