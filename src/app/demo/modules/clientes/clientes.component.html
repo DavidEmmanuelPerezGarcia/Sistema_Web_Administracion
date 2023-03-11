@@ -1,0 +1,111 @@
+ 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    clientes | Formulario
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert" *ngIf="error">
+                        {{error}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+                    <form  id="form">
+                        <div class="row mb-3">
+                            <div class="col me-3">
+                                <label class="form-label">*Nombre:</label>
+                                <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Rfc:</label>
+                                <input type="text" class="form-control" formControlName="rfc" placeholder="Rfc">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*condicionPago:</label>
+                                <input type="text" class="form-control" formControlName="condicionPago" placeholder="Condicion de pago">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*LimiteCredito:</label>
+                                <input type="text" class="form-control" formControlName="limiteCredito" placeholder="Limite de credito">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col me-3">
+                                <label class="form-label">*Correo:</label>
+                                <input type="email" class="form-control" formControlName="correo" placeholder="Correo">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Direccion:</label>
+                                <input type="text" class="form-control" formControlName="direccion" placeholder="Direccion">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Direccion:</label>
+                                <input type="text" class="form-control" formControlName="direccion" placeholder="Direccion">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Telefono:</label>
+                                <input type="text" class="form-control" formControlName="telefono" placeholder="Direccion">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+
+                        </div>
+                    </form>  
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Clientes | Tabla
+                </div>
+                <!-- <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
+                    </div>
+                </div> -->
+                <div class="card-body">
+                
+                  <div class="row">
+                    <div class="col text-center">
+                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Sucursal</th>
+                                    <th>Detalle</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                             
+                                 <!-- <tr *ngFor="let item of listPersonas">
+                                    <td>{{ item.Nombre}}</td>
+                                    <td>{{ item.NombreUsuario}}</td>
+                                    <td>{{ item.IdSede}}</td>
+                                    <td>
+                                        <a class="btn btn-secondary" href="#">Detalle</a>
+                                    </td>
+                                </tr>  -->
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

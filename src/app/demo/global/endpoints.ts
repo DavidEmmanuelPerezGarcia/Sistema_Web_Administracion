@@ -41,3 +41,9 @@ export const personas={
   getPersonas:`${environment.urlBase2}GetUsuarios`
 }
 
+//Clientes
+
+export const clientes={
+  getClientes:`${environment.urlBase2}GetClientes`
+}
+

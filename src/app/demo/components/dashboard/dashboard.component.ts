@@ -67,6 +67,7 @@ export class DashboardComponent implements OnInit  {
                     },
                    
                    
+                   
                 ]
             },
             {
@@ -84,9 +85,12 @@ export class DashboardComponent implements OnInit  {
             {
                 label: 'Catalogos',
                 items: [
-                    {
-                        label: 'Tomar proceso de catalogos',
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Modulos',
                         icon: 'pi pi-fw pi-tags',
+                        routerLink:['/clientes']
                         
                     },
                    
@@ -96,9 +100,12 @@ export class DashboardComponent implements OnInit  {
             {
                 label: 'Clientes',
                 items: [
-                    {
-                        label: 'Tomar proceso de catalogos',
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Clientes',
                         icon: 'pi pi-fw pi-tags',
+                        routerLink:['/clientes']
                         
                     },
                    
