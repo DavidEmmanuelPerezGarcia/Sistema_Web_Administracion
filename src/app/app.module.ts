@@ -18,12 +18,13 @@ import { DataTablesModule } from "angular-datatables";
 
 import { LoginGuardian } from './demo/modules/auth/components/login/login-guardian.service';
 import { AuthService } from './demo/core/services/auth/auth.service';
-import { ClientesComponent } from './demo/modules/clientes/clientes.component';
+import { ClientesComponent } from './demo/modules/clientes/components/clientes.component';
+
 
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, 
+        AppComponent, NotfoundComponent
     ],
     imports: [
         AppRoutingModule,

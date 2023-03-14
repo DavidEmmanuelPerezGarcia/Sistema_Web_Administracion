@@ -1,3 +1,4 @@
+import { env } from 'process';
 import { environment } from '../../../environments/environment';
 
 export const auth = {
@@ -44,6 +45,12 @@ export const personas={
 //Clientes
 
 export const clientes={
-  getClientes:`${environment.urlBase2}GetClientes`
+  getClientes:`${environment.urlBase2}GetClientes`,
+  insertClientes:`${environment.urlBase2}InsertCliente`
+}
+
+// Articulos
+export const articulos={
+  getArticulos:`${environment.urlBase2}GetCambiosPrecio`
 }
 

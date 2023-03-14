@@ -1,0 +1,21 @@
+export interface InsertClienteRequest{
+    id:number,
+    nombre:string,
+    rfc:string,
+    condicionPago:string,
+    limiteCredito:string,
+    correo:string,
+    direccion:string,
+    telefono:string,
+    codPostal:string,
+    ciudad:string,
+    colonia:string,
+    representante:string,
+    banco:string,
+    cuenta:string,
+    comentarios:string,
+    usuario:number,
+    contacto:string,
+    activo:number,
+    // regimen:string
+}

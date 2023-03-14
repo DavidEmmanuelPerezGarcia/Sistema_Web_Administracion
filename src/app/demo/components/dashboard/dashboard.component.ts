@@ -74,8 +74,10 @@ export class DashboardComponent implements OnInit  {
                 label: 'Articulo',
                 items: [
                     {
-                        label: 'Tomar proceso de catalogos',
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Articulos',
                         icon: 'pi pi-fw pi-tags',
+                        routerLink:['/articulos']
                         
                     },
                    

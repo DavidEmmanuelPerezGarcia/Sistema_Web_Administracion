@@ -1,0 +1,87 @@
+ 
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    clientes | Formulario
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert" *ngIf="error">
+                        {{error}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+                    <form [formGroup]="articulosForm" id="form">
+                        <div class="row mb-3">
+                            <div class="mb-3">
+                                <label class="form-label">*Sucursal:</label>
+                                <select name="IdSucursal" id="IdSucursal" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.idSucursal.errors}">
+                                    <option value="1">Matriz</option>
+                                </select>
+                            </div>
+                        </div>
+                           
+                    </form>  
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="Cargar()">Cargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    Clientes | Tabla
+                </div>
+                <!-- <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
+                    </div>
+                </div> -->
+                <div class="card-body">
+                
+                  <div class="row">
+                    <div class="col text-center">
+                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <!-- <th>Descripcion</th> -->
+                                    <th>Costo</th>
+                                    <th>PrecioFinal</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                             
+                                 <tr *ngFor="let item of listArticulos">
+                                    <td>{{ item.Codigo}}</td>
+                                    <!-- <td>{{ item.Descripcion}}</td> -->
+                                    <td>{{ item.Costo}}</td>
+                                    <td>{{ item.PrecioFinal}}</td>
+                                    <td>{{item.PrecioMayoreo}}</td>
+                                    <td>{{item.PrecioMayoreoCred}}</td>
+                                    <td>{{item.PrecioOriginal}}</td>
+                                    <td>{{item.CostoActual}}</td>
+                                    <!-- <td>
+                                        <a class="btn btn-secondary" href="#">Detalle</a>
+                                    </td> -->
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
