@@ -29,6 +29,7 @@ import { AuthGuard } from './demo/modules/auth/components/Guard/auth.guard';
                     {path: 'modulos', loadChildren:()=> import('./demo/modules/modulos/modulos.module').then(m => m.ModulosModule),canActivate:[AuthGuard]},
                     {path: 'clientes', loadChildren:()=> import('./demo/modules/clientes/clientes.module').then(m => m.ClientesModule),canActivate:[AuthGuard]},
                     {path: 'articulos', loadChildren:()=> import('./demo/modules/articulos/articulos.module').then(m => m.ArticulosModule),canActivate:[AuthGuard]},
+                    {path: 'medicos', loadChildren:()=> import('./demo/modules/medicos/medicos.module').then(m => m.MedicosModule),canActivate:[AuthGuard]},
                   
                 ]
           
