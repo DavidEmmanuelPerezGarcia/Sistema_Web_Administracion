@@ -40,6 +40,19 @@ export class ArticulosComponent implements OnInit {
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
 
+    // Mostrar los datos de los articulos
+
+    if(this.articulosForm.controls){
+      const request1: getArticulosRequest = {
+        idSucursal: this.articulosForm.controls['idSucursal'].value
+       }
+       this.ArticulosService.getArticulos(request1).subscribe(res => {
+         this.listArticulos = res.response.data;
+       })
+     }else if(this.articulosForm.invalid){
+       return;
+     }
+
     this.articulosForm.reset({ idSucursal: 1});
   }
 
@@ -52,16 +65,16 @@ export class ArticulosComponent implements OnInit {
 
   }
 
-  Cargar():void{
-    if(this.articulosForm.controls){
-          const request1: getArticulosRequest = {
-            idSucursal: this.articulosForm.controls['idSucursal'].value
-           }
-           this.ArticulosService.getArticulos(request1).subscribe(res => {
-             this.listArticulos = res.response.data;
-           })
-         }else if(this.articulosForm.invalid){
-           return;
-         }
-  }
+  // Cargar():void{
+  //   if(this.articulosForm.controls){
+  //         const request1: getArticulosRequest = {
+  //           idSucursal: this.articulosForm.controls['idSucursal'].value
+  //          }
+  //          this.ArticulosService.getArticulos(request1).subscribe(res => {
+  //            this.listArticulos = res.response.data;
+  //          })
+  //        }else if(this.articulosForm.invalid){
+  //          return;
+  //        }
+  // }
 }

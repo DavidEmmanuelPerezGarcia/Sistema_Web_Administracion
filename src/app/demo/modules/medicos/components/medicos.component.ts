@@ -47,6 +47,18 @@ export class MedicosComponent implements OnInit{
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
     this.Reset();
+
+    // mostrar los datos de medicos
+    if(this.medicosForm.controls){
+      const request: getMedicosRequest={
+        id:1
+      }
+      this.MedicosService.getMedicos(request).subscribe(res=>{
+        this.listMedicos=res.response.data;
+      })
+    }else if(this.medicosForm.invalid){
+      return;
+    }
   }
 
   get form(): any {
@@ -104,16 +116,16 @@ export class MedicosComponent implements OnInit{
       });
   }
 
-  cargar():void{
-    if(this.medicosForm.controls){
-      const request: getMedicosRequest={
-        id:1
-      }
-      this.MedicosService.getMedicos(request).subscribe(res=>{
-        this.listMedicos=res.response.data;
-      })
-    }else if(this.medicosForm.invalid){
-      return;
-    }
-  }
+  // cargar():void{
+  //   if(this.medicosForm.controls){
+  //     const request: getMedicosRequest={
+  //       id:1
+  //     }
+  //     this.MedicosService.getMedicos(request).subscribe(res=>{
+  //       this.listMedicos=res.response.data;
+  //     })
+  //   }else if(this.medicosForm.invalid){
+  //     return;
+  //   }
+  // }
 }
