@@ -90,9 +90,9 @@ export class DashboardComponent implements OnInit  {
                     {   
 
                         styleClass:'card m-3 border-1 surface col-5',
-                        label: 'Modulos',
+                        label: 'Medicos',
                         icon: 'pi pi-fw pi-tags',
-                        routerLink:['/clientes']
+                        routerLink:['/medicos']
                         
                     },
                    

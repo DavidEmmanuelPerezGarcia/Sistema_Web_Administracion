@@ -4,7 +4,7 @@ import { MedicosComponent } from './components/medicos.component';
 
 const routes: Routes = [
   {
-    path: 'modulos',
+    path: 'medicos',
     component: MedicosComponent
   },
   {

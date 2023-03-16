@@ -54,3 +54,9 @@ export const articulos={
   getArticulos:`${environment.urlBase2}GetCambiosPrecio`
 }
 
+//medicos
+export const medicos={
+  getMedicos:`${environment.urlBase2}GetMedicos`,
+  insertMedicos:`${environment.urlBase2}InsertMedico`
+}
+

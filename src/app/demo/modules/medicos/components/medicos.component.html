@@ -1,1 +1,122 @@
-<p>medicos works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Medicos | Formulario
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert" *ngIf="error">
+                        {{error}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+                    <form [formGroup]="medicosForm" id="form">
+                        <div class="row mb-3">
+                            <div class="col me-3">
+                                <label class="form-label">*Nombre:</label>
+                                <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*ApPaterno:</label>
+                                <input type="text" class="form-control" formControlName="apPaterno" placeholder="apPaterno">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*ApMaterno:</label>
+                                <input type="text" class="form-control" formControlName="apMaterno" placeholder="ApMaterno">
+                            </div>
+                        </div> 
+                        <div class="row mb-3">
+                            <div class="col me-3">
+                                <label class="form-label">*Numero:</label>
+                                <input type="text" class="form-control" formControlName="numero" placeholder="Numero">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Cedula:</label>
+                                <input type="text" class="form-control" formControlName="cedula" placeholder="Cedula">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*Domicilio:</label>
+                                <input type="text" class="form-control" formControlName="domicilio" placeholder="Domicilio">
+                            </div>
+                        </div> 
+                        <div class="row mb-3">
+                            <div class="col me-3">
+                                <label class="form-label">*Telefono:</label>
+                                <input type="text" class="form-control" formControlName="telefono" placeholder="Telefono">
+                            </div>
+                            <div class="col me-3">
+                                <label class="form-label">*TelefonoCasa:</label>
+                                <input type="text" class="form-control" formControlName="telefonoCasa" placeholder="TelefonoCasa">
+                            </div>
+                        </div>
+                    </form>  
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="cargar()">Cargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row">
+      <div class="col">
+          <div class="card mt-4">
+              <div class="card-header">
+                  Medicos | Tabla
+              </div>
+              <!-- <div class="card-footer">
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
+                  </div>
+              </div> -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col text-center">
+                    <div class="table-responsive">
+                        <table   class="table table-striped table-hover table-bordered row-border hover datatables">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>ApPaterno</th>
+                                    <th>ApMaterno</th>
+                                    <th>Numero</th>
+                                    <th>Cedula</th>
+                                    <th>Domicilio</th>
+                                    <th>Telefono</th>
+                                    <th>TelefonoCasa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listMedicos">
+                                   <td>{{ item.Id }}</td>
+                                   <td>{{item.Nombre}}</td>
+                                   <td>{{item.ApPaterno}}</td>
+                                   <td>{{item.ApMaterno}}</td>
+                                   <td>{{item.Numero}}</td>
+                                   <td>{{item.Cedula}}</td>
+                                   <td>{{item.Domicilio}}</td>
+                                   <td>{{item.Telefono}}</td>
+                                   <td>{{item.TelefonoCasa}}</td>
+                                   <td>
+                                       <button class="btn btn-warning">Editar</button>
+                                   </td>
+                               </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
