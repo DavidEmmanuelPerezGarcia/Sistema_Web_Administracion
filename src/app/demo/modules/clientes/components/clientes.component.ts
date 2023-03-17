@@ -118,7 +118,7 @@ export class ClientesComponent implements OnInit {
      
       const request: getClientesRequest = {
         id:1,
-        nombreCliente:"svillarreal",
+        nombreCliente:""
         
       }
   
