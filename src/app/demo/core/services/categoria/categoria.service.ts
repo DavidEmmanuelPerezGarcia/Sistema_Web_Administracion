@@ -46,6 +46,16 @@ export class categoriaService {
     )
   }
 
+  // DeleteCategoria(id:number): Observable<GetCategoriaResponse> {
+  //   const httpOptions = {headers:this.headers}
+  //   const request:getCategoriaRequest={id}
+  //   return this.http.post<deleteModulosResponse>(modulos.deleteModulos, request, httpOptions)
+  //   .pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //   )
+  // }
 
   
 }

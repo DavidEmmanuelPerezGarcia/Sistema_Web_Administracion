@@ -12,6 +12,8 @@ import { getModulosRequest } from 'src/app/demo/core/models/modulos/get-modulos.
 import { ModulosService } from 'src/app/demo/core/services/modulos/modulos.service';
 import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
 import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
+import { deleteModulosRequest } from 'src/app/demo/core/models/modulos/delete-modulos';
+import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-response.modules';
 
 
 @Component({
@@ -25,6 +27,8 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
     submitted = false;
 
     listModulos:Categoria[]=[]
+    // deleteModulos:deleteModulos[]=[]
+    listModulosPrueva:Modulos[]=[]
   
     
     modulosForm: FormGroup;
@@ -64,7 +68,7 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
       //this.modulosForm.reset({idSucursal: 1});
 
       const request: getModulosRequest = {
-        id: ["id"]
+        id: ""
       }
   
       this.categoriaService.getCategoria(request).subscribe(res => {
@@ -138,5 +142,17 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
+    }
+
+    DeleteModulo(eliminar:deleteModulos):void{
+      const request: getModulosRequest = {
+        id: ""
+      }
+  
+      this.modulosService.DeleteModulos(eliminar.Id).subscribe(() => {
+        this.modulosService.getModulos(request).subscribe(res=>{
+        this.listModulosPrueva=res.response.data
+        })
+      })
     }
   }

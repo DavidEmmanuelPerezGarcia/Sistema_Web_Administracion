@@ -10,6 +10,9 @@ import { InsertModulosRequest } from 'src/app/demo/core/models/modulos/insert-mo
 import { mapeos, modulos, personas } from 'src/app/demo/global/endpoints';
 import { GetModulosResponse } from '../../models/modulos/get-modulos-response-modules';
 import { getModulosRequest } from '../../models/modulos/get-modulos.model';
+import { deleteModulosRequest } from '../../models/modulos/delete-modulos';
+import { deleteModulosResponse } from '../../models/modulos/delete-modulos-response.modules';
+
 
 
 @Injectable({
@@ -38,6 +41,17 @@ export class ModulosService {
   getModulos(data:getModulosRequest): Observable<GetModulosResponse> {
     const httpOptions = {headers:this.headers}
     return this.http.post<GetModulosResponse>(modulos.getModulos, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  DeleteModulos(id:number): Observable<deleteModulosResponse> {
+    const httpOptions = {headers:this.headers}
+    const request:deleteModulosRequest={id}
+    return this.http.post<deleteModulosResponse>(modulos.deleteModulos, request, httpOptions)
     .pipe(
       map(res => {
         return res;
