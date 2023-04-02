@@ -26,7 +26,8 @@ export const detalle_mapeos={
 // Categoria
 export const Categoria={
   insertCategoria:`${environment.urlBase2}InsertCategoria`,
-  getCategoria:`${environment.urlBase2}GetCategorias`
+  getCategoria:`${environment.urlBase2}GetCategorias`,
+  deleteCategoria:`${environment.urlBase2}DeleteCategoria`
 }
 
 //Modulos
@@ -40,7 +41,8 @@ export const modulos = {
 
 export const personas={
   insertPersonas: `${environment.urlBase2}InsertPersona`,
-  getPersonas:`${environment.urlBase2}GetUsuarios`
+  getPersonas:`${environment.urlBase2}GetUsuarios`,
+  deletePersonas:`${environment.urlBase2}DeletePersona`
 }
 
 //Clientes

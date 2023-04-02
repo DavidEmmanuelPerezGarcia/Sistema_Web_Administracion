@@ -11,6 +11,7 @@ import { Personas } from 'src/app/demo/core/models/personas/get-personas-respons
 
 // Services //
 import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
+import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonasResponse.model';
 
 
 
@@ -25,6 +26,7 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
     
 
     listPersonas: Personas[] = [];
+    eliminar:DeletePersonas[]=[]
     submitted = false;
 
     nombreEdit="David"
@@ -146,5 +148,17 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
+    }
+
+    DeletePersona(eliminar:DeletePersonas):void{
+      const request: getPersonasRequest = {
+        id: ""
+      }
+  
+      this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
+        this.personasService.getPersonas(request).subscribe(res=>{
+        this.listPersonas=res.response.data
+        })
+      })
     }
   }
