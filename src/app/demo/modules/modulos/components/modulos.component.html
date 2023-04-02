@@ -82,17 +82,18 @@
                                 <th>Nombre</th>
                                 <!-- <th>Descripcion</th> -->
                                 <th>Categoria</th>
-                                <th>Detalle</th>
+                                <th width="5%">Opciones</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let c of listModulos">
-                            <tr *ngFor="let m of c.Modulos">
-                               <td>{{ m.Id }}</td>
-                               <td>{{ m.Nombre}}</td>
+                        <tbody *ngFor="let item of listModulos">
+                            <tr *ngFor="let i of item.Modulos">
+                               <td>{{i.Id}}</td>
+                               <td>{{i.Nombre}}</td>
                                <!-- <td>{{ m.Descripcion}}</td> -->
-                               <td>{{c.Nombre}}</td>
-                               <td>
-                                   <a class="btn btn-secondary" href="#">Detalle</a>
+                               <td>{{i.Categoria}}<td>
+                               <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-pencil"></i></button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-trash"></i></button>
                                </td>
                            </tr> 
                         </tbody>

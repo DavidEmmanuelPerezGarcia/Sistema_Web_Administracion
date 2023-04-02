@@ -1,6 +1,7 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-menu',
@@ -10,7 +11,7 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService,private readonly router: Router) { }
 
     ngOnInit() {
         this.model = [
@@ -18,12 +19,6 @@ export class AppMenuComponent implements OnInit {
                 label: 'Opciones de navegacion',
                 items: [
                     { label: 'Panel de control', icon: 'pi pi-fw pi-palette', routerLink: ['dashboard'] }
-                ]
-            },
-            {
-              
-                items: [
-                    { label: 'Agenda semanal', icon: 'pi pi-fw pi-calendar', routerLink: [''] }
                 ]
             },
             {
@@ -35,10 +30,15 @@ export class AppMenuComponent implements OnInit {
             {
                
                 items: [
-                    { label: 'Cerrar sesion', icon: 'pi pi-fw pi-sign-out', routerLink: [''] }
+                    { label: 'Cerrar sesion', icon: 'pi pi-fw pi-sign-out', command: () => this.LogOut() }
                 ]
             },
         
         ];
     }
+
+    LogOut():void {
+        localStorage.clear();
+        this.router.navigate(['/'])
+      }
 }

@@ -114,6 +114,21 @@ export class DashboardComponent implements OnInit  {
                 ]
                     
             },
+            {
+                label: 'Sistemas',
+                items: [
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-8',
+                        label: 'Reporte y movimientos de inventario',
+                        icon: 'pi pi-fw pi-tags',
+                        routerLink:['/Reporte_y_movimientos_de_inventarios']
+                        
+                    },
+                   
+                ]
+                    
+            },
            
         ];
 

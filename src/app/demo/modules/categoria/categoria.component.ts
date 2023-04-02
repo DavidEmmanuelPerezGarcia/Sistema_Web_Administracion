@@ -22,6 +22,9 @@ export class CategoriaComponent implements OnInit {
   public error = '';
   public message = '';
 
+  nombreEditar="Administracion"
+  descripcionEditar="Hola"
+
   constructor(
     private readonly router: Router,
     private FormBuilder: FormBuilder,
@@ -94,7 +97,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   Reset():void {
-    // var dateNow = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+    var dateNow = new Date().toJSON().slice(0,10).replace(/-/g,'-');
     this.Categoriaform.reset({
       nombreCategoria: '',
       descripcionCategoria: ''

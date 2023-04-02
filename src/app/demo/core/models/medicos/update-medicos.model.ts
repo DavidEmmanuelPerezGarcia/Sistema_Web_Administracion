@@ -1,5 +1,4 @@
 export interface updateMedicosRequest{
-    id:number
     numero:string
     cedula:string
     nombre:string
@@ -8,5 +7,5 @@ export interface updateMedicosRequest{
     domicilio:string
     telefono:string
     telefonoCasa:string
-    estatus:string
+    estatus:number
 }

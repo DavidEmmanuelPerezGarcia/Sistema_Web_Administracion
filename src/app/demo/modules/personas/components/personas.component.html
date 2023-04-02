@@ -13,7 +13,7 @@
                     <div class="alert alert-success" role="alert" *ngIf="message">
                         {{message}}
                     </div>
-                    <form [formGroup]="personasForm" id="form">
+                    <form id="form">
                         <div class="row mb-3">
                             <div class="col me-3">
                                 <label class="form-label">*Nombre:</label>
@@ -61,6 +61,66 @@
         </div>
     </div>
 
+        <!-- Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Actualizar categoria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form">
+                            <div class="row mb-3">
+                                <div class="col me-3">
+                                    <label class="form-label">*Nombre:</label>
+                                    <input type="text" class="form-control"  name="nombre" [(ngModel)]="nombreEdit">
+                                </div>
+                                <div class="col me-3">
+                                    <label class="form-label">*Apellido Paterno:</label>
+                                    <input type="text" class="form-control"  name="apPaterno" [(ngModel)]="apPaternoEdit">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+
+                                <div class="col me-3">
+                                    <label class="form-label">*Apellido Materno:</label>
+                                    <input type="text" class="form-control"  name="apMaterno" [(ngModel)]="apMaternoEdit">
+                                </div>
+                                <div class="col me-3">
+                                    <label class="form-label">*Perfil:</label>
+                                    <select class="form-control">
+                                        <option value="0" disabled hidden>Selecciona perfil</option>
+                                        <option value="1" selected>Administrador</option>
+                                        <option value="2">Cliente</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3 ">
+                                <div class="col me-5">
+                                    <label class="form-label">*Sede:</label>
+                                    <select class="form-control">
+                                        <option value="0" disabled hidden>Selecciona sede</option>
+                                        <option value="1" selected>Matriz</option>
+                                        <option value="2">""</option>
+                                    </select>
+                                </div>
+                                <div class="col me-3"></div>
+                                <div class="col me-3"></div>
+                                <div class="col me-3"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Actualizar</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+    <!-- /modal -->
+
     <div class="row">
         <div class="col">
             <div class="card mt-4">
@@ -79,20 +139,21 @@
                         <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
                             <thead>
                                 <tr>
-                                    <th>Usuario</th>
                                     <th>Nombre</th>
+                                    <th>NombreUsuario</th>
                                     <th>Sucursal</th>
-                                    <th>Detalle</th> 
+                                    <th width="5%">Opciones</th> 
                                 </tr>
                             </thead>
                             <tbody>
                              
-                                 <tr *ngFor="let item of listPersonas">
-                                    <td>{{ item.Nombre}}</td>
-                                    <td>{{ item.NombreUsuario}}</td>
-                                    <td>{{ item.IdSede}}</td>
-                                    <td>
-                                        <a class="btn btn-secondary" href="#">Detalle</a>
+                                 <tr >
+                                    <td>David</td>
+                                    <td>Dperez</td>
+                                    <td>Matriz</td>
+                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-pencil"></i></button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-trash"></i></button>
                                     </td>
                                 </tr> 
                             </tbody>

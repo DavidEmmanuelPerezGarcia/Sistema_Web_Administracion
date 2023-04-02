@@ -62,6 +62,21 @@ export class ClientesComponent implements OnInit {
     
     this.Reset();
     this.clientesForm.reset({Id: 1});
+
+    if(this.clientesForm.controls){
+     
+      const request: getClientesRequest = {
+        id:1,
+        nombreCliente:""
+        
+      }
+  
+      this.clientesService.getclientes(request).subscribe(res => {
+        this.listClientes = res.response.data;
+      })
+    }else if(this.clientesForm.invalid){
+      return
+    }
   }
 
   Reset():void{

@@ -58,6 +58,12 @@ export const articulos={
 export const medicos={
   getMedicos:`${environment.urlBase2}GetMedicos`,
   insertMedicos:`${environment.urlBase2}InsertMedico`,
-  updateMedicos:`${environment.urlBase2}UpdateMedico`
+  getByMedicos:`${environment.urlBase2}GetMedicoById/`,
+  updateMedicos:`${environment.urlBase2}UpdateMedico/`
+}
+
+//Reporte entrada y movimientos de inventarios
+export const VentasEntrada={
+  getVentaEntrada:`${environment.urlBase2}GetVentasEntrada`
 }
 

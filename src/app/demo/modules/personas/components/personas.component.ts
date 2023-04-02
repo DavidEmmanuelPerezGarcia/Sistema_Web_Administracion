@@ -26,6 +26,10 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
 
     listPersonas: Personas[] = [];
     submitted = false;
+
+    nombreEdit="David"
+    apPaternoEdit="Dperez"
+    apMaternoEdit="Matriz"
   
     
     personasForm: FormGroup;
@@ -64,7 +68,7 @@ import { PersonasService } from 'src/app/demo/core/services/personas/personas.se
       this.personasForm.get('idUsuario')?.disable();
       this.personasForm.get('nombreUsuario')?.disable();
       this.personasForm.get('nombreSede')?.disable();
-      //this.personasForm.reset({idSucursal: 1});
+      this.personasForm.reset({idSucursal: 1});
       const request2: getPersonasRequest = {
         Id: ['Id']
       }
