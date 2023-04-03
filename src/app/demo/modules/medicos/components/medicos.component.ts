@@ -195,6 +195,10 @@ export class MedicosComponent implements OnInit {
   //     this.medicosUpdateForm.patchValue(this.medicoGet);
   //   })
   // }
+
+  CambiarActivoMedico():void{
+    
+  }
  
   
 }
