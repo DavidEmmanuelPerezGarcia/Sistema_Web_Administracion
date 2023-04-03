@@ -6,6 +6,8 @@ import { Observable, map } from 'rxjs';
 import { InsertCategoriaResponse} from 'src/app/demo/core/models/Admin/categoria/insert-categoriaResponse.model';
 import { InsertCategoriaResquest } from 'src/app/demo/core/models/Admin/categoria/insert-categoria.model';
 import { GetCategoriaResponse } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
+import { DeleteCategoriaResponse } from '../../models/Admin/categoria/deleteCategoriasResponse.model';
+import { DeleteCategoriaRequest } from '../../models/Admin/categoria/delete-categoria.model';
 
 
 //endpoints//
@@ -46,10 +48,10 @@ export class categoriaService {
     )
   }
 
-  DeleteCategoria(id:number): Observable<GetCategoriaResponse> {
+  DeleteCategoria(id:number): Observable<DeleteCategoriaResponse> {
     const httpOptions = {headers:this.headers}
-    const request:getCategoriaRequest={id}
-    return this.http.post<GetCategoriaResponse>(Categoria.deleteCategoria, request, httpOptions)
+    const request:DeleteCategoriaRequest={id}
+    return this.http.post<DeleteCategoriaResponse>(Categoria.deleteCategoria, request, httpOptions)
     .pipe(
       map(res => {
         return res;
