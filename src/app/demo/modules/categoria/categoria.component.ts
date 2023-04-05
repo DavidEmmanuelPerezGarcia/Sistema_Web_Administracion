@@ -118,4 +118,16 @@ export class CategoriaComponent implements OnInit {
   //   }
 
   // }
+
+  DeleteCategoria(eliminar:Categoria):void{
+    const request: getCategoriaRequest = {
+      id: ""
+    }
+
+    this.categoriaService.DeleteCategoria(eliminar.Id).subscribe(() => {
+      this.categoriaService.getCategoria(request).subscribe(res=>{
+      this.listaCategoria=res.response.data
+      })
+    })
+  }
 }

@@ -12,6 +12,7 @@ import { Personas } from 'src/app/demo/core/models/personas/get-personas-respons
 // Services //
 import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
 import { Subscriber } from 'rxjs';
+import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonasResponse.model';
 
 
 
@@ -24,7 +25,7 @@ import { Subscriber } from 'rxjs';
   export class PersonasComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
     listPersonas: Personas[] = [];
-
+    eliminar:DeletePersonas[]=[]
     submitted = false;
   
     
@@ -155,5 +156,17 @@ import { Subscriber } from 'rxjs';
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
+    }
+
+    DeletePersona(eliminar:DeletePersonas):void{
+      const request: getPersonasRequest = {
+        id: ""
+      }
+  
+      this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
+        this.personasService.getPersonas(request).subscribe(res=>{
+        this.listPersonas=res.response.data
+        })
+      })
     }
   }
