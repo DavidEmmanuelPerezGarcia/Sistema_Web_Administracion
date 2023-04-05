@@ -1,3 +1,4 @@
 export interface getMedicosRequest{
-    id:number
+    id:string
+    estatus:number
 }

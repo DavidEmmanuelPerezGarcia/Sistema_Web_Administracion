@@ -51,6 +51,7 @@ export class VentasEntradasComponent implements OnInit {
       //   // this.listaVentasEntradas = res.response.data;
       //   console.log(res.response.data)
       // })
+      this.VentaEntradasForm.reset({Id: 1});
   }
 
   buscar():void{

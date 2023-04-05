@@ -13,7 +13,9 @@ import { updateMedicosRequest } from '../../models/medicos/update-medicos.model'
 import { Medicos } from 'src/app/demo/core/models/medicos/get-medicos-response.model';
 
 import{getMedicoByIdRequest} from'src/app/demo/core/models/medicos/get-medicosById.model'
-import{getMedicoByIdResponse, MedicosById}from'src/app/demo/core/models/medicos/get-medicosById-response.model'
+import{getMedicoByIdResponse}from'src/app/demo/core/models/medicos/get-medicosById-response.model'
+import { DeleteMedicosRequest } from '../../models/medicos/Delete-medicos.model';
+import { DeleteMedicosResponse } from '../../models/medicos/Delete-medicos-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +71,17 @@ export class MedicosService {
   updateMedicos(data:updateMedicosRequest):Observable<updateMedicosResponse>{
     const httpOptions = {headers:this.headers}
     return this.http.post<updateMedicosResponse>(medicos.updateMedicos, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  deleteMedicos( id:number, estatus:number):Observable<DeleteMedicosResponse>{
+    const httpOptions = {headers:this.headers}
+    const request:DeleteMedicosRequest={id,estatus}
+    return this.http.post<DeleteMedicosResponse>(medicos.updateMedicos,request, httpOptions)
     .pipe(
       map(res => {
         return res;

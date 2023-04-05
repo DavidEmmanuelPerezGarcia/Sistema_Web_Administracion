@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
+
 // Models //
 import { InsertPersonasRequest } from 'src/app/demo/core/models/personas/insert-personas.model';
 import { getPersonasRequest } from 'src/app/demo/core/models/personas/get-personas.model';
@@ -26,7 +27,6 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
     
 
     listPersonas: Personas[] = [];
-    eliminar:DeletePersonas[]=[]
     submitted = false;
 
     nombreEdit="David"
@@ -72,7 +72,7 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
       this.personasForm.get('nombreSede')?.disable();
       this.personasForm.reset({idSucursal: 1});
       const request2: getPersonasRequest = {
-        Id: ['Id']
+        idPersona:""
       }
       this.personasService.getPersonas(request2).subscribe(res => {
         this.listPersonas = res.response.data;
@@ -131,6 +131,12 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
     //   }else if(this, this.personasForm.invalid){
     //     return;
     //   }
+    // }  
+
+    // ngAfterViewInit(): void {
+    //   $(document).ready(() => {
+    //     $('#myTable').DataTable();
+    //   });
     // }
   
   
@@ -152,7 +158,7 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
 
     DeletePersona(eliminar:DeletePersonas):void{
       const request: getPersonasRequest = {
-        id: ""
+        idPersona: ""
       }
   
       this.personasService.deletePersonas(eliminar.Id).subscribe(() => {

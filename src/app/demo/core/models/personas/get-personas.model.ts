@@ -1,1 +1,3 @@
-export interface getPersonasRequest{}
+export interface getPersonasRequest{
+    idPersona:string
+}

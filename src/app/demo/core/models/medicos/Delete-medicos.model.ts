@@ -1,3 +1,4 @@
 export interface DeleteMedicosRequest{
-    Id:number
+    id:number
+    estatus:number
 }

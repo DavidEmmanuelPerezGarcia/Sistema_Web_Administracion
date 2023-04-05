@@ -51,7 +51,7 @@ export class PersonasService {
 
   deletePersonas(id:number): Observable<DeletePersonasResponse> {
     const httpOptions = {headers:this.headers}
-    const request:deletePersonasRequest={id}
+    const request:deletePersonasRequest={idPersona:id}
     return this.http.post<DeletePersonasResponse>(personas.deletePersonas, request, httpOptions)
     .pipe(
       map(res => {
