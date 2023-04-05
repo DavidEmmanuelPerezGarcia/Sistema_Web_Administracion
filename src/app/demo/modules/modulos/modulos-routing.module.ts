@@ -11,7 +11,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'modulos',
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'modulos/:id',
+    component: ModulosComponent
+  },
 ];
 
 @NgModule({

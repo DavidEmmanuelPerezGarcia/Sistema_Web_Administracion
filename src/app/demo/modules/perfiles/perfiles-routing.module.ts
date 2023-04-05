@@ -1,25 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MedicosComponent } from './components/medicos.component';
+import { PerfilesComponent } from './components/perfiles.component';
 
 const routes: Routes = [
   {
-    path: 'medicos',
-    component: MedicosComponent
+    path: 'perfiles',
+    component: PerfilesComponent
   },
   {
     path: '',
-    redirectTo: 'medicos',
+    redirectTo: 'perfiles',
     pathMatch: 'full'
-  },
-  {
-    path: 'medicos/:Id',
-    component: MedicosComponent
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MedicosRoutingModule { }
+export class PerfilesRoutingModule { }

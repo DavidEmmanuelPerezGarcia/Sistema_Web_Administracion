@@ -180,7 +180,7 @@
                                    <td>{{m.TelefonoCasa}}</td>
                                    <td>{{m.Estatus}}</td>
                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                       <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="getMedicoById(3)"><i class="pi pi-pencil"></i></button>
+                                       <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" [routerLink]="['/medicos/medicos', m.Id]"><i class="pi pi-pencil"></i></button>
                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-trash"></i></button>
                                    </td>
                                </tr> 

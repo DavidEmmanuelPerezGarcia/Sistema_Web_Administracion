@@ -4,7 +4,7 @@
         <div class="col">
             <div class="card mt-4">
                 <div class="card-header">
-                    Personas | Formulario
+                    Perfiles | Formulario
                 </div>
                 <div class="card-body">
                     <div class="alert alert-danger" role="alert" *ngIf="error">
@@ -16,38 +16,19 @@
                     <form [formGroup]="personasForm" id="form">
                         <div class="row mb-3">
                             <div class="col me-3">
-                                <label class="form-label">*Nombre:</label>
+                                <label class="form-label">*Administrador:</label>
                                 <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                             </div>
                             <div class="col me-3">
-                                <label class="form-label">*Apellido Paterno:</label>
+                                <label class="form-label">*Sistema:</label>
                                 <input type="text" class="form-control" formControlName="apPaterno" placeholder="Apellido Paterno">
                             </div>
                             <div class="col me-3">
-                                <label class="form-label">*Apellido Materno:</label>
+                                <label class="form-label">*Cajero:</label>
                                 <input type="text" class="form-control" formControlName="apMaterno" placeholder="Apellido Materno">
                             </div>
                             <div class="col me-3">
-                                <label class="form-label">*Perfil:</label>
-                                <select formControlName="perfil" class="form-control">
-                                    <option value="0" selected disabled hidden>Selecciona perfil</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Cliente</option>
-                                </select>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col me-3">
-                                <label class="form-label">*Sede:</label>
-                                <select formControlName="idSede" class="form-control">
-                                    <option value="0" selected disabled hidden>Selecciona sede</option>
-                                    <option value="1">Matriz</option>
-                                    <option value="2">""</option>
-                                </select>
-                            </div>
-                            <div class="col me-3"></div>
-                            <div class="col me-3"></div>
-                            <div class="col me-3"></div>
                         </div>
                     </form>  
                 </div>
@@ -65,7 +46,7 @@
         <div class="col">
             <div class="card mt-4">
                 <div class="card-header">
-                    Usuarios | Tabla
+                    Perfiles | Tabla
                 </div>
                 <!-- <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -79,22 +60,23 @@
                         <table datatable [dtOptions]="dtOptions" class="row-border hover">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Sucursal</th>
+                                    <th>Administrador</th>
+                                    <th>Sistema</th>
+                                    <th>Cajero</th>
                                     <th>Detalle</th> 
                                 </tr>
                             </thead>
                             <tbody>
                              
-                                 <tr *ngFor="let item of listPersonas">
-                                    <td scope="row">{{ item.Id}}</td>
+                                 <tr >
+                                    <!--<td>{{ item.Nombre}}</td>
                                     <td>{{ item.NombreUsuario}}</td>
-                                    <td>{{ item.Nombre}}</td>
-                                    <td>{{ item.NombreSede}}</td>
+                                    <td>{{ item.IdSede}}</td>-->
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
                                     <td>
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" [routerLink]="['/personas/personas', item.Id]"><i class="pi pi-pencil"></i></button>
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="pi pi-pencil"></i></button>
                                         <button class="btn btn-danger"><i class="pi pi-trash"></i></button>
                                     </td>
                                 </tr> 
@@ -113,7 +95,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal Personas</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -124,23 +106,39 @@
                                     <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                                 </div>
                                 <div class="col me-3">
-                                    <label class="form-label">*Usuario:</label>
+                                    <label class="form-label">*Apellido Paterno:</label>
                                     <input type="text" class="form-control" formControlName="apPaterno" placeholder="Apellido Paterno">
                                 </div>
-                                <label class="form-label">*Sucursal:</label>
-                                <div>
-                                <select formControlName="idSede" class="form-control">
-                                    <option value="0" selected disabled hidden>Selecciona</option>
-                                    <option value="1">Matriz</option>
-                                    <option value="2">""</option>
-                                </select>
+                                <div class="col me-3">
+                                    <label class="form-label">*Apellido Materno:</label>
+                                    <input type="text" class="form-control" formControlName="apMaterno" placeholder="Apellido Materno">
                                 </div>
+                                
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col me-3">
+                                    <label class="form-label">*Perfil:</label>
+                                    <select formControlName="perfil" class="form-control">
+                                        <option value="0" selected disabled hidden>Selecciona perfil</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Cliente</option>
+                                    </select>
+                                </div>
+                                <div class="col me-3">
+                                    <label class="form-label">*Sede:</label>
+                                    <select formControlName="idSede" class="form-control">
+                                        <option value="0" selected disabled hidden>Selecciona sede</option>
+                                        <option value="1">Matriz</option>
+                                        <option value="2">""</option>
+                                    </select>
+                                </div>
+                                <div class="col me-3"></div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"   >Cerrar</button>
-                        <button type="button" class="btn btn-primary" (click)="update()">Guardar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
                     </div>
               </div>
             </div>

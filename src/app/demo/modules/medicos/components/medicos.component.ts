@@ -35,7 +35,8 @@ export class MedicosComponent implements OnInit {
   constructor(private MedicosService: MedicosService,
     private route:ActivatedRoute,
     private router: Router,
-    private FormBuilder: FormBuilder,) {
+    private FormBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute) {
     this.medicosForm = FormBuilder.group({
       nombre: FormBuilder.control('initial value', Validators.required),
       apPaterno: FormBuilder.control('initial value', Validators.required),
@@ -67,6 +68,7 @@ export class MedicosComponent implements OnInit {
       language: { url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json' }
     };
     this.Reset();
+    this.cargar();
     // this.medicosUpdateForm.reset({Id: 1});
 
     // mostrar los datos de medicos
@@ -80,9 +82,29 @@ export class MedicosComponent implements OnInit {
     } else if (this.medicosForm.invalid) {
       return;
     }
-    
-    
+  
   }
+
+  cargar(): void {
+      this.activatedRoute.params.subscribe(
+        e=>{
+          let Id=e['Id'];
+          if(Id){
+            this.MedicosService.getMedicosById(Id).subscribe(res => {
+              this.listMedicos = res.response.data; 
+            }
+            )}
+        }
+      );
+    }
+   
+    //getMedicoById(id:number): void {
+      //const request=id;
+      //this.MedicosService.getMedicosById(request).subscribe(data=>{
+     //this.medicoGet = data.response.data;
+     //console.log(this.medicoGet);
+      //})
+   //}
 
   get form(): any {
     return this.medicosForm.controls;
@@ -173,13 +195,7 @@ export class MedicosComponent implements OnInit {
     })
   }
 
-  getMedicoById(id:number): void {
-     const request=id;
-     this.MedicosService.getMedicosById(request).subscribe(data=>{
-    this.medicoGet = data.response.data;
-    console.log(this.medicoGet);
-     })
-  }
+ 
 
   // getMedicoById(id:number): void {
   //    const request=id;

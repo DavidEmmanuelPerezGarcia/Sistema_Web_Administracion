@@ -40,7 +40,9 @@ export const modulos = {
 
 export const personas={
   insertPersonas: `${environment.urlBase2}InsertPersona`,
-  getPersonas:`${environment.urlBase2}GetUsuarios`
+  getPersonas:`${environment.urlBase2}GetUsuarios`,
+  updatePersonas:`${environment.urlBase2}UpdatePersona`
+  
 }
 
 //Clientes
@@ -61,6 +63,11 @@ export const medicos={
   insertMedicos:`${environment.urlBase2}InsertMedico`,
   getByMedicos:`${environment.urlBase2}GetMedicoById/`,
   updateMedicos:`${environment.urlBase2}UpdateMedico/`
+}
+
+//Tickets
+export const tickets={
+  getTickets:`${environment.urlBase2}GetTickets`,
 }
 
 //Reporte entrada y movimientos de inventarios

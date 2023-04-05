@@ -1,30 +1,29 @@
 import { Component, OnInit,  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 // Models //
-import { InsertPersonasRequest } from 'src/app/demo/core/models/personas/insert-personas.model';
-import { getPersonasRequest } from 'src/app/demo/core/models/personas/get-personas.model';
-import { Personas } from 'src/app/demo/core/models/personas/get-personas-response-modules';
+import { InsertPerfilesRequest } from 'src/app/demo/core/models/perfiles/insert-perfiles.model';
+import { getPerfilesRequest } from 'src/app/demo/core/models/perfiles/get-perfiles.model';
+import { Perfiles } from 'src/app/demo/core/models/perfiles/get-perfiles-response-modules';
 
 
 // Services //
-import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
+import { PerfilesService } from 'src/app/demo/core/services/perfiles/perfiles.service';
 import { Subscriber } from 'rxjs';
 
 
 
 
 @Component({
-    selector: 'app-personas',
-    templateUrl: './personas.component.html',
-    styleUrls: ['./personas.component.scss']
+    selector: 'app-perfiles',
+    templateUrl: './perfiles.component.html',
+    styleUrls: ['./perfiles.component.scss']
   })
-  export class PersonasComponent implements  OnInit {
+  export class PerfilesComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
-    listPersonas: Personas[] = [];
-
+    listPerfiles: Perfiles[] = [];
     submitted = false;
   
     
@@ -34,10 +33,9 @@ import { Subscriber } from 'rxjs';
   
     constructor(
       //private http: HttpClient,
-      private personasService: PersonasService,
+      private personasService: PerfilesService,
       private readonly router: Router,
       private FormBuilder: FormBuilder,
-      private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
         idUsuario: FormBuilder.control('initial value', Validators.required),
@@ -60,8 +58,12 @@ import { Subscriber } from 'rxjs';
           pageLength: 5,
           processing: true,
         };
-      this.Mostrar();  
-      this.cargar();
+      var request2: getPerfilesRequest = {
+        Id: ['Id']
+      }
+      this.personasService.getPersonas(request2).subscribe(res => {
+        this.listPerfiles = res.response.data;
+      })
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();
       this.personasForm.get('nombreUsuario')?.disable();
@@ -69,40 +71,9 @@ import { Subscriber } from 'rxjs';
       //this.personasForm.reset({idSucursal: 1});
     }
 
-    Mostrar(): void {
-      if(this.personasForm.controls){
-          const request: getPersonasRequest = {
-            id: ["id"]
-         }
-     
-          this.personasService.getPersonas(request).subscribe(res => {
-            this.listPersonas = res.response.data;
-          })
-        }else if(this.personasForm.invalid){
-          return;
-        }
-      }
-   
-
-    cargar(): void {
-      this.activatedRoute.params.subscribe(
-        e=>{
-          let Id=e['Id'];
-          if(Id){
-            this.personasService.getPersonasid(Id).subscribe(res => {
-              this.listPersonas = res.response.data; 
-            }
-            )}
-        }
-      );
+    OnInit(): void {
+      
     }
-
-    update(): void{
-      this.personasService.updatePersonas(this.listPersonas).subscribe(res => 
-        this.router.navigate(['/personas'])
-      )
-    }
-
 
     onSubmit(): void {
       if(this.personasForm.invalid){
@@ -113,7 +84,7 @@ import { Subscriber } from 'rxjs';
         return;
       }
       this.error = "";
-      const request: InsertPersonasRequest = {
+      const request: InsertPerfilesRequest = {
         id: 0,
         idUsuario: 0,
         nombre: this.personasForm.controls['nombre'].value,
@@ -140,6 +111,22 @@ import { Subscriber } from 'rxjs';
         }
       })
     }
+
+    // Cargar():void{
+    
+    //   if(this.personasForm.controls){
+    //     const request2: getPersonasRequest = {
+    //       Id: ['Id']
+    //     }
+    //     this.personasService.getPersonas(request2).subscribe(res => {
+    //       this.listPersonas = res.response.data;
+
+    //     }) 
+    //   }else if(this, this.personasForm.invalid){
+    //     return;
+    //   }
+    // }
+  
   
     Reset():void {
       var dateNow = new Date().toJSON().slice(0,10).replace(/-/g,'-');

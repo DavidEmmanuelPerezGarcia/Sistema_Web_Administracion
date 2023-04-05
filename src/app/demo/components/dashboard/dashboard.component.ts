@@ -65,6 +65,14 @@ export class DashboardComponent implements OnInit  {
                         routerLink:['/modulos']
                         
                     },
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Perfiles',
+                        icon: 'pi pi-fw pi-tags',
+                        routerLink:['/perfiles']
+                        
+                    },
                    
                    
                    
@@ -123,6 +131,21 @@ export class DashboardComponent implements OnInit  {
                         label: 'Reporte y movimientos de inventario',
                         icon: 'pi pi-fw pi-tags',
                         routerLink:['/Reporte_y_movimientos_de_inventarios']
+                        
+                    },
+                   
+                ]
+                    
+            },
+            {
+                label: 'Tickets',
+                items: [
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Tickets',
+                        icon: 'pi pi-fw pi-tags',
+                        routerLink:['/tickets']
                         
                     },
                    

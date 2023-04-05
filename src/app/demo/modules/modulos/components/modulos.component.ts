@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Models //
 import { InsertModulosRequest } from 'src/app/demo/core/models/modulos/insert-modulos.model';
@@ -41,6 +41,7 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
       private categoriaService: categoriaService,
       private readonly router: Router,
       private FormBuilder: FormBuilder,
+      private activatedRoute: ActivatedRoute
     ) {
       this.modulosForm = FormBuilder.group({
         nombre: FormBuilder.control('initial value', Validators.required),
@@ -63,18 +64,42 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
         pageLength: 10,
         language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
       };
+      this.Mostrar();
+      this.cargar();
       this.Reset();
       this.modulosForm.get('nombreCategoria')?.disable();
       //this.modulosForm.reset({idSucursal: 1});
 
-      const request: getModulosRequest = {
-        id: ""
-      }
-  
-      this.categoriaService.getCategoria(request).subscribe(res => {
-        this.listModulos = res.response.data;
-      })
     }
+
+     Mostrar(): void {
+       if(this.modulosForm.controls){
+         const request: getModulosRequest = {
+           id: ["id"]
+         }
+    
+         this.categoriaService.getCategoria(request).subscribe(res => {
+           this.listModulos = res.response.data;
+         })
+       }else if(this.modulosForm.invalid){
+         return;
+       }
+      }
+
+    
+    cargar(): void {
+      this.activatedRoute.params.subscribe(
+        e=>{
+          let Id=e['Id'];
+          if(Id){
+            this.modulosService.getModulos(Id).subscribe(res => {
+              this.listModulosPrueva = res.response.data 
+            }
+            )}
+        }
+      );
+    }
+
   
     onSubmit(): void {
       if(this.modulosForm.invalid){
@@ -111,20 +136,6 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
         }
       })
     }
-  
-    // Cargar(): void {
-    //   if(this.modulosForm.controls){
-    //     const request: getModulosRequest = {
-    //       id: ["id"]
-    //     }
-    
-    //     this.categoriaService.getCategoria(request).subscribe(res => {
-    //       this.listModulos = res.response.data;
-    //     })
-    //   }else if(this.modulosForm.invalid){
-    //     return;
-    //   }
-    // }
   
   
     Reset():void {

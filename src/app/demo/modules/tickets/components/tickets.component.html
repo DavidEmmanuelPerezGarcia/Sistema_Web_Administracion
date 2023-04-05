@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Tickets | Tabla
+                </div>
+                <!-- <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
+                    </div>
+                </div> -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col text-center">
+                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
+                            <thead>
+                                <tr>
+                                    <th>Folio</th>
+                                    <th>Id Sucursal</th>
+                                    <th>FolioInterno</th>
+                                    <th>Caja</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <tr *ngFor="let item of listTickets">
+                                    <td>{{ item.folio}}</td>
+                                    <td>{{ item.idSucursal}}</td> 
+                                    <td>{{ item.fecha}}</td>
+                                    <td>{{ item.total}}</td>
+                                    <td>
+                                        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Detalle</a>
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-header">
+                            Tickets | Tabla
+                        </div> 
+                        <!-- <div class="card-footer">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary" type="button" (click)="Cargar()">Buscar</button>
+                            </div>
+                        </div> -->
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col text-center">
+                                <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered row-border hover datatables ">
+                                    <thead>
+                                        <tr>
+                                            <th>Folio</th>
+                                            <th>Id Sucursal</th>
+                                            <th>FolioInterno</th>
+                                            <th>Caja</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <tr >
+                                            <!--<td>{{ item.folio}}</td>
+                                            <td>{{ item.idSucursal}}</td> 
+                                            <td>{{ item.fecha}}</td>
+                                            <td>{{ item.total}}</td-->
+                                            <td>210</td>
+                                            <td>2</td>
+                                            <td>02/02/2023</td>
+                                            <td>0.0</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+              </div>
+            </div>
+          </div>
+    <!-- /modal -->
+</div>
