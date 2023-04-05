@@ -63,7 +63,7 @@ export const medicos={
   getMedicos:`${environment.urlBase2}GetMedicos`,
   insertMedicos:`${environment.urlBase2}InsertMedico`,
   getByMedicos:`${environment.urlBase2}GetMedicoById/`,
-  updateMedicos:`${environment.urlBase2}UpdateMedico/`
+  updateMedicos:`${environment.urlBase2}UpdateMedico`
 }
 
 //Tickets

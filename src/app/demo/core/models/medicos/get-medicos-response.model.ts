@@ -20,4 +20,5 @@ export interface Medicos{
     Telefono:string
     TelefonoCasa:string
     Estatus:number
+    BtnActivo:string
 }

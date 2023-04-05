@@ -15,7 +15,7 @@
                                 <div class="alert alert-success" role="alert" *ngIf="message">
                                     {{message}}
                                   </div>
-                                <form id="form">
+                                <form [formGroup]="Categoriaform" id="form">
                                     <!-- <div class="mb-3">
                                         <label class="form-label">*Sucursal:</label>
                                         <select name="Id" id="Id" class="form-control">
@@ -41,7 +41,7 @@
                             <div class="card-footer">
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                                    <button class="btn btn-primary" type="button" >Guardar</button>
+                                    <button class="btn btn-primary" type="button" (click)="onSubmit()" >Guardar</button>
                                 </div>
                             </div>
                          

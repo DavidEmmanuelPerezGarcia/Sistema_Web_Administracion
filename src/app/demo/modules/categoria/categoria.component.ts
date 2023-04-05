@@ -7,6 +7,7 @@ import { InsertCategoriaResquest } from 'src/app/demo/core/models/Admin/categori
 import { categoriaService } from 'src/app/demo/core/services/categoria/categoria.service';
 import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoriasResponse.model';
 import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/getCategorias.model';
+import { DeleteCategoria } from '../../core/models/Admin/categoria/deleteCategoriasResponse.model';
 
 
 @Component({
@@ -119,7 +120,7 @@ export class CategoriaComponent implements OnInit {
 
   // }
 
-  DeleteCategoria(eliminar:Categoria):void{
+  DeleteCategoria(eliminar:DeleteCategoria):void{
     const request: getCategoriaRequest = {
       id: ""
     }

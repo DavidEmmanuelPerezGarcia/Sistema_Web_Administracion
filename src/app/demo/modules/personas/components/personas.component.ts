@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
+
 // Models //
 import { InsertPersonasRequest } from 'src/app/demo/core/models/personas/insert-personas.model';
 import { getPersonasRequest } from 'src/app/demo/core/models/personas/get-personas.model';
@@ -25,7 +26,6 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
   export class PersonasComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
     listPersonas: Personas[] = [];
-    eliminar:DeletePersonas[]=[]
     submitted = false;
   
     
@@ -66,14 +66,16 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();
       this.personasForm.get('nombreUsuario')?.disable();
-      this.personasForm.get('nombreSede')?.disable();      
-      //this.personasForm.reset({idSucursal: 1});
-    }
+      this.personasForm.get('nombreSede')?.disable();   
+      this.personasForm.reset({idSucursal: 1});
+
+  }
+    
 
     Mostrar(): void {
       if(this.personasForm.controls){
           const request: getPersonasRequest = {
-            id: ["id"]
+            idPersona: ""
          }
      
           this.personasService.getPersonas(request).subscribe(res => {
@@ -141,6 +143,28 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
         }
       })
     }
+
+    // Cargar():void{
+    
+    //   if(this.personasForm.controls){
+    //     const request2: getPersonasRequest = {
+    //       Id: ['Id']
+    //     }
+    //     this.personasService.getPersonas(request2).subscribe(res => {
+    //       this.listPersonas = res.response.data;
+
+    //     }) 
+    //   }else if(this, this.personasForm.invalid){
+    //     return;
+    //   }
+    // }  
+
+    // ngAfterViewInit(): void {
+    //   $(document).ready(() => {
+    //     $('#myTable').DataTable();
+    //   });
+    // }
+  
   
     Reset():void {
       var dateNow = new Date().toJSON().slice(0,10).replace(/-/g,'-');
@@ -160,7 +184,7 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
 
     DeletePersona(eliminar:DeletePersonas):void{
       const request: getPersonasRequest = {
-        id: ""
+        idPersona: ""
       }
   
       this.personasService.deletePersonas(eliminar.Id).subscribe(() => {

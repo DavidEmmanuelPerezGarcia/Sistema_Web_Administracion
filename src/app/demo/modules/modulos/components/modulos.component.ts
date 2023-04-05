@@ -27,7 +27,6 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
     submitted = false;
 
     listModulos:Categoria[]=[]
-    // deleteModulos:deleteModulos[]=[]
     listModulosPrueva:Modulos[]=[]
   
     

@@ -20,6 +20,6 @@ export interface DeletePersonas{
     Perfiles: number,
     IdSede: number,
     NombreUsuario: string,
-    NombreSede: string,
+    NombreSede: string
     
 }

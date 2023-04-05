@@ -10,6 +10,7 @@ import { MedicosService } from 'src/app/demo/core/services/medicos/medicos.servi
 import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-medicos.model';
 import { getMedicoByIdRequest } from 'src/app/demo/core/models/medicos/get-medicosById.model';
 import { MedicosById } from 'src/app/demo/core/models/medicos/get-medicosById-response.model';
+import { DeleteMedicos} from 'src/app/demo/core/models/medicos/Delete-medicos-response.model';
 
 
 
@@ -25,6 +26,7 @@ export class MedicosComponent implements OnInit {
   id="0"
 
   listMedicos: Medicos[] = [];
+  listMedicosDelete:DeleteMedicos[]=[]
   sumitted = false;
 
   medicosForm: FormGroup;
@@ -68,35 +70,44 @@ export class MedicosComponent implements OnInit {
       language: { url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json' }
     };
     this.Reset();
-    this.cargar();
     // this.medicosUpdateForm.reset({Id: 1});
 
     // mostrar los datos de medicos
     if (this.medicosForm.controls) {
       const request: getMedicosRequest = {
-        id: 1
+        id: "",
+        estatus:0
       }
       this.MedicosService.getMedicos(request).subscribe(res => {
+        // this.listMedicos.map(medico=>{
+        //         this.listMedicos = res.response.data;
+        //         if(medico.Estatus==1){
+        //             medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 0)"></button>'
+        //         }else{
+        //           medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 1)"></button>'
+        //         }
+        //       })
         this.listMedicos = res.response.data;
       })
+
+      // this.MedicosService.getMedicos(request).subscribe(res=>{
+      //     this.listMedicos.map(medico=>{
+      //       this.listMedicos = res.response.data;
+      //       if(medico.Estatus==1){
+      //           medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 0)"><i class="fas fa-check-square"></i></button>'
+      //       }else{
+      //         medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 1)"><i class="fas fa-check-square"></i></button>'
+      //       }
+      //     })
+      // })
+
+
     } else if (this.medicosForm.invalid) {
       return;
     }
   
   }
 
-  cargar(): void {
-      this.activatedRoute.params.subscribe(
-        e=>{
-          let Id=e['Id'];
-          if(Id){
-            this.MedicosService.getMedicosById(Id).subscribe(res => {
-              this.listMedicos = res.response.data; 
-            }
-            )}
-        }
-      );
-    }
    
     //getMedicoById(id:number): void {
       //const request=id;
@@ -197,20 +208,34 @@ export class MedicosComponent implements OnInit {
 
  
 
-  // getMedicoById(id:number): void {
-  //    const request=id;
-  //    this.MedicosService.getMedicosById(request).subscribe(data=>{
-  //   this.medicoGet = data.response.data;
-  //   console.log(this.medicoGet);
-  //    })
+  // CambiarActivoMedico():void{
+  //   const nuevoEstado = !Medicos;
   // }
+  
+  CambiarActivoMedico(cambiarEstatus:DeleteMedicos):void{
+    const request: getMedicosRequest = {
+      id: "",
+      estatus:cambiarEstatus.Estatus
+      
+    }
 
-  // obtenerMedico():void{
-  //   this.MedicosService.getMedicosById(this.id).subscribe(res=>{
-  //     this.medicoGet = res.response.data;
-  //     this.medicosUpdateForm.patchValue(this.medicoGet);
-  //   })
-  // }
- 
+    this.MedicosService.deleteMedicos(cambiarEstatus.Id,cambiarEstatus.Estatus).subscribe(() => {
+       this.MedicosService.getMedicos(request).subscribe(res=>{
+    
+      const medico = this.listMedicos.find(m => m.Id === cambiarEstatus.Id);
+      if (medico && cambiarEstatus.Estatus == 1) {
+        // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
+        medico.Estatus = 0;
+        this.listMedicosDelete=res.response.data
+      } else if(medico) {
+        // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
+        medico.Estatus = 1;
+      }
+      })
+      // this.MedicosService.getMedicos(request).subscribe(res=>{
+      // this.listMedicosDelete=res.response.data
+      // })
+    })
+  }
   
 }

@@ -1,3 +1,3 @@
 export interface deletePersonasRequest{
-    id:number;
+    idPersona:number;
 }

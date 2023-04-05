@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // Services //
 import { VentaEntradasService } from 'src/app/demo/core/services/VentasEntradas/venta-entradas.service';
 import { VentasEntradas } from 'src/app/demo/core/models/Ventas_entradas/getVentasEntradasResponse.model';
+// import { articulos } from 'src/app/demo/global/endpoints';
 
 @Component({
   selector: 'app-ventas-entradas',
@@ -20,6 +21,7 @@ export class VentasEntradasComponent implements OnInit {
   public error = '';
   public message = '';
   VentaEntradasForm: FormGroup;
+
 
   constructor( private readonly router: Router,
     private FormBuilder: FormBuilder,
@@ -41,20 +43,22 @@ export class VentasEntradasComponent implements OnInit {
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
 
-    const request:getVentasEntradasRequest={
-      
-      sucursal:this.VentaEntradasForm.controls['sucursal'].value
-    }
-    this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
-      // this.listaVentasEntradas = res.response.data;
-      console.log(res.response.data)
-    })
+      // const request:getVentasEntradasRequest={
+        
+      //   sucursal:this.VentaEntradasForm.controls['sucursal'].value
+      // }
+      // this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
+      //   // this.listaVentasEntradas = res.response.data;
+      //   console.log(res.response.data)
+      // })
+      this.VentaEntradasForm.reset({Id: 1});
   }
 
   buscar():void{
     const request:getVentasEntradasRequest={
       
-      sucursal:this.VentaEntradasForm.controls['sucursal'].value
+      sucursal:this.VentaEntradasForm.controls['sucursal'].value,
+      articulo:""
     }
     this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
       // this.listaVentasEntradas = res.response.data;
