@@ -83,19 +83,18 @@
                                     <th>Usuario</th>
                                     <th>Nombre</th>
                                     <th>Sucursal</th>
-                                    <th>Detalle</th> 
+                                    <th width="5%">Opciones</th> 
                                 </tr>
                             </thead>
                             <tbody>
                              
                                  <tr *ngFor="let item of listPersonas">
-                                    <td scope="row">{{ item.Id}}</td>
-                                    <td>{{ item.NombreUsuario}}</td>
-                                    <td>{{ item.Nombre}}</td>
-                                    <td>{{ item.NombreSede}}</td>
-                                    <td>
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" [routerLink]="['/personas/personas', item.Id]"><i class="pi pi-pencil"></i></button>
-                                        <button class="btn btn-danger"><i class="pi pi-trash"></i></button>
+                                    <td>{{item.Nombre}}</td>
+                                    <td>{{item.NombreUsuario}}</td>
+                                    <td>{{item.NombreSede}}</td>
+                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  [routerLink]="['/personas/personas', item.Id]"><i class="pi pi-pencil"></i></button>
+                                        <button class="btn btn-danger"><i class="pi pi-trash" (click)="DeletePersona(item   )"></i></button>
                                     </td>
                                 </tr> 
                             </tbody>
