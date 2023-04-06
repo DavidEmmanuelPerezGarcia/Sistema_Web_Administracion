@@ -153,6 +153,22 @@ export class DashboardComponent implements OnInit  {
                     
             },
            
+            {
+                label: 'Mapeos',
+                items: [
+                    {   
+
+                        styleClass:'card m-3 border-1 surface col-5',
+                        label: 'Mapeos',
+                        icon: 'pi pi-fw pi-tags',
+                        routerLink:['/mapeos']
+                        
+                    },
+                   
+                ]
+                    
+            },
+           
         ];
 
        //this.listCategoria=[

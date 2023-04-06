@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 //Models//
-import { InsertMapeosResponse} from 'src/app/core/models/mapeos/insert-mapeos-response-model';
-import { InsertMapeosRequest } from 'src/app/core/models/mapeos/insert-mapeos.model';
-import{GetMapeosResponse} from 'src/app/core/models/mapeos/getMapeosResponse.model'
+import { InsertMapeosResponse} from 'src/app/demo/core/models/mapeos/insert-mapeos-response-model';
+import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mapeos.model';
+import{GetMapeosResponse} from 'src/app/demo/core/models/mapeos/getMapeosResponse.model'
 
 //endpoints//
-import { detalle_mapeos, mapeos } from 'src/app/global/endpoints';
+import { detalle_mapeos, mapeos } from 'src/app/demo/global/endpoints';
 import { MapeosRequest } from '../../models/mapeos/getMapeos';
 import { getDetallesMapeosRequest } from '../../models/mapeos/getDetallesMapeos';
 import { GetDetalleMapeosResponse } from '../../models/mapeos/getDetalleMapeosResponse.model';

@@ -32,6 +32,7 @@ import { AuthGuard } from './demo/modules/auth/components/Guard/auth.guard';
                     {path: 'medicos', loadChildren:()=> import('./demo/modules/medicos/medicos.module').then(m => m.MedicosModule),canActivate:[AuthGuard]},
                     {path: 'tickets', loadChildren:()=> import('./demo/modules/tickets/tickets.module').then(m => m.TicketsModule),canActivate:[AuthGuard]},
                     {path: 'Reporte_y_movimientos_de_inventarios', loadChildren:()=> import('./demo/modules/ventas-entradas/ventas_entradas.module').then(m => m.VentaEntradasModule),canActivate:[AuthGuard]},
+                    {path: 'mapeos', loadChildren:()=> import('./demo/modules/mapeos/mapeos.module').then(m => m.MapeosModule),canActivate:[AuthGuard]},
         
                 ]
           

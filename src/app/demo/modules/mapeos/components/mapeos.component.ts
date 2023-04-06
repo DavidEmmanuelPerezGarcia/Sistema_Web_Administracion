@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MapeosRequest } from 'src/app/core/models/mapeos/getMapeos';
-import { Mapeos } from 'src/app/core/models/mapeos/getMapeosResponse.model';
+import { MapeosRequest } from 'src/app/demo/core/models/mapeos/getMapeos';
+import { Mapeos } from 'src/app/demo/core/models/mapeos/getMapeosResponse.model';
 
 // Models //
-import { InsertMapeosRequest } from 'src/app/core/models/mapeos/insert-mapeos.model';
-import { Practica } from 'src/app/core/models/practica/practica';
+import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mapeos.model';
+// import { Practica } from 'src/app/demo/core/models/practica/practica';
 
 // Services //
-import { MapeosService } from 'src/app/core/services/mapeos/mapeos.service';
+import { MapeosService } from 'src/app/demo//core/services/mapeos/mapeos.service';
 
 @Component({
   selector: 'app-mapeos',
@@ -49,6 +49,7 @@ export class MapeosComponent implements OnInit {
 
   ngOnInit(): void {
     this.Reset();
+    this.cargarDatos();
     this.mapeosForm.get('idUsuario')?.disable();
     this.mapeosForm.get('nombreUsuario')?.disable();
   }
@@ -117,7 +118,6 @@ export class MapeosComponent implements OnInit {
   }
 
   cargarDatos(): void {
-    alert("Vamos !!!")
     if(this.mapeosForm.controls){
       const request1: MapeosRequest = {
         idSucursal: this.mapeosForm.controls['idSucursal'].value

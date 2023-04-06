@@ -14,8 +14,8 @@ export const getInventario={
 }
 
 export const mapeos = {
-  insertMapeos: `${environment.urlBase}Mapeos/Insert`,
-  getMapeos: `${environment.urlBase}Mapeos/Get`,
+  insertMapeos: `${environment.urlBase3}Mapeos/Insert`,
+  getMapeos: `${environment.urlBase3}Mapeos/Get`,
  
 }
 
