@@ -144,28 +144,6 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
         }
       })
     }
-
-    // Cargar():void{
-    
-    //   if(this.personasForm.controls){
-    //     const request2: getPersonasRequest = {
-    //       Id: ['Id']
-    //     }
-    //     this.personasService.getPersonas(request2).subscribe(res => {
-    //       this.listPersonas = res.response.data;
-
-    //     }) 
-    //   }else if(this, this.personasForm.invalid){
-    //     return;
-    //   }
-    // }  
-
-    // ngAfterViewInit(): void {
-    //   $(document).ready(() => {
-    //     $('#myTable').DataTable();
-    //   });
-    // }
-  
   
     Reset():void {
       var dateNow = new Date().toJSON().slice(0,10).replace(/-/g,'-');
@@ -204,14 +182,8 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
     }
 
     DeletePersona(eliminar:DeletePersonas):void{
-      const request: getPersonasRequest = {
-        idPersona: ""
-      }
-  
       this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
-        this.personasService.getPersonas(request).subscribe(res=>{
-        this.listPersonas=res.response.data
-        })
+       this.Mostrar();
       })
     }
   }
