@@ -190,7 +190,7 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
   
       this.personasService.getPersonById(request).subscribe(res => {
         let Persona = res.response.data;
-        console.log(Persona)
+       
         Persona.forEach(item => {
           this.personasForm.reset({
             nombre: item.Nombre,
