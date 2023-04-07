@@ -50,12 +50,7 @@ export class CategoriaComponent implements OnInit {
     this.Reset();
     this.Categoriaform.reset({Id: 1});
 
-    const request1: getCategoriaRequest = {
-      Id: ["Id"]
-    }
-    this.categoriaService.getCategoria(request1).subscribe(res => {
-      this.listaCategoria = res.response.data;
-    })
+    this.Cargar();
    
     
   }
@@ -106,19 +101,19 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
-  // Cargar():void{
-  //   if(this.Categoriaform.controls){
-  //     const request1: getCategoriaRequest = {
-  //       Id: ["Id"]
-  //     }
-  //     this.categoriaService.getCategoria(request1).subscribe(res => {
-  //       this.listaCategoria = res.response.data;
-  //     })
-  //   }else if(this.Categoriaform.invalid){
-  //     return;
-  //   }
+  Cargar():void{
+    if(this.Categoriaform.controls){
+      const request1: getCategoriaRequest = {
+        Id: ["Id"]
+      }
+      this.categoriaService.getCategoria(request1).subscribe(res => {
+        this.listaCategoria = res.response.data;
+      })
+    }else if(this.Categoriaform.invalid){
+      return;
+    }
 
-  // }
+  }
 
   DeleteCategoria(eliminar:DeleteCategoria):void{
     const request: getCategoriaRequest = {
