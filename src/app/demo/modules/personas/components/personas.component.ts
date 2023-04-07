@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InsertPersonasRequest } from 'src/app/demo/core/models/personas/insert-personas.model';
 import { getPersonasRequest } from 'src/app/demo/core/models/personas/get-personas.model';
 import { Personas } from 'src/app/demo/core/models/personas/get-personas-response-modules';
+import { GetPersonByIdRequest, GetPersonByIdResponse} from 'src/app/demo/core/models/personas';
 
 
 // Services //
@@ -41,14 +42,14 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
       private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
-        idUsuario: FormBuilder.control('initial value', Validators.required),
-        nombre: FormBuilder.control('initial value', Validators.required),
-        apPaterno: FormBuilder.control('initial value', Validators.required),
-        apMaterno: FormBuilder.control('initial value', Validators.required),
-        perfil: FormBuilder.control('initial value', Validators.required),
-        idSede: FormBuilder.control('initial value', Validators.required),
-        nombreUsuario: FormBuilder.control('initial value', Validators.required),
-        nombreSede: FormBuilder.control('initial value', Validators.required),
+        idUsuario: FormBuilder.control('', Validators.required),
+        nombre: FormBuilder.control('', Validators.required),
+        apPaterno: FormBuilder.control('', Validators.required),
+        apMaterno: FormBuilder.control('', Validators.required),
+        perfil: FormBuilder.control('', Validators.required),
+        idSede: FormBuilder.control('', Validators.required),
+        nombreUsuario: FormBuilder.control('', Validators.required),
+        nombreSede: FormBuilder.control('', Validators.required),
       });
     }
   
@@ -180,6 +181,26 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
+    }
+
+    EditarPersona(persona:Personas):void{
+      const request: GetPersonByIdRequest = {
+        Id: persona.Id
+      }
+  
+      this.personasService.getPersonById(request).subscribe(res => {
+        let Persona = res.response.data;
+        console.log(Persona)
+        Persona.forEach(item => {
+          this.personasForm.reset({
+            nombre: item.Nombre,
+            apPaterno: item.ApPaterno,
+            apMaterno: item.ApMaterno,
+            perfil: item.Perfil,
+            idSede: item.IdSede,
+          });
+        });        
+      });
     }
 
     DeletePersona(eliminar:DeletePersonas):void{
