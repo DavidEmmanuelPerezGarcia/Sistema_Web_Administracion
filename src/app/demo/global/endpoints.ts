@@ -43,7 +43,8 @@ export const personas={
   insertPersonas: `${environment.urlBase2}InsertPersona`,
   getPersonas:`${environment.urlBase2}GetUsuarios`,
   updatePersonas:`${environment.urlBase2}UpdatePersona`,
-  deletePersonas:`${environment.urlBase2}DeletePersona`
+  deletePersonas:`${environment.urlBase2}DeletePersona`,
+  getById: `${environment.urlBase2}GetPersonaById`
 }
 
 //Clientes

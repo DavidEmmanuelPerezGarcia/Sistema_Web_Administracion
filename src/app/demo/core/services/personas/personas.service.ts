@@ -10,8 +10,10 @@ import { getPersonasRequest } from '../../models/personas/get-personas.model';
 import { UpdatePersonasResponse } from '../../models/personas/update-personas-response-modules';
 import { updatePersonasRequest } from '../../models/personas/update-personas.model';
 
+import { GetPersonByIdRequest, GetPersonByIdResponse} from 'src/app/demo/core/models/personas';
+
 //endpoints//
-import { personas} from 'src/app/demo/global/endpoints';
+import { personas } from 'src/app/demo/global/endpoints';
 import { deletePersonasRequest } from '../../models/personas/deletePersonas.model';
 import { DeletePersonasResponse } from '../../models/personas/deletePersonasResponse.model';
 
@@ -55,6 +57,16 @@ export class PersonasService {
   getPersonasid(id:number): Observable<GetPersonasResponse> {
     const httpOptions = {headers:this.headers}
     return this.http.post<GetPersonasResponse>(personas.getPersonas, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  getPersonById(data:GetPersonByIdRequest):Observable<GetPersonByIdResponse> {
+    const httpOptions = {headers:this.headers}
+    return this.http.post<GetPersonByIdResponse>(personas.getById, data, httpOptions)
     .pipe(
       map(res => {
         return res;
