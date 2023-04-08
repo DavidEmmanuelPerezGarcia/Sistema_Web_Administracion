@@ -1,4 +1,4 @@
 export interface getVentasEntradasRequest{
-    sucursal:number,
-    articulo:string
+    idsucursal:number,
+    // articulo:string
 }

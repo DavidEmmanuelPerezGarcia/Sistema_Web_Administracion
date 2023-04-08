@@ -27,12 +27,12 @@ export class VentasEntradasComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private VentaEntradaService:VentaEntradasService){
       this.VentaEntradasForm = FormBuilder.group({
-        sucursal:FormBuilder.control('initial value',Validators.required),
-        fechaInicial: FormBuilder.control('initial value', Validators.required),
-        fechaFinal: FormBuilder.control('initial value', Validators.required),
-        codigo: FormBuilder.control('initial value', Validators.required),
-        departamento: FormBuilder.control('initial value', Validators.required),
-        familia: FormBuilder.control('initial value', Validators.required),
+        sucursal:FormBuilder.control('',Validators.required),
+        fechaInicial: FormBuilder.control('', Validators.required),
+        fechaFinal: FormBuilder.control('', Validators.required),
+        codigo: FormBuilder.control('', Validators.required),
+        departamento: FormBuilder.control('', Validators.required),
+        familia: FormBuilder.control('', Validators.required),
       })
   }
   
@@ -42,23 +42,14 @@ export class VentasEntradasComponent implements OnInit {
       pageLength: 10,
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
-
-      // const request:getVentasEntradasRequest={
-        
-      //   sucursal:this.VentaEntradasForm.controls['sucursal'].value
-      // }
-      // this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
-      //   // this.listaVentasEntradas = res.response.data;
-      //   console.log(res.response.data)
-      // })
       this.VentaEntradasForm.reset({Id: 1});
   }
 
   buscar():void{
     const request:getVentasEntradasRequest={
       
-      sucursal:this.VentaEntradasForm.controls['sucursal'].value,
-      articulo:""
+      idsucursal:this.VentaEntradasForm.controls['sucursal'].value,
+      // articulo:""
     }
     this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
       // this.listaVentasEntradas = res.response.data;
