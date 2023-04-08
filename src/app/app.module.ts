@@ -13,27 +13,41 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { FormsModule } from '@angular/forms';
 import { PanelMenuService } from './demo/core/services/panel-menu/panel-menu.service';
-
+import { LoadingComponent } from './shared/components/loading/loading.component';
+import { ErrorInterceptor } from 'src/app/demo/core/interceptors/error.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DataTablesModule } from "angular-datatables";
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginGuardian } from './demo/modules/auth/components/login/login-guardian.service';
 import { AuthService } from './demo/core/services/auth/auth.service';
+import { MaterialModule } from './demo/material/material.module';
+import { LayoutModule } from './demo/layout/layout.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent
+        AppComponent, NotfoundComponent, LoadingComponent
     ],
     imports: [
         AppRoutingModule,
         AppLayoutModule,
         FormsModule,
-        DataTablesModule 
+        MaterialModule,
+        LayoutModule,
+        DataTablesModule,
+        BrowserModule
+      
     ],
     providers: [
-        { provide: LocationStrategy, 
-          useClass: HashLocationStrategy },
+        { provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
+            multi: true},
+        // { provide: LocationStrategy, 
+        //   useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, PanelMenuService,LoginGuardian,AuthService
     ],
