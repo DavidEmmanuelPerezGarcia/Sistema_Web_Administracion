@@ -12,10 +12,14 @@ interface Response{
 
 
 export interface VentasEntradas{
-   codigo:string,
-   departamento:number,
-   familia:number,
-   fecha_inicial:string,
-   fecha_final:string
+   Codigo:string,
+   Descripcion:string,
+   Departamento:number,
+   Familia:number,
+   PrecioVenta: string,
+   Costo:string,
+   Ventas:string,
+   Entradas:string,
+   TeoricoActual:string
     
 }

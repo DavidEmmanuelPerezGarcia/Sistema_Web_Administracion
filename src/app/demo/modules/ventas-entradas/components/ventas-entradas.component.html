@@ -12,12 +12,12 @@
                     <div class="alert alert-success" role="alert" *ngIf="message">
                         {{message}}
                     </div> -->
-                    <form [formGroup]="VentaEntradasForm" id="form">
+                    <form [formGroup]="VentaEntradasForm" id="form" >
                         <div class="row mb-3">
                               <div class="mb-3">
                                         <label class="form-label">*Sucursal:</label>
-                                        <select name="sucursal" id="sucursal" class="form-control">
-                                            <option value="2">Matriz</option>
+                                        <select name="sucursal" id="sucursal" formControlName="sucursal" class="form-control" >
+                                            <option value="2" selected>Matriz</option>
                                         </select>
                                 </div>
                         </div>
@@ -45,8 +45,8 @@
                             </div>
                             <div class="col me-2">
                                 <label class="form-label">*Familia:</label>
-                                <select name="familia" id="familia" class="form-control">
-                                    <option value="0">Familia</option>
+                                <select name="familia" id="familia" formControlName="familia" class="form-control">
+                                    <option value="0"selected>Familia</option>
                                 </select>
                             </div>
                         </div>
@@ -87,27 +87,24 @@
                                         <th>Familia</th>
                                         <th>Departamento</th> 
                                         <th>Ventas</th>
-                                        <th>SalTras</th>
-                                        <th>Merma</th>
-                                        <th>Consumo</th>
-                                        <th>SalxConver</th>
-                                        <th>EnxConver</th>
+                                        <th>Entradas</th>
+                                        <th>PrecioVenta</th>
+                                        <th>Costo</th>
+                                        <th>TeoricoActual</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                  
-                                     <tr >
-                                        <td>00408022</td>
-                                        <td>RELLENO DE VAINILLA EN DULLA  ARIS</td> 
-                                        <td>Mermelada Agranel.</td>
-                                        <td>Ab. Exentos Comestibles (08)</td>
-                                        <td>2.0</td>
-                                        <td> 0.0</td>
-                                        <td> 0.0</td>
-                                        <td> 0.0</td>
-                                        <td>0.0</td>
-                                        <td>0.0</td>
-                                       
+                                     <tr *ngFor="let item of  listaVentasEntradas">
+                                        <td>{{item.Codigo}}</td>
+                                        <td>{{item.Descripcion}}</td> 
+                                        <td>{{item.Familia}}</td>
+                                        <td>{{item.Departamento}}</td>
+                                        <td>{{item.Ventas}}</td>
+                                        <td>{{item.Entradas}}</td>
+                                        <td>{{item.PrecioVenta}}</td>
+                                        <td>{{item.Costo}}</td>
+                                        <td>{{item.TeoricoActual}}</td>
                                     </tr> 
                                 </tbody>
                             </table>

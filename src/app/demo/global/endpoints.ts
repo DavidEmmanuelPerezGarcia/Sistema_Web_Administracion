@@ -74,6 +74,6 @@ export const tickets={
 
 //Reporte entrada y movimientos de inventarios
 export const VentasEntrada={
-  getVentaEntrada:`${environment.urlBase2}GetVentasEntrada`
+  get:`${environment.urlBase2}GetVentasEntrada`
 }
 

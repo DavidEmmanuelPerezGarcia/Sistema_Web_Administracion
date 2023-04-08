@@ -25,7 +25,7 @@ export class VentaEntradasService {
 
   getVentasEntradas(data:getVentasEntradasRequest): Observable<GetVentasEntradasResponse> {
     const httpOptions = {headers:this.headers}
-    return this.http.post<GetVentasEntradasResponse>(VentasEntrada.getVentaEntrada, data, httpOptions)
+    return this.http.post<GetVentasEntradasResponse>(VentasEntrada.get, data, httpOptions)
     .pipe(
       map(res => {
         return res;

@@ -21,19 +21,24 @@ export class VentasEntradasComponent implements OnInit {
   public error = '';
   public message = '';
   VentaEntradasForm: FormGroup;
-
+  // sucursal=2
+  // familia=0
 
   constructor( private readonly router: Router,
     private FormBuilder: FormBuilder,
     private VentaEntradaService:VentaEntradasService){
       this.VentaEntradasForm = FormBuilder.group({
-        sucursal:FormBuilder.control('',Validators.required),
+        sucursal:FormBuilder.control('initial value',Validators.required),
         fechaInicial: FormBuilder.control('', Validators.required),
         fechaFinal: FormBuilder.control('', Validators.required),
         codigo: FormBuilder.control('', Validators.required),
         departamento: FormBuilder.control('', Validators.required),
         familia: FormBuilder.control('', Validators.required),
       })
+  }
+
+  get form(): any {
+    return this.VentaEntradasForm.controls;
   }
   
   ngOnInit(): void {
@@ -46,14 +51,24 @@ export class VentasEntradasComponent implements OnInit {
   }
 
   buscar():void{
-    const request:getVentasEntradasRequest={
-      
-      idsucursal:this.VentaEntradasForm.controls['sucursal'].value,
-      // articulo:""
+    if(this.VentaEntradasForm.controls){
+
+      const request:getVentasEntradasRequest={
+        
+        sucursal:this.VentaEntradasForm.controls['sucursal'].value,
+        codigo:this.VentaEntradasForm.controls['codigo'].value,
+        departamento:this.VentaEntradasForm.controls['departamento'].value,
+        familia:this.VentaEntradasForm.controls['familia'].value,
+        fecha_inicial:this.VentaEntradasForm.controls['fechaInicial'].value,
+        fecha_final:this.VentaEntradasForm.controls['fechaFinal'].value,
+        // articulo:""
+      }
+      this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
+        this.listaVentasEntradas = res.response.data;
+        console.log(res);
+      })
+    }else{
+      return;
     }
-    this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
-      // this.listaVentasEntradas = res.response.data;
-      console.log(res.response.data)
-    })
   }
 }
