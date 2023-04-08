@@ -148,15 +148,15 @@
                                 </thead>
                                 <tbody>
                                  
-                                     <tr>
-                                        <td>1</td>
-                                        <td>Brando Perez</td>
-                                        <td>Hidalgo</td>
-                                        <td>87800</td>
-                                        <td>21</td>
-                                        <td>Ejido Julian Cerra</td>
-                                        <td>EL mismo</td>
-                                        <td>XAXX-010101-000</td>
+                                     <tr *ngFor="let item of listClientes">
+                                        <td>{{item.Id}}</td>
+                                        <td>{{item.Nombre}}</td>
+                                        <td>{{item.Ciudad}}</td>
+                                        <td>{{item.CodPostal}}</td>
+                                        <td>{{item.CondicionPago}}</td>
+                                        <td>{{item.DireccionFiscal}}</td>
+                                        <td>{{item.Representante}}</td>
+                                        <td>{{item.Rfc}}</td>
                                         <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                             <button class="btn btn-warning"><i class="pi pi-pencil"></i></button>
                                             <button class="btn btn-danger"><i class="pi pi-trash"></i></button>

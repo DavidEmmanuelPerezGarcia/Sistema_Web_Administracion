@@ -66,15 +66,15 @@
                                 </thead>
                                 <tbody>
                                  
-                                     <tr >
-                                        <td>079567520306</td>
+                                     <tr *ngFor="let item of listArticulos">
+                                        <td>{{item.Codigo}}</td>
                                         <!-- <td>{{ item.Descripcion}}</td> -->
-                                        <td>21.72</td>
-                                        <td>35.9</td>
-                                        <td>33.5</td>
-                                        <td>34.5</td>
-                                        <td>19</td>
-                                        <td>21.72</td>
+                                        <td>{{item.Costo}}</td>
+                                        <td>{{item.PrecioFinal}}</td>
+                                        <td>{{item.PrecioMayoreo}}</td>
+                                        <td>{{item.PrecioMayoreoCred}}</td>
+                                        <td>{{item.PrecioOriginal}}</td>
+                                        <td>{{item.CostoActual}}</td>
                                         <!-- <td>
                                             <a class="btn btn-secondary" href="#">Detalle</a>
                                         </td> -->
