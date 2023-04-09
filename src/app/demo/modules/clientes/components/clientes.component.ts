@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClienteById, GetClienteByIdRequest } from 'src/app/demo/core/models/clientes';
 import { Clientes } from 'src/app/demo/core/models/clientes/get-clientes-response-modules';
 import { getClientesRequest } from 'src/app/demo/core/models/clientes/get-clientes.model';
 import { InsertClienteRequest } from 'src/app/demo/core/models/clientes/insert-clientes.model';
@@ -18,6 +19,7 @@ export class ClientesComponent implements OnInit {
   submitted = false;
 
   listClientes:Clientes[]=[]
+  clientes:ClienteById[]=[]
 
   clientesForm: FormGroup;
   public error = '';
@@ -45,7 +47,7 @@ export class ClientesComponent implements OnInit {
         comentarios: FormBuilder.control('initial value', Validators.required),
         usuario: FormBuilder.control('initial value', Validators.required),
         contacto: FormBuilder.control('initial value', Validators.required),
-        // regimen: FormBuilder.control('initial value', Validators.required),
+        regimen: FormBuilder.control('initial value', Validators.required),
       });
     }
 
@@ -109,9 +111,10 @@ export class ClientesComponent implements OnInit {
       comentarios: this.clientesForm.controls['comentarios'].value,
       usuario: this.clientesForm.controls['usuario'].value,
       contacto: this.clientesForm.controls['contacto'].value,
-      // regimen: this.clientesForm.controls['regimen'].value,
+       regimen: this.clientesForm.controls['regimen'].value,
       activo: 1
     }
+
     this.clientesService.insertClientes(request).subscribe(res => {
       if(res.success == true){
         this.message = res.message;
@@ -143,5 +146,37 @@ export class ClientesComponent implements OnInit {
     }else if(this.clientesForm.invalid){
       return
     }
+  }
+
+  editar(clientes:Clientes):void{
+  const request:getClientesRequest={
+    id:clientes.Id,
+    nombreCliente:clientes.Nombre
+  }
+
+  this.clientesService.getclientes(request).subscribe(res=>{
+    let cliente = res.response.data;
+
+    cliente.forEach(item=>{
+      this.clientesForm.reset({
+      nombre: item.Nombre,
+      rfc: item.Rfc,
+      condicionPago: item.CondicionPago,
+      limiteCredito: item.LimiteCredito,
+      correo: item.Correo,
+      direccion: item.DireccionFiscal,
+      telefono: item.Telefono,
+      codPostal: item.CodPostal,
+      ciudad: item.Ciudad,
+      colonia: item.Colonia,
+      representante: item.Representante,
+      banco: item.Banco,
+      cuenta: item.Cuenta,
+      comentarios: item.Comentarios,
+      // usuario: this.clientesForm.controls['usuario'].value,
+      contacto: item.Contacto,
+      });
+    });
+  });
   }
 }

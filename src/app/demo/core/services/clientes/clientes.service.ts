@@ -7,6 +7,7 @@ import { getClientesResponse } from '../../models/clientes/get-clientes-response
 import { getClientesRequest } from '../../models/clientes/get-clientes.model';
 import { InsertClientesResponse } from '../../models/clientes/insert-clientes-response-modules';
 import { InsertClienteRequest } from '../../models/clientes/insert-clientes.model';
+import { GetClienteByIdRequest, GetClienteByIdResponse, UpdateClienteRequest, UpdateClientesResponse } from '../../models/clientes';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,25 @@ export class ClientesService {
   insertClientes(data:InsertClienteRequest): Observable<InsertClientesResponse> {
     const httpOptions = {headers:this.headers}
     return this.http.post<InsertClientesResponse>(clientes.insertClientes, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+  getClienteById(data:GetClienteByIdRequest):Observable<GetClienteByIdResponse> {
+    const httpOptions = {headers:this.headers}
+    return this.http.post<GetClienteByIdResponse>(clientes.getById, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  updateCliente(data:UpdateClienteRequest):Observable<UpdateClientesResponse> {
+    const httpOptions = {headers:this.headers}
+    return this.http.post<UpdateClientesResponse>(clientes.update, data, httpOptions)
     .pipe(
       map(res => {
         return res;

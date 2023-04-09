@@ -1,15 +1,15 @@
-export interface getClientesResponse{
-    StatusCode:number;
+export interface GetClienteByIdResponse {
+    StatusCode: number;
     success: boolean;
     message: string;
     response: Response;
-}
-
-export interface Response{
-    data:Clientes[]
-}
-
-export interface Clientes{
+  }
+  
+  interface Response {
+    data: ClienteById[];
+  }
+  
+  export interface ClienteById {
     Id:number
     Nombre:string,
     Banco:string,
@@ -27,4 +27,4 @@ export interface Clientes{
     LimiteCredito:string,
     Telefono:string
 
-}
+  }

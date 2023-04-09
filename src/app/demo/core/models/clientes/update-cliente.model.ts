@@ -1,5 +1,4 @@
-export interface InsertClienteRequest{
-    id:number,
+export interface UpdateClienteRequest{
     nombre:string,
     rfc:string,
     condicionPago:string,
@@ -11,11 +10,11 @@ export interface InsertClienteRequest{
     ciudad:string,
     colonia:string,
     representante:string,
+    regimen:string
     banco:string,
     cuenta:string,
     comentarios:string,
     usuario:number,
     contacto:string,
     activo:number,
-    regimen:string
 }

@@ -51,7 +51,9 @@ export const personas={
 
 export const clientes={
   getClientes:`${environment.urlBase2}GetClientes`,
-  insertClientes:`${environment.urlBase2}InsertCliente`
+  insertClientes:`${environment.urlBase2}InsertCliente`,
+  getById:`${environment.urlBase2}GetSeparadosCliente`,
+  update:`${environment.urlBase2}UpdateCliente`
 }
 
 // Articulos
