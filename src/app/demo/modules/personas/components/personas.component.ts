@@ -137,6 +137,7 @@ import { Subject, Subscriber } from 'rxjs';
             this.message = "";
           }, 3000);
           this.Reset();
+          this.Mostrar();
         }else{
           this.error = res.message;
           setTimeout(()=>{
