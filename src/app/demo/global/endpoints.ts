@@ -38,7 +38,6 @@ export const modulos = {
 }
 
 //persona
-
 export const personas={
   insertPersonas: `${environment.urlBase2}InsertPersona`,
   getPersonas:`${environment.urlBase2}GetUsuarios`,

@@ -9,6 +9,7 @@ import { PersonasComponent } from './components/personas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     PersonasComponent

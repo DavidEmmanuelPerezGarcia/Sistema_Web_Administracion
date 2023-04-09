@@ -12,6 +12,7 @@ import { getMedicoByIdRequest } from 'src/app/demo/core/models/medicos/get-medic
 import { MedicosById } from 'src/app/demo/core/models/medicos/get-medicosById-response.model';
 import { DeleteMedicos} from 'src/app/demo/core/models/medicos/Delete-medicos-response.model';
 
+import { Subject, Subscriber } from 'rxjs';
 
 
 @Component({
@@ -21,6 +22,7 @@ import { DeleteMedicos} from 'src/app/demo/core/models/medicos/Delete-medicos-re
 })
 export class MedicosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
+  dtTrigger:Subject<any>=new Subject<any>(); 
 
   medicoGet:MedicosById[]=[]
   id="0"
@@ -67,7 +69,8 @@ export class MedicosComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      language: { url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json' }
+      processing: true,
+      language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
     this.Reset();
     // this.medicosUpdateForm.reset({Id: 1});
@@ -88,6 +91,7 @@ export class MedicosComponent implements OnInit {
         //         }
         //       })
         this.listMedicos = res.response.data;
+        this.dtTrigger.next(null);
       })
 
       // this.MedicosService.getMedicos(request).subscribe(res=>{

@@ -9,6 +9,8 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
 import { getCategoriaRequest } from 'src/app/demo/core/models/Admin/categoria/getCategorias.model';
 import { DeleteCategoria } from '../../core/models/Admin/categoria/deleteCategoriasResponse.model';
 
+import { Subject, Subscriber } from 'rxjs';
+
 
 @Component({
   selector: 'app-categoria',
@@ -17,7 +19,7 @@ import { DeleteCategoria } from '../../core/models/Admin/categoria/deleteCategor
 })
 export class CategoriaComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-
+  dtTrigger:Subject<any>=new Subject<any>();
   listaCategoria:Categoria[]=[]
   Categoriaform: FormGroup;
   public error = '';
@@ -45,14 +47,41 @@ export class CategoriaComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
+      processing: true,
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
+    this.Mostrar();
     this.Reset();
     this.Categoriaform.reset({Id: 1});
+  }
 
-    this.Cargar();
-   
-    
+  Mostrar():void{
+    if(this.Categoriaform.controls){
+      const request1: getCategoriaRequest = {
+        Id: ["Id"]
+      }
+      this.categoriaService.getCategoria(request1).subscribe(res => {
+        this.listaCategoria = res.response.data;
+        this.dtTrigger.next(null);
+      })
+    }else if(this.Categoriaform.invalid){
+      return;
+    }
+
+  }
+  
+  
+
+  DeleteCategoria(eliminar:DeleteCategoria):void{
+    const request: getCategoriaRequest = {
+      id: ""
+    }
+
+    this.categoriaService.DeleteCategoria(eliminar.Id).subscribe(() => {
+      this.categoriaService.getCategoria(request).subscribe(res=>{
+      this.listaCategoria=res.response.data
+      })
+    })
   }
 
   onSubmit(): void {
@@ -101,29 +130,5 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
-  Cargar():void{
-    if(this.Categoriaform.controls){
-      const request1: getCategoriaRequest = {
-        Id: ["Id"]
-      }
-      this.categoriaService.getCategoria(request1).subscribe(res => {
-        this.listaCategoria = res.response.data;
-      })
-    }else if(this.Categoriaform.invalid){
-      return;
-    }
-
-  }
-
-  DeleteCategoria(eliminar:DeleteCategoria):void{
-    const request: getCategoriaRequest = {
-      id: ""
-    }
-
-    this.categoriaService.DeleteCategoria(eliminar.Id).subscribe(() => {
-      this.categoriaService.getCategoria(request).subscribe(res=>{
-      this.listaCategoria=res.response.data
-      })
-    })
-  }
+ 
 }

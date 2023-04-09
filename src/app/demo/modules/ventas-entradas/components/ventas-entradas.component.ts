@@ -9,6 +9,8 @@ import { VentaEntradasService } from 'src/app/demo/core/services/VentasEntradas/
 import { VentasEntradas } from 'src/app/demo/core/models/Ventas_entradas/getVentasEntradasResponse.model';
 // import { articulos } from 'src/app/demo/global/endpoints';
 
+import { Subject, Subscriber } from 'rxjs';
+
 @Component({
   selector: 'app-ventas-entradas',
   templateUrl: './ventas-entradas.component.html',
@@ -17,6 +19,7 @@ import { VentasEntradas } from 'src/app/demo/core/models/Ventas_entradas/getVent
 export class VentasEntradasComponent implements OnInit {
   listaVentasEntradas:VentasEntradas[]=[];
   dtOptions: DataTables.Settings = {};
+  dtTrigger:Subject<any>=new Subject<any>();
 
   public error = '';
   public message = '';
@@ -42,9 +45,10 @@ export class VentasEntradasComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.dtOptions = {
+    this.dtOptions= {
       pagingType: 'full_numbers',
       pageLength: 10,
+      processing: true,
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
       this.VentaEntradasForm.reset({Id: 1});
@@ -65,6 +69,7 @@ export class VentasEntradasComponent implements OnInit {
       }
       this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
         this.listaVentasEntradas = res.response.data;
+        this.dtTrigger.next(null);
         console.log(res);
       })
     }else{

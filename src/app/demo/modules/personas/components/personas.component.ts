@@ -2,20 +2,15 @@ import { Component, OnInit,  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
-// Models //
-import { InsertPersonasRequest } from 'src/app/demo/core/models/personas/insert-personas.model';
-import { getPersonasRequest } from 'src/app/demo/core/models/personas/get-personas.model';
-import { Personas } from 'src/app/demo/core/models/personas/get-personas-response-modules';
-import { GetPersonByIdRequest, GetPersonByIdResponse} from 'src/app/demo/core/models/personas';
-
+import {InsertPersonasResponse, InsertPersonasRequest, 
+  GetPersonasResponse, getPersonasRequest, Personas,
+  UpdatePersonasResponse, updatePersonasRequest, PersonasUpdate,
+  GetPersonByIdRequest, GetPersonByIdResponse,
+  DeletePersonas, deletePersonasRequest, DeletePersonasResponse} from 'src/app/demo/core/models/personas/index'; 
 
 // Services //
 import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
-import { Subscriber } from 'rxjs';
-import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonasResponse.model';
-
+import { Subject, Subscriber } from 'rxjs';
 
 
 
@@ -26,6 +21,7 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
   })
   export class PersonasComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
+    dtTrigger:Subject<any>=new Subject<any>();
     listPersonas: Personas[] = [];
     submitted = false;
   
@@ -56,14 +52,16 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
     get form(): any {
       return this.personasForm.controls;
     }
+
     ngOnInit(): void {
-        this.dtOptions= {
-          pagingType: 'full_numbers',
-          pageLength: 5,
-          processing: true,
-        };
+      this.dtOptions= {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        processing: true,
+        language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+        
+      };  
       this.Mostrar();  
-      this.cargar();
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();
       this.personasForm.get('nombreUsuario')?.disable();
@@ -72,42 +70,45 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
 
   }
     
-
     Mostrar(): void {
       if(this.personasForm.controls){
           const request: getPersonasRequest = {
             idPersona: ""
-         }
-     
+          }
           this.personasService.getPersonas(request).subscribe(res => {
             this.listPersonas = res.response.data;
+            this.dtTrigger.next(null);
           })
         }else if(this.personasForm.invalid){
           return;
         }
-      }
-   
-
-    cargar(): void {
-      this.activatedRoute.params.subscribe(
-        e=>{
-          let Id=e['Id'];
-          if(Id){
-            this.personasService.getPersonasid(Id).subscribe(res => {
-              this.listPersonas = res.response.data; 
-            }
-            )}
+    }
+    
+    EditarPersona(persona:Personas):void{
+        const request: GetPersonByIdRequest = {
+          Id: persona.Id
         }
-      );
+        this.personasService.getPersonById(request).subscribe(res => {
+          let Persona = res.response.data;
+         
+          Persona.forEach(item => {
+            this.personasForm.reset({
+              nombre: item.Nombre,
+              apPaterno: item.ApPaterno,
+              apMaterno: item.ApMaterno,
+              perfil: item.Perfil,
+              idSede: item.IdSede,
+            });
+          });        
+        });
     }
-
-    update(): void{
-      this.personasService.updatePersonas(this.listPersonas).subscribe(res => 
-        this.router.navigate(['/personas'])
-      )
+  
+    DeletePersona(eliminar:DeletePersonas):void{
+        this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
+         this.Mostrar();
+        })
     }
-
-
+   
     onSubmit(): void {
       if(this.personasForm.invalid){
         this.error = "!Valida Campos!";
@@ -160,30 +161,5 @@ import { DeletePersonas } from 'src/app/demo/core/models/personas/deletePersonas
       localStorage.clear();
       this.router.navigate(['/auth'])
     }
-
-    EditarPersona(persona:Personas):void{
-      const request: GetPersonByIdRequest = {
-        Id: persona.Id
-      }
-  
-      this.personasService.getPersonById(request).subscribe(res => {
-        let Persona = res.response.data;
-       
-        Persona.forEach(item => {
-          this.personasForm.reset({
-            nombre: item.Nombre,
-            apPaterno: item.ApPaterno,
-            apMaterno: item.ApMaterno,
-            perfil: item.Perfil,
-            idSede: item.IdSede,
-          });
-        });        
-      });
-    }
-
-    DeletePersona(eliminar:DeletePersonas):void{
-      this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
-       this.Mostrar();
-      })
-    }
+   
   }

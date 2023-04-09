@@ -15,6 +15,7 @@ import { Categoria } from 'src/app/demo/core/models/Admin/categoria/getCategoria
 import { deleteModulosRequest } from 'src/app/demo/core/models/modulos/delete-modulos';
 import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-response.modules';
 
+import { Subject, Subscriber } from 'rxjs';
 
 @Component({
     selector: 'app-modulos',
@@ -23,7 +24,7 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
   })
   export class ModulosComponent implements OnInit {
     dtOptions: DataTables.Settings = {};
-
+    dtTrigger:Subject<any>=new Subject<any>();
     submitted = false;
 
     listModulos:Categoria[]=[]
@@ -58,9 +59,10 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
     }
   
     ngOnInit(): void {
-      this.dtOptions = {
+      this.dtOptions= {
         pagingType: 'full_numbers',
         pageLength: 10,
+        processing: true,
         language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
       };
       this.Mostrar();
@@ -79,6 +81,7 @@ import { deleteModulos } from 'src/app/demo/core/models/modulos/delete-modulos-r
     
          this.categoriaService.getCategoria(request).subscribe(res => {
            this.listModulos = res.response.data;
+           this.dtTrigger.next(null);
          })
        }else if(this.modulosForm.invalid){
          return;

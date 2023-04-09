@@ -1,5 +1,7 @@
  
 <div class="container">
+
+    <!--Formulario Perfiles-->
     <div class="row">
         <div class="col">
             <div class="card mt-4">
@@ -42,6 +44,7 @@
         </div>
     </div>
 
+    <!--Tabla Perfiles-->
     <div class="row">
         <div class="col">
             <div class="card mt-4">
@@ -57,7 +60,7 @@
                 
                   <div class="row">
                     <div class="col text-center">
-                        <table datatable [dtOptions]="dtOptions" class="row-border hover">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                             <thead>
                                 <tr>
                                     <th>Administrador</th>
@@ -89,59 +92,4 @@
         </div>
     </div>
 
-        <!-- Modal -->
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="form" [formGroup]="personasForm">
-                            <div class="row mb-3">
-                                <div class="col me-3">
-                                    <label class="form-label">*Nombre:</label>
-                                    <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
-                                </div>
-                                <div class="col me-3">
-                                    <label class="form-label">*Apellido Paterno:</label>
-                                    <input type="text" class="form-control" formControlName="apPaterno" placeholder="Apellido Paterno">
-                                </div>
-                                <div class="col me-3">
-                                    <label class="form-label">*Apellido Materno:</label>
-                                    <input type="text" class="form-control" formControlName="apMaterno" placeholder="Apellido Materno">
-                                </div>
-                                
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col me-3">
-                                    <label class="form-label">*Perfil:</label>
-                                    <select formControlName="perfil" class="form-control">
-                                        <option value="0" selected disabled hidden>Selecciona perfil</option>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Cliente</option>
-                                    </select>
-                                </div>
-                                <div class="col me-3">
-                                    <label class="form-label">*Sede:</label>
-                                    <select formControlName="idSede" class="form-control">
-                                        <option value="0" selected disabled hidden>Selecciona sede</option>
-                                        <option value="1">Matriz</option>
-                                        <option value="2">""</option>
-                                    </select>
-                                </div>
-                                <div class="col me-3"></div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
-              </div>
-            </div>
-          </div>
-    <!-- /modal -->
 </div>

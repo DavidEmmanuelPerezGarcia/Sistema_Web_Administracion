@@ -11,7 +11,7 @@ import { Perfiles } from 'src/app/demo/core/models/perfiles/get-perfiles-respons
 
 // Services //
 import { PerfilesService } from 'src/app/demo/core/services/perfiles/perfiles.service';
-import { Subscriber } from 'rxjs';
+import { Subject, Subscriber } from 'rxjs';
 
 
 
@@ -23,6 +23,7 @@ import { Subscriber } from 'rxjs';
   })
   export class PerfilesComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
+    dtTrigger:Subject<any>=new Subject<any>();
     listPerfiles: Perfiles[] = [];
     submitted = false;
   
@@ -53,16 +54,18 @@ import { Subscriber } from 'rxjs';
       return this.personasForm.controls;
     }
     ngOnInit(): void {
-        this.dtOptions= {
-          pagingType: 'full_numbers',
-          pageLength: 5,
-          processing: true,
-        };
+      this.dtOptions= {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        processing: true,
+        language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+      };
       var request2: getPerfilesRequest = {
         Id: ['Id']
       }
       this.personasService.getPersonas(request2).subscribe(res => {
         this.listPerfiles = res.response.data;
+        this.dtTrigger.next(null);
       })
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();

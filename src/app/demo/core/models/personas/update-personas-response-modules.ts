@@ -6,12 +6,12 @@ export interface UpdatePersonasResponse{
 }
 
 interface Response{
-    data: Personas[];
+    data: PersonasUpdate[];
 }
 
 
 
-export interface Personas{
+export interface PersonasUpdate{
     Id: number,
     IdUsuario: number,
     Nombre: string,

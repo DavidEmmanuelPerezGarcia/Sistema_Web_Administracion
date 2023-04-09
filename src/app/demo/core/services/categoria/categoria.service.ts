@@ -48,6 +48,8 @@ export class categoriaService {
     )
   }
 
+  
+
   DeleteCategoria(id:number): Observable<DeleteCategoriaResponse> {
     const httpOptions = {headers:this.headers}
     const request:DeleteCategoriaRequest={id}

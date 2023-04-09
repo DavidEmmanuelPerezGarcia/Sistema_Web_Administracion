@@ -11,6 +11,8 @@ import { Tickets } from 'src/app/demo/core/models/tickets/get-tickets-response-m
 // Services //
 import { TicketsService } from 'src/app/demo/core/services/tickets/tickets.service';
 
+import { Subject, Subscriber } from 'rxjs';
+
 @Component({
     selector: 'app-tickets',
     templateUrl: './tickets.component.html',
@@ -18,7 +20,8 @@ import { TicketsService } from 'src/app/demo/core/services/tickets/tickets.servi
   })
   export class TicketsComponent implements  OnInit {
     dtOptions: DataTables.Settings = {};
-    
+    dtTrigger:Subject<any>=new Subject<any>();
+
 
     listTickets: Tickets[] = [];
     submitted = false;
@@ -52,11 +55,12 @@ import { TicketsService } from 'src/app/demo/core/services/tickets/tickets.servi
     }
   
     ngOnInit(): void {
-      this.dtOptions = {
+      this.dtOptions= {
         pagingType: 'full_numbers',
-        pageLength: 5,
-        processing: true
-        };
+        pageLength: 10,
+        processing: true,
+        language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+      };
         if(this.ticketsForm.controls){
           const request1: getTicketsRequest = {
             fechaInicial: "2023-02-01",
@@ -66,6 +70,7 @@ import { TicketsService } from 'src/app/demo/core/services/tickets/tickets.servi
            }
            this.TicketsService.getTickets(request1).subscribe(res => {
              this.listTickets = res.response.data;
+             this.dtTrigger.next(null);
            })
          }else if(this.ticketsForm.invalid){
            return;

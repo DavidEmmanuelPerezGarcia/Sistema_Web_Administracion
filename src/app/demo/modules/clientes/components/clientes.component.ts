@@ -6,6 +6,7 @@ import { Clientes } from 'src/app/demo/core/models/clientes/get-clientes-respons
 import { getClientesRequest } from 'src/app/demo/core/models/clientes/get-clientes.model';
 import { InsertClienteRequest } from 'src/app/demo/core/models/clientes/insert-clientes.model';
 import { ClientesService } from 'src/app/demo/core/services/clientes/clientes.service';
+import { Subject, Subscriber } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ClientesService } from 'src/app/demo/core/services/clientes/clientes.se
 })
 export class ClientesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-
+  dtTrigger:Subject<any>=new Subject<any>();
   submitted = false;
 
   listClientes:Clientes[]=[]
@@ -59,6 +60,7 @@ export class ClientesComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
+      processing: true,
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
     
@@ -75,6 +77,7 @@ export class ClientesComponent implements OnInit {
   
       this.clientesService.getclientes(request).subscribe(res => {
         this.listClientes = res.response.data;
+        this.dtTrigger.next(null);
       })
     }else if(this.clientesForm.invalid){
       return
