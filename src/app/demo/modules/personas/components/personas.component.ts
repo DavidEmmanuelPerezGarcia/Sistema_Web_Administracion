@@ -14,6 +14,8 @@ import { Subject, Subscriber } from 'rxjs';
 
 
 
+
+
 @Component({
     selector: 'app-personas',
     templateUrl: './personas.component.html',
@@ -24,6 +26,7 @@ import { Subject, Subscriber } from 'rxjs';
     dtTrigger:Subject<any>=new Subject<any>();
     listPersonas: Personas[] = [];
     submitted = false;
+    isDataTable=true
   
     
     personasForm: FormGroup;
@@ -162,5 +165,14 @@ import { Subject, Subscriber } from 'rxjs';
       localStorage.clear();
       this.router.navigate(['/auth'])
     }
-   
+
+    MostrarPersona():void{
+      const request: getPersonasRequest = {
+        idPersona: ""
+      }
+      this.personasService.getPersonas(request).subscribe(res => {
+        this.listPersonas = res.response.data;
+        // this.dtTrigger.next(null);
+      })
+    }
   }
