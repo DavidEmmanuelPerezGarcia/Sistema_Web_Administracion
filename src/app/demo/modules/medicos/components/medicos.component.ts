@@ -121,11 +121,26 @@ export class MedicosComponent implements OnInit {
       //})
    //}
 
-  get form(): any {
-    return this.medicosForm.controls;
-  }
-  get formUpdate(): any {
-    return this.medicosUpdateForm.controls;
+  EditarMedicos(medico:Medicos):void{
+    const request: getMedicoByIdRequest = {
+      id: medico.Id
+    }
+    this.MedicosService.getMedicosById(request).subscribe(res => {
+      let Medico = res.response.data;
+
+        Medico.forEach(item => {
+          this.medicosForm.reset({
+            nombre: item.Nombre,
+            apPaterno: item.ApPaterno,
+            apMaterno: item.ApMaterno,
+            numero: item.Numero,
+            cedula: item.Domicilio,
+            domicilio: item.Domicilio,
+            telefono: item.Telefono,
+            telefonoCasa: item.TelefonoCasa
+          })
+        })
+    })
   }
 
 

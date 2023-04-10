@@ -11,6 +11,7 @@ import {InsertPersonasResponse, InsertPersonasRequest,
 // Services //
 import { PersonasService } from 'src/app/demo/core/services/personas/personas.service';
 import { Subject, Subscriber } from 'rxjs';
+import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-medicos.model';
 
 
 
@@ -23,6 +24,7 @@ import { Subject, Subscriber } from 'rxjs';
     dtOptions: DataTables.Settings = {};
     dtTrigger:Subject<any>=new Subject<any>();
     listPersonas: Personas[] = [];
+    listPersonasUpdate: PersonasUpdate[] = [];
     submitted = false;
   
     
@@ -83,7 +85,43 @@ import { Subject, Subscriber } from 'rxjs';
           return;
         }
     }
-    
+
+    Update():void{
+      if(this.personasForm.invalid){
+        this.error = "!Seleciona datos a editar!";
+        setTimeout(()=>{
+          this.error = "";
+        }, 3000);
+        return;
+      }
+      this.error = "";
+      const request: updatePersonasRequest = {
+        id: 0,
+        idUsuario: 0,
+        nombre: this.personasForm.controls['nombre'].value,
+        apPaterno: this.personasForm.controls['apPaterno'].value,
+        apMaterno: this.personasForm.controls['apMaterno'].value,
+        perfil: this.personasForm.controls['perfil'].value,
+        idSede: this.personasForm.controls['idSede'].value,
+        nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
+        nombreSede: this.personasForm.controls['nombreSede'].value,
+      }
+      this.personasService.updatePersonas(request).subscribe(res => {
+        if(res.success == true){
+          this.message = res.message;
+          setTimeout(()=>{
+            this.message = "";
+          }, 3000);
+          this.Reset();
+        }else{
+          this.error = res.message;
+          setTimeout(()=>{
+            this.error = "";
+          }, 3000);
+        }
+      })
+    }
+        
     EditarPersona(persona:Personas):void{
         const request: GetPersonByIdRequest = {
           Id: persona.Id

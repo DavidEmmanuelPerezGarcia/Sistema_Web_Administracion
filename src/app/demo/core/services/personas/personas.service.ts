@@ -70,7 +70,7 @@ export class PersonasService {
 
   updatePersonas(data:updatePersonasRequest): Observable<UpdatePersonasResponse> {
     const httpOptions = {headers:this.headers}
-    return this.http.put<UpdatePersonasResponse>(personas.updatePersonas, data, httpOptions)
+    return this.http.post<UpdatePersonasResponse>(personas.updatePersonas, data, httpOptions)
     .pipe(
       map(res => {
         return res;

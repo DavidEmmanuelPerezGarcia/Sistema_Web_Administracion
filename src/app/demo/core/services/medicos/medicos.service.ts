@@ -44,10 +44,9 @@ export class MedicosService {
     )
   }
 
-  getMedicosById(id:number): Observable<getMedicoByIdResponse> {
+  getMedicosById(data:getMedicoByIdRequest): Observable<getMedicoByIdResponse> {
     const httpOptions = {headers:this.headers}
-    const requestData: getMedicoByIdRequest = {id};
-    return this.http.post<getMedicoByIdResponse>(medicos.getByMedicos, requestData, httpOptions)
+    return this.http.post<getMedicoByIdResponse>(medicos.getByMedicos, data, httpOptions)
       .pipe(
         map(res => {
           return res;
