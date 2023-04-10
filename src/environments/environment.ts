@@ -7,7 +7,6 @@ export const environment = {
   urlBase: 'http://inventariosapi.ingeniojs.com/api/',
   urlBase2: 'https://localhost:5001/api/',
   urlBase3:'http://localhost:5020/api/',
-  urlBase4:'http://localhost:5000/api/'
 };
 
 /*

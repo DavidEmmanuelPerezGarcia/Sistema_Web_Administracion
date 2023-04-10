@@ -51,7 +51,7 @@ export const personas={
 export const clientes={
   getClientes:`${environment.urlBase2}GetClientes`,
   insertClientes:`${environment.urlBase2}InsertCliente`,
-  getById:`${environment.urlBase4}GetDatosCliente`,
+  getById:`${environment.urlBase2}GetDatosCliente`,
   update:`${environment.urlBase2}UpdateCliente`
 }
 
