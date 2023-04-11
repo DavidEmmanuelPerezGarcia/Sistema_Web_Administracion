@@ -128,7 +128,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
         }
         this.personasService.getPersonById(request).subscribe(res => {
           let Persona = res.response.data;
-         
+
           Persona.forEach(item => {
             this.personasForm.reset({
               nombre: item.Nombre,

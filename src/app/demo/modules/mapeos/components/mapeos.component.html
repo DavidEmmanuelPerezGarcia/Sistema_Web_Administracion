@@ -87,13 +87,35 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label" background="grey">*Codigo:</label>
+                                <input type="text" class="form-control" formControlName="codigo" >
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">*Descripcion:</label>
+                                <input type="text" class="form-control" formControlName="descripcionArticulo">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">*Estante:</label>
+                                <input type="text" class="form-control" formControlName="estante">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">*Consecutivo:</label>
+                                <select formControlName="tipo" class="form-select" formControlName="consecutivo">
+                                    <option value="0" selected disabled hidden>Selecciona</option>
+                                    <option value="1">Tipo 1</option>
+                                    <option value="2">Tipo 2</option>
+                                    <option value="3">Tipo 3</option>
+                                </select>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
                         <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
-                        <button class="btn btn-primary" type="button" (click)="cargarDatos()">Buscar</button>
                     </div>
                 </div>
             </div>
@@ -153,170 +175,6 @@
                         </div>
                     </div>
                   </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!-- modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <button class="btn btn-primary" type="button" (click)="cargarDatos()">Cargar</button>
-        </div>
-
-        <div class="table-responsive">
-
-            <table class="table table-striped table-hover table-bordered row-border hover datatables">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Tipo</th>
-                        <th>Id Mapeo</th>
-                        <th>Codigo</th>
-                        <th>Estante</th>
-                        <th>DescripcionArticulo</th>
-                        <th>IdUsuario</th>
-                        <th>Consecutivo</th>
-                        <th>CantidadDirecto</th>
-                        <th>CantidadCaptura</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr *ngFor="let item of listMapeos">
-                        <td>{{ item.Id }}</td>
-                        <td>{{ item.IdArea }}</td>
-                        <td>{{ item.IdSucursal }}</td>
-                        <td>{{ item.IdUsuario }}</td>
-                        <td>{{ item.Mueble }}</td>
-                        <td>{{ item.Zona }}</td>
-                        <td>{{ item.Cara }}</td>
-                        <td>{{ item.Area }}</td>
-                        <td>{{ item.Sucursal }}</td>
-                        <td>{{ item.NombreUsuario }}</td>
-                        <td>{{ item.Fecha }}</td>
-                        <td>{{ item.Estado }}</td>
-                        <td>{{ item.Tipo }}</td>
-                    </tr> -->
-                </tbody>
-            </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- /modal -->
-
-
-
-
-
-    <div class="row">
-        <div class="col">
-            <div class="card mt-4">
-                <div class="card-header">
-                    DetallesMapeos | Formulario
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-danger" role="alert" *ngIf="error">
-                        {{error}}
-                    </div>
-                    <div class="alert alert-success" role="alert" *ngIf="message">
-                        {{message}}
-                      </div>
-                    <form [formGroup]="mapeosForm" id="form">
-                        <!-- <div class="row mb-3">
-                            <div class="col me-3">
-                                <label class="form-label">* Area:</label>
-                                <select class="form-select" formControlName="idArea">
-                                    <option value="0" selected disabled hidden>Selecciona Area</option>
-                                    <option value="1">Area 1</option>
-                                    <option value="2">Area 2</option>
-                                    <option value="3">Area 3</option>
-                                </select>
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Sucursal:</label>
-                                <select formControlName="idSucursal" class="form-select">
-                                    <option value="0" selected disabled hidden>Selecciona Sucursal</option>
-                                    <option value="1">Sucursal 1</option>
-                                    <option value="2">Sucursal 2</option>
-                                    <option value="3">Sucursal 3</option>
-                                </select>
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Usuario:</label>
-                                <select formControlName="idUsuario" class="form-select">
-                                    <option value="0" selected disabled hidden>Selecciona Usuario</option>
-                                    <option value="1">Usuario 1</option>
-                                    <option value="2">Usuario 2</option>
-                                    <option value="3">Usuario 3</option>
-                                </select>
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Mueble:</label>
-                                <input type="text" class="form-control" formControlName="mueble" placeholder="Mueble">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col me-3">
-                                <label class="form-label">*Zona:</label>
-                                <input type="text" class="form-control" formControlName="zona" placeholder="Zona">
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Cara:</label>
-                                <input type="text" class="form-control" formControlName="cara" placeholder="Cara">
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Area:</label>
-                                <input type="text" class="form-control" formControlName="area" placeholder="Area">
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Sucursal:</label>
-                                <input type="text" class="form-control" formControlName="sucursal" placeholder="Sucursal">
-                            </div>
-                        </div> -->
-                        <div class="row mb-3">
-                            <div class="col me-3">
-                                <label class="form-label">*Id:</label>
-                                <input type="text" class="form-control" formControlName="nombreUsuario" placeholder="Nombre de Usuario">
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Nombre Usuario:</label>
-                                <input type="text" class="form-control" formControlName="nombreUsuario" placeholder="Nombre de Usuario">
-                            </div>
-                            <!-- <div class="col me-3">
-                                <label class="form-label">*Fecha:</label>
-                                <input type="date" class="form-control" formControlName="fecha">
-                            </div> -->
-                            <!-- <div class="col me-3">
-                                <label class="form-label">*Estado:</label>
-                                <input type="text" class="form-control" formControlName="estado" placeholder="Estado">
-                            </div>
-                            <div class="col me-3">
-                                <label class="form-label">*Tipo:</label>
-                                <select formControlName="tipo" class="form-select">
-                                    <option value="0" selected disabled hidden>Selecciona Tipo</option>
-                                    <option value="1">Tipo 1</option>
-                                    <option value="2">Tipo 2</option>
-                                    <option value="3">Tipo 3</option>
-                                </select>
-                            </div> -->
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
-                    </div>
                 </div>
             </div>
         </div>

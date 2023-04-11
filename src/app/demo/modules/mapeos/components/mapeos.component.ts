@@ -40,6 +40,11 @@ export class MapeosComponent implements OnInit {
       fecha: FormBuilder.control('initial value', Validators.required),
       estado: FormBuilder.control('initial value', Validators.required),
       tipo: FormBuilder.control('initial value', Validators.required),
+
+      codigo: FormBuilder.control('initial value', Validators.required),
+      descripcionArticulo: FormBuilder.control('initial value', Validators.required),
+      estante: FormBuilder.control('initial value', Validators.required),
+      consecutivo: FormBuilder.control('initial value', Validators.required),
     });
   }
 
@@ -49,9 +54,13 @@ export class MapeosComponent implements OnInit {
 
   ngOnInit(): void {
     this.Reset();
-    this.cargarDatos();
+    this.Mostrar();
     this.mapeosForm.get('idUsuario')?.disable();
     this.mapeosForm.get('nombreUsuario')?.disable();
+    this.mapeosForm.get('codigo')?.disable();
+    this.mapeosForm.get('descripcionArticulo')?.disable();
+    this.mapeosForm.get('estante')?.disable();
+    this.mapeosForm.get('consecutivo')?.disable();
   }
 
   onSubmit(): void {
@@ -108,7 +117,15 @@ export class MapeosComponent implements OnInit {
       nombreUsuario: localStorage.getItem('nombreUsuario'),
       fecha: dateNow,
       estado: '',
-      tipo: 0
+      tipo: 0,
+
+
+      codigo: "",
+      descripcionArticulo: "",
+      estante: "",
+      consecutivo: "",
+
+
     });
   }
   
@@ -117,7 +134,7 @@ export class MapeosComponent implements OnInit {
     this.router.navigate(['/auth'])
   }
 
-  cargarDatos(): void {
+  Mostrar(): void {
     if(this.mapeosForm.controls){
       const request1: MapeosRequest = {
         idSucursal: this.mapeosForm.controls['idSucursal'].value
