@@ -1,1 +1,5 @@
-export interface getModulosRequest{}
+export interface getModulosRequest{
+    usuario:string
+    categoria:string
+    
+}

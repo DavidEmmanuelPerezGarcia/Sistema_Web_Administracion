@@ -82,29 +82,9 @@ export class MedicosComponent implements OnInit {
         estatus:0
       }
       this.MedicosService.getMedicos(request).subscribe(res => {
-        // this.listMedicos.map(medico=>{
-        //         this.listMedicos = res.response.data;
-        //         if(medico.Estatus==1){
-        //             medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 0)"></button>'
-        //         }else{
-        //           medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 1)"></button>'
-        //         }
-        //       })
         this.listMedicos = res.response.data;
         this.dtTrigger.next(null);
       })
-
-      // this.MedicosService.getMedicos(request).subscribe(res=>{
-      //     this.listMedicos.map(medico=>{
-      //       this.listMedicos = res.response.data;
-      //       if(medico.Estatus==1){
-      //           medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 0)"><i class="fas fa-check-square"></i></button>'
-      //       }else{
-      //         medico.BtnActivo='<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ', 1)"><i class="fas fa-check-square"></i></button>'
-      //       }
-      //     })
-      // })
-
 
     } else if (this.medicosForm.invalid) {
       return;
@@ -255,6 +235,29 @@ export class MedicosComponent implements OnInit {
       // this.listMedicosDelete=res.response.data
       // })
     })
+  }
+
+  editarCliente(medicos:Medicos):void{
+    const request: getMedicoByIdRequest = {
+      id: medicos.Id
+    }
+    this.MedicosService.getMedicosById(request).subscribe(res => {
+      let Medicos = res.response.data;
+     
+      Medicos.forEach(item => {
+        this.medicosForm.reset({
+          nombre: item.Nombre,
+          apPaterno: item.ApPaterno,
+          apMaterno: item.ApMaterno,
+          numero: item.Numero,
+          cedula: item.Cedula,
+          domicilio: item.Domicilio,
+          telefono: item.Telefono,
+          telefonoCasa: item.TelefonoCasa,
+          // estatus: FormBuilder.control('', Validators.required)
+        });
+      });        
+    });
   }
   
 }

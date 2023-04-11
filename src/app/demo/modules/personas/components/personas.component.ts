@@ -15,6 +15,8 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
 
 
 
+
+
 @Component({
     selector: 'app-personas',
     templateUrl: './personas.component.html',
@@ -26,6 +28,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     listPersonas: Personas[] = [];
     listPersonasUpdate: PersonasUpdate[] = [];
     submitted = false;
+    isDataTable=true
   
     
     personasForm: FormGroup;
@@ -40,7 +43,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
-        idUsuario: FormBuilder.control('', Validators.required),
+        // idUsuario: FormBuilder.control('', Validators.required),
         nombre: FormBuilder.control('', Validators.required),
         apPaterno: FormBuilder.control('', Validators.required),
         apMaterno: FormBuilder.control('', Validators.required),
@@ -75,7 +78,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     Mostrar(): void {
       if(this.personasForm.controls){
           const request: getPersonasRequest = {
-            idPersona: ""
+            id: 0
           }
           this.personasService.getPersonas(request).subscribe(res => {
             this.listPersonas = res.response.data;
@@ -157,8 +160,8 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       }
       this.error = "";
       const request: InsertPersonasRequest = {
-        id: 0,
-        idUsuario: 0,
+        // id: 0,
+        // idUsuario: 0,
         nombre: this.personasForm.controls['nombre'].value,
         apPaterno: this.personasForm.controls['apPaterno'].value,
         apMaterno: this.personasForm.controls['apMaterno'].value,
@@ -175,6 +178,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
             this.message = "";
           }, 3000);
           this.Reset();
+          this.Mostrar();
         }else{
           this.error = res.message;
           setTimeout(()=>{
@@ -199,5 +203,4 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       localStorage.clear();
       this.router.navigate(['/auth'])
     }
-   
   }

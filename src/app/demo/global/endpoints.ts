@@ -33,7 +33,7 @@ export const Categoria={
 //Modulos
 export const modulos = {
   insertModulos: `${environment.urlBase2}InsertModulo`,
-  getModulos:`${environment.urlBase2}GetCategorias`,
+  getModulos:`${environment.urlBase2}GetModulos`,
   deleteModulos:`${environment.urlBase2}DeleteModulo`
 }
 
@@ -51,7 +51,7 @@ export const personas={
 export const clientes={
   getClientes:`${environment.urlBase2}GetClientes`,
   insertClientes:`${environment.urlBase2}InsertCliente`,
-  getById:`${environment.urlBase2}GetSeparadosCliente`,
+  getById:`${environment.urlBase2}GetDatosCliente`,
   update:`${environment.urlBase2}UpdateCliente`
 }
 
@@ -64,7 +64,7 @@ export const articulos={
 export const medicos={
   getMedicos:`${environment.urlBase2}GetMedicos`,
   insertMedicos:`${environment.urlBase2}InsertMedico`,
-  getByMedicos:`${environment.urlBase2}GetMedicoById/`,
+  getById:`${environment.urlBase2}GetMedicoById`,
   updateMedicos:`${environment.urlBase2}UpdateMedico`
 }
 

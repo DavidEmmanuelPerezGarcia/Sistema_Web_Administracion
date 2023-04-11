@@ -1,3 +1,3 @@
 export interface getPersonasRequest{
-    idPersona:string
+    id:number
 }

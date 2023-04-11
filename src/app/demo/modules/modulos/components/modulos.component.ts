@@ -27,7 +27,7 @@ import { Subject, Subscriber } from 'rxjs';
     dtTrigger:Subject<any>=new Subject<any>();
     submitted = false;
 
-    listModulos:Categoria[]=[]
+    listModulos:Modulos[]=[]
     listModulosPrueva:Modulos[]=[]
   
     
@@ -76,10 +76,11 @@ import { Subject, Subscriber } from 'rxjs';
      Mostrar(): void {
        if(this.modulosForm.controls){
          const request: getModulosRequest = {
-           id: ["id"]
+           categoria:"1",
+           usuario:"1"
          }
     
-         this.categoriaService.getCategoria(request).subscribe(res => {
+         this.modulosService.getModulos(request).subscribe(res => {
            this.listModulos = res.response.data;
            this.dtTrigger.next(null);
          })
@@ -159,7 +160,8 @@ import { Subject, Subscriber } from 'rxjs';
 
     DeleteModulo(eliminar:deleteModulos):void{
       const request: getModulosRequest = {
-        id: ""
+        usuario:"",
+        categoria: ""
       }
   
       this.modulosService.DeleteModulos(eliminar.Id).subscribe(() => {

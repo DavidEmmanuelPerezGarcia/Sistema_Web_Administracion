@@ -1,6 +1,6 @@
 export interface InsertPersonasRequest {
-    id: number;
-    idUsuario: number;
+    // id: number;
+    // idUsuario: number;
     nombre: string;
     apPaterno: string;
     apMaterno: string;

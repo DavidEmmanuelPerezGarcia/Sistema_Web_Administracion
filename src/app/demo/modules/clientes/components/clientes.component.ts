@@ -152,12 +152,12 @@ export class ClientesComponent implements OnInit {
   }
 
   editar(clientes:Clientes):void{
-  const request:getClientesRequest={
-    id:clientes.Id,
-    nombreCliente:clientes.Nombre
+  const request:GetClienteByIdRequest={
+    IdCliente:clientes.Id,
+
   }
 
-  this.clientesService.getclientes(request).subscribe(res=>{
+  this.clientesService.getClienteById(request).subscribe(res=>{
     let cliente = res.response.data;
 
     cliente.forEach(item=>{

@@ -57,12 +57,13 @@ export class CategoriaComponent implements OnInit {
 
   Mostrar():void{
     if(this.Categoriaform.controls){
-      const request1: getCategoriaRequest = {
-        Id: ["Id"]
+      const request: getCategoriaRequest = {
+        Id: 0
       }
-      this.categoriaService.getCategoria(request1).subscribe(res => {
+      this.categoriaService.getCategoria(request).subscribe(res => {
         this.listaCategoria = res.response.data;
         this.dtTrigger.next(null);
+        
       })
     }else if(this.Categoriaform.invalid){
       return;
@@ -74,7 +75,7 @@ export class CategoriaComponent implements OnInit {
 
   DeleteCategoria(eliminar:DeleteCategoria):void{
     const request: getCategoriaRequest = {
-      id: ""
+      Id: 0
     }
 
     this.categoriaService.DeleteCategoria(eliminar.Id).subscribe(() => {
