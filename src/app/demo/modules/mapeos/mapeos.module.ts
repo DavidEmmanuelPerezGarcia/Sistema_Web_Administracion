@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from "angular-datatables";
 
 import { MapeosRoutingModule } from './mapeos-routing.module';
 import { MapeosComponent } from './components/mapeos.component';
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MapeosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule 
   ]
 })
 export class MapeosModule { }

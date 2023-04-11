@@ -84,6 +84,7 @@ export class MedicosComponent implements OnInit {
       this.MedicosService.getMedicos(request).subscribe(res => {
         this.listMedicos = res.response.data;
         this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
       })
 
     } else if (this.medicosForm.invalid) {

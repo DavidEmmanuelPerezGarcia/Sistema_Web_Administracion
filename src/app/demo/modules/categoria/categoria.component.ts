@@ -63,6 +63,7 @@ export class CategoriaComponent implements OnInit {
       this.categoriaService.getCategoria(request).subscribe(res => {
         this.listaCategoria = res.response.data;
         this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
         
       })
     }else if(this.Categoriaform.invalid){

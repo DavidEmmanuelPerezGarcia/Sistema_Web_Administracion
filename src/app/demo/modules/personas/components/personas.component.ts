@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -54,9 +54,6 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       });
     }
   
-    get form(): any {
-      return this.personasForm.controls;
-    }
 
     ngOnInit(): void {
       this.dtOptions= {
@@ -83,6 +80,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
           this.personasService.getPersonas(request).subscribe(res => {
             this.listPersonas = res.response.data;
             this.dtTrigger.next(null);
+            this.dtTrigger.unsubscribe();
           })
         }else if(this.personasForm.invalid){
           return;

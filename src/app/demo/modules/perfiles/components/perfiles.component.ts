@@ -66,6 +66,7 @@ import { Subject, Subscriber } from 'rxjs';
       this.personasService.getPersonas(request2).subscribe(res => {
         this.listPerfiles = res.response.data;
         this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
       })
       this.Reset();
       this.personasForm.get('idUsuario')?.disable();

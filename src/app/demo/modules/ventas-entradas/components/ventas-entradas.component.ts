@@ -70,6 +70,7 @@ export class VentasEntradasComponent implements OnInit {
       this.VentaEntradaService.getVentasEntradas(request).subscribe(res => {
         this.listaVentasEntradas = res.response.data;
         this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
         console.log(res);
       })
     }else{

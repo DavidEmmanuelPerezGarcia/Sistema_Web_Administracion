@@ -78,6 +78,7 @@ export class ClientesComponent implements OnInit {
       this.clientesService.getclientes(request).subscribe(res => {
         this.listClientes = res.response.data;
         this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
       })
     }else if(this.clientesForm.invalid){
       return

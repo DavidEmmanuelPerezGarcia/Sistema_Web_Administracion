@@ -71,6 +71,7 @@ import { Subject, Subscriber } from 'rxjs';
            this.TicketsService.getTickets(request1).subscribe(res => {
              this.listTickets = res.response.data;
              this.dtTrigger.next(null);
+             this.dtTrigger.unsubscribe();
            })
          }else if(this.ticketsForm.invalid){
            return;

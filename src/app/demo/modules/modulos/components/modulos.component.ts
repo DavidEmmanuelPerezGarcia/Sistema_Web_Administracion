@@ -83,6 +83,7 @@ import { Subject, Subscriber } from 'rxjs';
          this.modulosService.getModulos(request).subscribe(res => {
            this.listModulos = res.response.data;
            this.dtTrigger.next(null);
+           this.dtTrigger.unsubscribe();
          })
        }else if(this.modulosForm.invalid){
          return;

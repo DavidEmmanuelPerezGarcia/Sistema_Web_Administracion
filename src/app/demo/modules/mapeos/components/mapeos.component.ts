@@ -10,6 +10,7 @@ import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mape
 
 // Services //
 import { MapeosService } from 'src/app/demo//core/services/mapeos/mapeos.service';
+import { Subject, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-mapeos',
@@ -17,6 +18,8 @@ import { MapeosService } from 'src/app/demo//core/services/mapeos/mapeos.service
   styleUrls: ['./mapeos.component.scss']
 })
 export class MapeosComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger:Subject<any>=new Subject<any>();
   listMapeos: Mapeos[]=[];
   mapeosForm: FormGroup;
   public error = '';
@@ -53,6 +56,13 @@ export class MapeosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dtOptions= {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
+      
+    };  
     this.Reset();
     this.Mostrar();
     this.mapeosForm.get('idUsuario')?.disable();
@@ -141,6 +151,8 @@ export class MapeosComponent implements OnInit {
       }
       this.mapeosService.getMapeo(request1).subscribe(res => {
         this.listMapeos = res.response.data;
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
       })
     }else if(this.mapeosForm.invalid){
       return;

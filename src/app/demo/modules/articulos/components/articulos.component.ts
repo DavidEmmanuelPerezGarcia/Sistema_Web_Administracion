@@ -51,6 +51,7 @@ export class ArticulosComponent implements OnInit {
        this.ArticulosService.getArticulos(request1).subscribe(res => {
          this.listArticulos = res.response.data;
          this.dtTrigger.next(null);
+         this.dtTrigger.unsubscribe();
        })
      }else if(this.articulosForm.invalid){
        return;

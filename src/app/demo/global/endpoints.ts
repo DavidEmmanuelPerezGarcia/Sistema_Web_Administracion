@@ -64,7 +64,7 @@ export const articulos={
 export const medicos={
   getMedicos:`${environment.urlBase2}GetMedicos`,
   insertMedicos:`${environment.urlBase2}InsertMedico`,
-  getById:`${environment.urlBase2}GetMedicoById`,
+  getByMedicos:`${environment.urlBase2}GetMedicoById`,
   updateMedicos:`${environment.urlBase2}UpdateMedico`
 }
 
