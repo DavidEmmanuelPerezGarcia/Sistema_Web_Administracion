@@ -41,7 +41,7 @@ import { Subject, Subscriber } from 'rxjs';
       private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
-        idUsuario: FormBuilder.control('', Validators.required),
+        // idUsuario: FormBuilder.control('', Validators.required),
         nombre: FormBuilder.control('', Validators.required),
         apPaterno: FormBuilder.control('', Validators.required),
         apMaterno: FormBuilder.control('', Validators.required),
@@ -76,7 +76,7 @@ import { Subject, Subscriber } from 'rxjs';
     Mostrar(): void {
       if(this.personasForm.controls){
           const request: getPersonasRequest = {
-            idPersona: ""
+            id: 0
           }
           this.personasService.getPersonas(request).subscribe(res => {
             this.listPersonas = res.response.data;
@@ -122,8 +122,8 @@ import { Subject, Subscriber } from 'rxjs';
       }
       this.error = "";
       const request: InsertPersonasRequest = {
-        id: 0,
-        idUsuario: 0,
+        // id: 0,
+        // idUsuario: 0,
         nombre: this.personasForm.controls['nombre'].value,
         apPaterno: this.personasForm.controls['apPaterno'].value,
         apMaterno: this.personasForm.controls['apMaterno'].value,
@@ -164,15 +164,5 @@ import { Subject, Subscriber } from 'rxjs';
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
-    }
-
-    MostrarPersona():void{
-      const request: getPersonasRequest = {
-        idPersona: ""
-      }
-      this.personasService.getPersonas(request).subscribe(res => {
-        this.listPersonas = res.response.data;
-        // this.dtTrigger.next(null);
-      })
     }
   }
