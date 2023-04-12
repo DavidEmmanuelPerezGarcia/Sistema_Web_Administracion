@@ -27,7 +27,7 @@ button.inactivo{
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label class="form-label">*Nombre:</label>
-                                    <input type="hidden" class="form-control" name="id" value="1">
+                                    <input type="text" hidden class="form-control" name="id" formControlName="id">
                                     <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                                 </div>
                                 <div class="col-md-4">
@@ -62,6 +62,14 @@ button.inactivo{
                                     <label class="form-label">*TelefonoCasa:</label>
                                     <input type="text" class="form-control" formControlName="telefonoCasa" placeholder="TelefonoCasa">
                                 </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">*Estado:</label>
+                                    <select formControlName="estatus" class="form-control">
+                                        <option  value="2"hidden>Seleccione</option>
+                                        <option value="0">Desactivado</option>
+                                        <option value="1">Activado</option>
+                                    </select>
+                                </div>
                             </div>
                         
                     
@@ -71,6 +79,7 @@ button.inactivo{
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
                         <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
                     </div>
                 </div>
             </div>
@@ -122,6 +131,7 @@ button.inactivo{
                                         {{ m.Estatus ? 'Desactivar' : 'Activar' }}
                                         <i class="pi pi-trash"></i>
                                        </button>
+                                       
                                    </td>
                                </tr> 
                             </tbody>

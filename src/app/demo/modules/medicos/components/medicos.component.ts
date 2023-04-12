@@ -25,14 +25,14 @@ export class MedicosComponent implements OnInit {
   dtTrigger:Subject<any>=new Subject<any>(); 
 
   medicoGet:MedicosById[]=[]
-  id="0"
+  
 
   listMedicos: Medicos[] = [];
   listMedicosDelete:DeleteMedicos[]=[]
   sumitted = false;
+  medicos:any
 
   medicosForm: FormGroup;
-  medicosUpdateForm: FormGroup;
   public error = '';
   public message = '';
 
@@ -42,6 +42,7 @@ export class MedicosComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute) {
     this.medicosForm = FormBuilder.group({
+      id: FormBuilder.control('', Validators.required),
       nombre: FormBuilder.control('initial value', Validators.required),
       apPaterno: FormBuilder.control('initial value', Validators.required),
       apMaterno: FormBuilder.control('initial value', Validators.required),
@@ -49,20 +50,10 @@ export class MedicosComponent implements OnInit {
       cedula: FormBuilder.control('initial value', Validators.required),
       domicilio: FormBuilder.control('initial value', Validators.required),
       telefono: FormBuilder.control('initial value', Validators.required),
-      telefonoCasa: FormBuilder.control('initial value', Validators.required)
-    }),
-      this.medicosUpdateForm = FormBuilder.group({
-        id: FormBuilder.control('', Validators.required),
-        nombre: FormBuilder.control('', Validators.required),
-        apPaterno: FormBuilder.control('', Validators.required),
-        apMaterno: FormBuilder.control('', Validators.required),
-        numero: FormBuilder.control('', Validators.required),
-        cedula: FormBuilder.control('', Validators.required),
-        domicilio: FormBuilder.control('', Validators.required),
-        telefono: FormBuilder.control('', Validators.required),
-        telefonoCasa: FormBuilder.control('', Validators.required),
-        estatus: FormBuilder.control('', Validators.required)
-      })
+      telefonoCasa: FormBuilder.control('initial value', Validators.required),
+      estatus: FormBuilder.control('', Validators.required)
+    })
+     
   }
 
   ngOnInit(): void {
@@ -73,23 +64,11 @@ export class MedicosComponent implements OnInit {
       language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
     };
     this.Reset();
+    this.mostrar();
     // this.medicosUpdateForm.reset({Id: 1});
 
     // mostrar los datos de medicos
-    if (this.medicosForm.controls) {
-      const request: getMedicosRequest = {
-        id: "",
-        estatus:0
-      }
-      this.MedicosService.getMedicos(request).subscribe(res => {
-        this.listMedicos = res.response.data;
-        this.dtTrigger.next(null);
-        this.dtTrigger.unsubscribe();
-      })
-
-    } else if (this.medicosForm.invalid) {
-      return;
-    }
+   
   
   }
 
@@ -111,11 +90,12 @@ export class MedicosComponent implements OnInit {
 
         Medico.forEach(item => {
           this.medicosForm.reset({
+            id:item.Id,
             nombre: item.Nombre,
             apPaterno: item.ApPaterno,
             apMaterno: item.ApMaterno,
             numero: item.Numero,
-            cedula: item.Domicilio,
+            cedula: item.Cedula,
             domicilio: item.Domicilio,
             telefono: item.Telefono,
             telefonoCasa: item.TelefonoCasa
@@ -153,6 +133,7 @@ export class MedicosComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
+        this.mostrar();
       } else {
         this.error = res.message;
         setTimeout(() => {
@@ -179,7 +160,21 @@ export class MedicosComponent implements OnInit {
   // Actualizar
 
   actualizar(): void {
+    if(this.medicosForm.invalid){
+      this.error = "!Seleciona datos a editar!";
+      setTimeout(()=>{
+        this.error = "";
+      }, 3000);
+      return;
+    }
+    // const request2: getMedicoByIdRequest = {
+    //   id: medicos.Id
+    // }
+    // this.MedicosService.getMedicosById(request2).subscribe(res => {
+    //   let Medico = res.response.data;
+    // })
     const request: updateMedicosRequest = {
+      id: this.medicosForm.controls['id'].value,
       nombre: this.medicosForm.controls['nombre'].value,
       apPaterno: this.medicosForm.controls['apPaterno'].value,
       apMaterno: this.medicosForm.controls['apMaterno'].value,
@@ -188,7 +183,7 @@ export class MedicosComponent implements OnInit {
       domicilio: this.medicosForm.controls['domicilio'].value,
       telefono: this.medicosForm.controls['telefono'].value,
       telefonoCasa: this.medicosForm.controls['telefonoCasa'].value,
-      estatus: this.medicosUpdateForm.controls['estatus'].value
+      estatus: this.medicosForm.controls['estatus'].value
     }
     this.MedicosService.updateMedicos(request).subscribe(res => {
       if (res.success == true) {
@@ -197,6 +192,7 @@ export class MedicosComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
+        this.mostrar();
       } else {
         this.error = res.message;
         setTimeout(() => {
@@ -238,27 +234,24 @@ export class MedicosComponent implements OnInit {
     })
   }
 
-  editarCliente(medicos:Medicos):void{
-    const request: getMedicoByIdRequest = {
-      id: medicos.Id
+  mostrar():void{
+    if (this.medicosForm.controls) {
+      const request: getMedicosRequest = {
+        id: "",
+        estatus:0
+      }
+      this.MedicosService.getMedicos(request).subscribe(res => {
+        this.listMedicos = res.response.data;
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
+      })
+
+    } else if (this.medicosForm.invalid) {
+      return;
     }
-    this.MedicosService.getMedicosById(request).subscribe(res => {
-      let Medicos = res.response.data;
-     
-      Medicos.forEach(item => {
-        this.medicosForm.reset({
-          nombre: item.Nombre,
-          apPaterno: item.ApPaterno,
-          apMaterno: item.ApMaterno,
-          numero: item.Numero,
-          cedula: item.Cedula,
-          domicilio: item.Domicilio,
-          telefono: item.Telefono,
-          telefonoCasa: item.TelefonoCasa,
-          // estatus: FormBuilder.control('', Validators.required)
-        });
-      });        
-    });
   }
+
+
+ 
   
 }

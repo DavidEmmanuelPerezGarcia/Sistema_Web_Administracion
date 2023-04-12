@@ -1,11 +1,11 @@
 export interface updatePersonasRequest{
     id: number;
-    idUsuario: number;
+    // idUsuario: number;
     nombre: string;
     apPaterno: string;
     apMaterno: string;
     perfil: number;
     idSede: number;
-    nombreUsuario: string;
-    nombreSede: string;
+    // nombreUsuario: string;
+    // nombreSede: string;
 }

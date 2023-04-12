@@ -22,7 +22,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     templateUrl: './personas.component.html',
     styleUrls: ['./personas.component.scss']
   })
-  export class PersonasComponent implements  OnInit {
+  export class PersonasComponent implements  OnInit ,OnDestroy {
     dtOptions: DataTables.Settings = {};
     dtTrigger:Subject<any>=new Subject<any>();
     listPersonas: Personas[] = [];
@@ -71,6 +71,10 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       this.personasForm.reset({idSucursal: 1});
 
   }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
     
     Mostrar(): void {
       if(this.personasForm.controls){
@@ -98,14 +102,14 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       this.error = "";
       const request: updatePersonasRequest = {
         id: 0,
-        idUsuario: 0,
+        // idUsuario: 0,
         nombre: this.personasForm.controls['nombre'].value,
         apPaterno: this.personasForm.controls['apPaterno'].value,
         apMaterno: this.personasForm.controls['apMaterno'].value,
         perfil: this.personasForm.controls['perfil'].value,
         idSede: this.personasForm.controls['idSede'].value,
-        nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
-        nombreSede: this.personasForm.controls['nombreSede'].value,
+        // nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
+        // nombreSede: this.personasForm.controls['nombreSede'].value,
       }
       this.personasService.updatePersonas(request).subscribe(res => {
         if(res.success == true){
@@ -177,6 +181,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
           }, 3000);
           this.Reset();
           this.Mostrar();
+          this.ngOnDestroy()
         }else{
           this.error = res.message;
           setTimeout(()=>{
