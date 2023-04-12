@@ -43,7 +43,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
-        // idUsuario: FormBuilder.control('', Validators.required),
+        id: FormBuilder.control('', Validators.required),
         nombre: FormBuilder.control('', Validators.required),
         apPaterno: FormBuilder.control('', Validators.required),
         apMaterno: FormBuilder.control('', Validators.required),
@@ -79,7 +79,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     Mostrar(): void {
       if(this.personasForm.controls){
           const request: getPersonasRequest = {
-            id: 0
+            id: ""
           }
           this.personasService.getPersonas(request).subscribe(res => {
             this.listPersonas = res.response.data;
@@ -91,41 +91,41 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
         }
     }
 
-    Update():void{
-      if(this.personasForm.invalid){
-        this.error = "!Seleciona datos a editar!";
-        setTimeout(()=>{
-          this.error = "";
-        }, 3000);
-        return;
-      }
-      this.error = "";
-      const request: updatePersonasRequest = {
-        id: 0,
-        // idUsuario: 0,
-        nombre: this.personasForm.controls['nombre'].value,
-        apPaterno: this.personasForm.controls['apPaterno'].value,
-        apMaterno: this.personasForm.controls['apMaterno'].value,
-        perfil: this.personasForm.controls['perfil'].value,
-        idSede: this.personasForm.controls['idSede'].value,
-        // nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
-        // nombreSede: this.personasForm.controls['nombreSede'].value,
-      }
-      this.personasService.updatePersonas(request).subscribe(res => {
-        if(res.success == true){
-          this.message = res.message;
-          setTimeout(()=>{
-            this.message = "";
-          }, 3000);
-          this.Reset();
-        }else{
-          this.error = res.message;
-          setTimeout(()=>{
-            this.error = "";
-          }, 3000);
-        }
-      })
-    }
+    // Update():void{
+    //   if(this.personasForm.invalid){
+    //     this.error = "!Seleciona datos a editar!";
+    //     setTimeout(()=>{
+    //       this.error = "";
+    //     }, 3000);
+    //     return;
+    //   }
+    //   this.error = "";
+    //   const request: updatePersonasRequest = {
+    //     id: 0,
+    //     // idUsuario: 0,
+    //     nombre: this.personasForm.controls['nombre'].value,
+    //     apPaterno: this.personasForm.controls['apPaterno'].value,
+    //     apMaterno: this.personasForm.controls['apMaterno'].value,
+    //     perfil: this.personasForm.controls['perfil'].value,
+    //     idSede: this.personasForm.controls['idSede'].value,
+    //     // nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
+    //     // nombreSede: this.personasForm.controls['nombreSede'].value,
+    //   }
+    //   this.personasService.updatePersonas(request).subscribe(res => {
+    //     if(res.success == true){
+    //       this.message = res.message;
+    //       setTimeout(()=>{
+    //         this.message = "";
+    //       }, 3000);
+    //       this.Reset();
+    //     }else{
+    //       this.error = res.message;
+    //       setTimeout(()=>{
+    //         this.error = "";
+    //       }, 3000);
+    //     }
+    //   })
+    // }
         
     EditarPersona(persona:Personas):void{
         const request: GetPersonByIdRequest = {
@@ -136,6 +136,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
 
           Persona.forEach(item => {
             this.personasForm.reset({
+              id:item.Id,
               nombre: item.Nombre,
               apPaterno: item.ApPaterno,
               apMaterno: item.ApMaterno,
@@ -205,5 +206,40 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     LogOut():void {
       localStorage.clear();
       this.router.navigate(['/auth'])
+    }
+
+    actualizar(): void {
+      if(this.personasForm.invalid){
+        this.error = "!Seleciona datos a editar!";
+        setTimeout(()=>{
+          this.error = "";
+        }, 3000);
+        return;
+      }
+      const request: updatePersonasRequest = {
+        id: this.personasForm.controls['id'].value,
+        nombre: this.personasForm.controls['nombre'].value,
+        apPaterno: this.personasForm.controls['apPaterno'].value,
+        apMaterno: this.personasForm.controls['apMaterno'].value,
+        perfil: this.personasForm.controls['perfil'].value,
+        idSede: this.personasForm.controls['idSede'].value,
+        // nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
+        // nombreSede: this.personasForm.controls['nombreSede'].value,
+      }
+      this.personasService.updatePersonas(request).subscribe(res => {
+        if (res.success == true) {
+          this.message = res.message;
+          setTimeout(() => {
+            this.message = "";
+          }, 3000);
+          this.Reset();
+          this.Mostrar();
+        } else {
+          this.error = res.message;
+          setTimeout(() => {
+            this.error = "";
+          }, 3000);
+        }
+      })
     }
   }
