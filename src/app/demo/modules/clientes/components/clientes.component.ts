@@ -33,7 +33,7 @@ export class ClientesComponent implements OnInit {
     private clientesService:ClientesService
     ){
       this.clientesForm=FormBuilder.group({
-        id: FormBuilder.control('initial value', Validators.required),
+        id: FormBuilder.control(''),
         nombre: FormBuilder.control('initial value', Validators.required),
         rfc: FormBuilder.control('initial value', Validators.required),
         condicionPago: FormBuilder.control('initial value', Validators.required),
