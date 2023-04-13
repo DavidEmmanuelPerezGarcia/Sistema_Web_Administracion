@@ -16,11 +16,7 @@ export const getInventario={
 export const mapeos = {
   insertMapeos: `${environment.urlBase3}Mapeos/Insert`,
   getMapeos: `${environment.urlBase3}Mapeos/Get`,
- 
-}
-
-export const detalle_mapeos={
-  getDetalleMapeos:`${environment.urlBase} DetalleMapeos/Get`
+  getDetalleMapeos:`${environment.urlBase3}DetalleMapeos/Get` 
 }
 
 // Categoria

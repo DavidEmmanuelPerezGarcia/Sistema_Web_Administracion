@@ -22,7 +22,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     templateUrl: './personas.component.html',
     styleUrls: ['./personas.component.scss']
   })
-  export class PersonasComponent implements  OnInit {
+  export class PersonasComponent implements  OnInit{
     dtOptions: DataTables.Settings = {};
     dtTrigger:Subject<any>=new Subject<any>();
     listPersonas: Personas[] = [];
@@ -54,6 +54,9 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       });
     }
   
+    //ngOnDestroy(): void {
+      //this.dtTrigger.unsubscribe();
+    //}
 
     ngOnInit(): void {
       this.dtOptions= {

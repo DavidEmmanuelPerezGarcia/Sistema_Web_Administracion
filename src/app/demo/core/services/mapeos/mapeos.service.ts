@@ -8,7 +8,7 @@ import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mape
 import{GetMapeosResponse} from 'src/app/demo/core/models/mapeos/getMapeosResponse.model'
 
 //endpoints//
-import { detalle_mapeos, mapeos } from 'src/app/demo/global/endpoints';
+import { mapeos } from 'src/app/demo/global/endpoints';
 import { MapeosRequest } from '../../models/mapeos/getMapeos';
 import { getDetallesMapeosRequest } from '../../models/mapeos/getDetallesMapeos';
 import { GetDetalleMapeosResponse } from '../../models/mapeos/getDetalleMapeosResponse.model';
@@ -48,7 +48,7 @@ export class MapeosService {
 
   getDetalleMapeo(data:getDetallesMapeosRequest): Observable<GetDetalleMapeosResponse> {
     const httpOptions = {headers:this.headers}
-    return this.http.post<GetDetalleMapeosResponse>(detalle_mapeos.getDetalleMapeos, data, httpOptions)
+    return this.http.post<GetDetalleMapeosResponse>(mapeos.getDetalleMapeos, data, httpOptions)
     .pipe(
       map(res => {
         return res;

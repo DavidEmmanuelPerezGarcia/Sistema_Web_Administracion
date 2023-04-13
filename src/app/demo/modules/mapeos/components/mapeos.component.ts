@@ -11,6 +11,8 @@ import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mape
 // Services //
 import { MapeosService } from 'src/app/demo//core/services/mapeos/mapeos.service';
 import { Subject, Subscriber } from 'rxjs';
+import { getDetallesMapeosRequest } from 'src/app/demo/core/models/mapeos/getDetallesMapeos';
+import { detalleMapeos } from 'src/app/demo/core/models/mapeos/getDetalleMapeosResponse.model';
 
 @Component({
   selector: 'app-mapeos',
@@ -21,6 +23,7 @@ export class MapeosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger:Subject<any>=new Subject<any>();
   listMapeos: Mapeos[]=[];
+  listDetalleMapeos: detalleMapeos[]=[];
   mapeosForm: FormGroup;
   public error = '';
   public message = '';
@@ -159,5 +162,18 @@ export class MapeosComponent implements OnInit {
     }
   }
 
-  
+  MostrarDetalles(): void{
+    if(this.mapeosForm.controls){
+      const request: getDetallesMapeosRequest = {
+        IdMapeos: 2
+      }
+      this.mapeosService.getDetalleMapeo(request).subscribe(res => {
+        this.listDetalleMapeos = res.response.data;
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
+      })
+    }else if(this.mapeosForm.invalid){
+      return;
+    }
+  }
 }
