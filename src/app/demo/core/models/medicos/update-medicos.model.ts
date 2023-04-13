@@ -1,4 +1,5 @@
 export interface updateMedicosRequest{
+    id:number
     numero:string
     cedula:string
     nombre:string

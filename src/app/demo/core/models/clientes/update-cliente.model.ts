@@ -1,4 +1,5 @@
 export interface UpdateClienteRequest{
+    id:number
     nombre:string,
     rfc:string,
     condicionPago:string,

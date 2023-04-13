@@ -19,6 +19,7 @@
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label class="form-label">*Nombre:</label>
+                                <input type="text" formControlName="id" name="id" hidden>
                                 <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                             </div>
                             <div class="col-md-3">
@@ -29,14 +30,14 @@
                                 <label class="form-label">*Apellido Materno:</label>
                                 <input type="text" class="form-control" formControlName="apMaterno" placeholder="Apellido Materno">
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label">*Perfil:</label>
-                                <select formControlName="perfil" class="form-control">
-                                    <option value="0" selected disabled hidden>Selecciona perfil</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Cliente</option>
-                                </select>
-                            </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">*Perfil:</label>
+                                    <select formControlName="perfil" class="form-control">
+                                        <option value="0" selected disabled hidden>Selecciona perfil</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Cliente</option>
+                                    </select>
+                                </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3">
@@ -44,7 +45,7 @@
                                 <select formControlName="idSede" class="form-control">
                                     <option value="0" selected disabled hidden>Selecciona sede</option>
                                     <option value="1">Matriz</option>
-                                    <option value="2">""</option>
+                                    <option value="2">Sucursal</option>
                                 </select>
                             </div>
                             <div class="col me-3"></div>
@@ -57,7 +58,7 @@
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
                         <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
-                        <button class="btn btn-primary" type="button" (click)="Update()">Editar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
                     </div>
                 </div>
             </div>

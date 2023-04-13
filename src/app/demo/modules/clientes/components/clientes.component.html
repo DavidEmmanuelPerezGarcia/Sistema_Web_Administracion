@@ -25,6 +25,7 @@
                             </div> -->
                             <div class="col-md-3">
                                 <label class="form-label">*Nombre:</label>
+                                <input type="text" formControlName="id" name="id">
                                 <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                             </div>
                             <div class="col-md-3">
@@ -111,6 +112,7 @@
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
                         <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
                         <!-- <button class="btn btn-primary" type="button" (click)="Cargar()">Cargar</button> -->
                     </div>
                 </div>

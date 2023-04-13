@@ -5,6 +5,7 @@ import { ClienteById, GetClienteByIdRequest } from 'src/app/demo/core/models/cli
 import { Clientes } from 'src/app/demo/core/models/clientes/get-clientes-response-modules';
 import { getClientesRequest } from 'src/app/demo/core/models/clientes/get-clientes.model';
 import { InsertClienteRequest } from 'src/app/demo/core/models/clientes/insert-clientes.model';
+import { UpdateClienteRequest } from 'src/app/demo/core/models/clientes';
 import { ClientesService } from 'src/app/demo/core/services/clientes/clientes.service';
 import { Subject, Subscriber } from 'rxjs';
 
@@ -32,6 +33,7 @@ export class ClientesComponent implements OnInit {
     private clientesService:ClientesService
     ){
       this.clientesForm=FormBuilder.group({
+        id: FormBuilder.control('initial value', Validators.required),
         nombre: FormBuilder.control('initial value', Validators.required),
         rfc: FormBuilder.control('initial value', Validators.required),
         condicionPago: FormBuilder.control('initial value', Validators.required),
@@ -67,22 +69,7 @@ export class ClientesComponent implements OnInit {
     this.Reset();
     this.clientesForm.reset({Id: 1});
 
-    if(this.clientesForm.controls){
-     
-      const request: getClientesRequest = {
-        id:1,
-        nombreCliente:""
-        
-      }
-  
-      this.clientesService.getclientes(request).subscribe(res => {
-        this.listClientes = res.response.data;
-        this.dtTrigger.next(null);
-        this.dtTrigger.unsubscribe();
-      })
-    }else if(this.clientesForm.invalid){
-      return
-    }
+   this.Cargar();
   }
 
   Reset():void{
@@ -146,6 +133,8 @@ export class ClientesComponent implements OnInit {
   
       this.clientesService.getclientes(request).subscribe(res => {
         this.listClientes = res.response.data;
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
       })
     }else if(this.clientesForm.invalid){
       return
@@ -163,6 +152,7 @@ export class ClientesComponent implements OnInit {
 
     cliente.forEach(item=>{
       this.clientesForm.reset({
+      id:item.Id,
       nombre: item.Nombre,
       rfc: item.Rfc,
       condicionPago: item.CondicionPago,
@@ -182,5 +172,61 @@ export class ClientesComponent implements OnInit {
       });
     });
   });
+  }
+
+  actualizar(): void {
+    if(this.clientesForm.invalid){
+      this.error = "!Seleciona datos a editar!";
+      setTimeout(()=>{
+        this.error = "";
+      }, 3000);
+      return;
+    }
+    // const request2: getMedicoByIdRequest = {
+    //   id: medicos.Id
+    // }
+    // this.MedicosService.getMedicosById(request2).subscribe(res => {
+    //   let Medico = res.response.data;
+    // })
+    const request: UpdateClienteRequest = {
+      id: this.clientesForm.controls['id'].value,
+      nombre: this.clientesForm.controls['nombre'].value,
+      rfc: this.clientesForm.controls['rfc'].value,
+      condicionPago: this.clientesForm.controls['condicionPago'].value,
+      limiteCredito: this.clientesForm.controls['limiteCredito'].value,
+      correo: this.clientesForm.controls['correo'].value,
+      direccion: this.clientesForm.controls['direccion'].value,
+      telefono: this.clientesForm.controls['telefono'].value,
+      codPostal: this.clientesForm.controls['codPostal'].value,
+      ciudad: this.clientesForm.controls['ciudad'].value,
+      colonia: this.clientesForm.controls['colonia'].value,
+      representante: this.clientesForm.controls['representante'].value,
+      banco: this.clientesForm.controls['banco'].value,
+      cuenta: this.clientesForm.controls['cuenta'].value,
+      comentarios: this.clientesForm.controls['comentarios'].value,
+      usuario: this.clientesForm.controls['usuario'].value,
+      contacto: this.clientesForm.controls['contacto'].value,
+       regimen: this.clientesForm.controls['regimen'].value,
+       activo:1
+    }
+    this.clientesService.updateCliente(request).subscribe(res => {
+      if (res.success == true) {
+        this.message = res.message;
+        setTimeout(() => {
+          this.message = "";
+        }, 3000);
+        this.Reset();
+        this.Cargar();
+      } else {
+        this.error = res.message;
+        setTimeout(() => {
+          this.error = "";
+        }, 3000);
+      }
+    })
+  }
+
+  Mostrar():void{
+    
   }
 }
