@@ -66,7 +66,6 @@ import { Subject, Subscriber } from 'rxjs';
         language: {url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json'}
       };
       this.Mostrar();
-      this.cargar();
       this.Reset();
       this.modulosForm.get('nombreCategoria')?.disable();
       //this.modulosForm.reset({idSucursal: 1});
@@ -90,19 +89,6 @@ import { Subject, Subscriber } from 'rxjs';
        }
       }
 
-    
-    cargar(): void {
-      this.activatedRoute.params.subscribe(
-        e=>{
-          let Id=e['Id'];
-          if(Id){
-            this.modulosService.getModulos(Id).subscribe(res => {
-              this.listModulosPrueva = res.response.data 
-            }
-            )}
-        }
-      );
-    }
 
   
     onSubmit(): void {
@@ -171,4 +157,8 @@ import { Subject, Subscriber } from 'rxjs';
         })
       })
     }
+
+    refrescar(): void{
+      window.location.reload();
+   }
   }

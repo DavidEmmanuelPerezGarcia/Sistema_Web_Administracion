@@ -229,4 +229,8 @@ export class ClientesComponent implements OnInit {
   Mostrar():void{
     
   }
+
+  refrescar(): void{
+    window.location.reload();
+ }
 }

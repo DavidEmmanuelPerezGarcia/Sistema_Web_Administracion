@@ -130,5 +130,9 @@ export class CategoriaComponent implements OnInit {
     });
   }
 
+  refrescar(): void{
+    window.location.reload();
+  }
+
  
 }

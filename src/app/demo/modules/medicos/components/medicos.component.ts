@@ -251,7 +251,8 @@ export class MedicosComponent implements OnInit {
     }
   }
 
-
- 
+  refrescar(): void{
+    window.location.reload();
+ }
   
 }

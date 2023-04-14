@@ -245,4 +245,8 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
         }
       })
     }
+
+    refrescar(): void{
+       window.location.reload();
+    }
   }

@@ -60,6 +60,10 @@ export class ArticulosComponent implements OnInit {
     this.articulosForm.reset({ idSucursal: 1});
   }
 
+  refrescar(): void{
+    window.location.reload();
+  }
+
   Reset():void{
 
   }

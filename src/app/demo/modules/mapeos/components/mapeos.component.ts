@@ -176,4 +176,8 @@ export class MapeosComponent implements OnInit {
       return;
     }
   }
+
+  refrescar(): void{
+    window.location.reload();
+ }
 }
