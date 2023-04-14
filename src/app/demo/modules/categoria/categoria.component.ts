@@ -25,8 +25,7 @@ export class CategoriaComponent implements OnInit {
   public error = '';
   public message = '';
 
-  nombreEditar="Administracion"
-  descripcionEditar="Hola"
+
 
   constructor(
     private readonly router: Router,
@@ -80,9 +79,7 @@ export class CategoriaComponent implements OnInit {
     }
 
     this.categoriaService.DeleteCategoria(eliminar.Id).subscribe(() => {
-      this.categoriaService.getCategoria(request).subscribe(res=>{
-      this.listaCategoria=res.response.data
-      })
+    this.Mostrar();
     })
   }
 
@@ -97,7 +94,7 @@ export class CategoriaComponent implements OnInit {
     }
     this.error = "";
     const request: InsertCategoriaResquest = {
-      id: 0,
+      // id: 0,
       nombre: this.Categoriaform.controls['nombreCategoria'].value,
       descripcion: this.Categoriaform.controls['descripcionCategoria'].value,
     
@@ -109,6 +106,7 @@ export class CategoriaComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
+        this.Mostrar();
       }else{
         this.error = res.message;
         setTimeout(()=>{

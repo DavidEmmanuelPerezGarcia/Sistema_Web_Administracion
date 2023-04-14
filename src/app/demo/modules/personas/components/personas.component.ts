@@ -43,14 +43,14 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       private activatedRoute: ActivatedRoute
     ) {
       this.personasForm = FormBuilder.group({
-        id: FormBuilder.control('', Validators.required),
+        id: FormBuilder.control(''),
         nombre: FormBuilder.control('', Validators.required),
         apPaterno: FormBuilder.control('', Validators.required),
         apMaterno: FormBuilder.control('', Validators.required),
         perfil: FormBuilder.control('', Validators.required),
         idSede: FormBuilder.control('', Validators.required),
-        nombreUsuario: FormBuilder.control('', Validators.required),
-        nombreSede: FormBuilder.control('', Validators.required),
+        // nombreUsuario: FormBuilder.control('', Validators.required),
+        // nombreSede: FormBuilder.control('', Validators.required),
       });
     }
   
@@ -157,7 +157,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
     }
    
     onSubmit(): void {
-      if(this.personasForm.invalid){
+      if(this.personasForm.invalid  ){
         this.error = "!Valida Campos!";
         setTimeout(()=>{
           this.error = "";
@@ -166,15 +166,15 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
       }
       this.error = "";
       const request: InsertPersonasRequest = {
-        // id: 0,
+        id: 0,
         // idUsuario: 0,
         nombre: this.personasForm.controls['nombre'].value,
         apPaterno: this.personasForm.controls['apPaterno'].value,
         apMaterno: this.personasForm.controls['apMaterno'].value,
         perfil: this.personasForm.controls['perfil'].value,
         idSede: this.personasForm.controls['idSede'].value,
-        nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
-        nombreSede: this.personasForm.controls['nombreSede'].value,
+        // nombreUsuario: this.personasForm.controls['nombreUsuario'].value,
+        // nombreSede: this.personasForm.controls['nombreSede'].value,
 
       }
       this.personasService.insertPersonas(request).subscribe(res => {

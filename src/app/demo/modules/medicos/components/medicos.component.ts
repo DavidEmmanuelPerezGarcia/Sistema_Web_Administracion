@@ -42,7 +42,7 @@ export class MedicosComponent implements OnInit {
     private FormBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute) {
     this.medicosForm = FormBuilder.group({
-      id: FormBuilder.control('', Validators.required),
+      id: FormBuilder.control(''),
       nombre: FormBuilder.control('initial value', Validators.required),
       apPaterno: FormBuilder.control('initial value', Validators.required),
       apMaterno: FormBuilder.control('initial value', Validators.required),
