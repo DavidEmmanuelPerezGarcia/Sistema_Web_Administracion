@@ -5,6 +5,8 @@ import { Observable, map } from 'rxjs';
 //Models//
 import { InsertMapeosResponse} from 'src/app/demo/core/models/mapeos/insert-mapeos-response-model';
 import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mapeos.model';
+import { InsertDetalleMapeosResponse} from 'src/app/demo/core/models/mapeos/insert-detalleMapeos-response-model';
+import { InsertDetalleMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-detalleMapeos.model';
 import{GetMapeosResponse} from 'src/app/demo/core/models/mapeos/getMapeosResponse.model'
 
 //endpoints//
@@ -29,6 +31,16 @@ export class MapeosService {
   insertMapeos(data:InsertMapeosRequest): Observable<InsertMapeosResponse> {
     const httpOptions = {headers:this.headers}
     return this.http.post<InsertMapeosResponse>(mapeos.insertMapeos, data, httpOptions)
+    .pipe(
+      map(res => {
+        return res;
+      })
+    )
+  }
+
+  insertDetalleMapeos(data:InsertDetalleMapeosRequest): Observable<InsertDetalleMapeosResponse> {
+    const httpOptions = {headers:this.headers}
+    return this.http.post<InsertDetalleMapeosResponse>(mapeos.insertMapeos, data, httpOptions)
     .pipe(
       map(res => {
         return res;

@@ -6,6 +6,7 @@ import { Mapeos } from 'src/app/demo/core/models/mapeos/getMapeosResponse.model'
 
 // Models //
 import { InsertMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-mapeos.model';
+import { InsertDetalleMapeosRequest } from 'src/app/demo/core/models/mapeos/insert-detalleMapeos.model';
 // import { Practica } from 'src/app/demo/core/models/practica/practica';
 
 // Services //
@@ -34,23 +35,31 @@ export class MapeosComponent implements OnInit {
     private FormBuilder: FormBuilder,
   ) {
     this.mapeosForm = FormBuilder.group({
-      idArea: FormBuilder.control('initial value', Validators.required),
-      idSucursal: FormBuilder.control('initial value', Validators.required),
-      idUsuario: FormBuilder.control('initial value', Validators.required),
-      mueble: FormBuilder.control('initial value', Validators.required),
-      zona: FormBuilder.control('initial value', Validators.required),
-      cara: FormBuilder.control('initial value', Validators.required),
-      area: FormBuilder.control('initial value', Validators.required),
-      sucursal: FormBuilder.control('initial value', Validators.required),
-      nombreUsuario: FormBuilder.control('initial value', Validators.required),
-      fecha: FormBuilder.control('initial value', Validators.required),
-      estado: FormBuilder.control('initial value', Validators.required),
-      tipo: FormBuilder.control('initial value', Validators.required),
+      idArea: FormBuilder.control('initial value'),
+      idSucursal: FormBuilder.control('initial value'),
+      idUsuario: FormBuilder.control('initial value'),
+      mueble: FormBuilder.control('initial value'),
+      zona: FormBuilder.control('initial value'),
+      cara: FormBuilder.control('initial value'),
+      area: FormBuilder.control('initial value'),
+      sucursal: FormBuilder.control('initial value'),
+      nombreUsuario: FormBuilder.control('initial value'),
+      fecha: FormBuilder.control('initial value'),
+      estado: FormBuilder.control('initial value'),
+      tipo: FormBuilder.control('initial value'),
 
-      codigo: FormBuilder.control('initial value', Validators.required),
-      descripcionArticulo: FormBuilder.control('initial value', Validators.required),
-      estante: FormBuilder.control('initial value', Validators.required),
-      consecutivo: FormBuilder.control('initial value', Validators.required),
+      id: FormBuilder.control('initial value'),
+      //tipo: FormBuilder.control('initial value'),
+      idMapeos: FormBuilder.control('initial value'),
+      codigo: FormBuilder.control('initial value'),
+      estante: FormBuilder.control('initial value'),
+      descripcionArticulo: FormBuilder.control('initial value'),
+      IdUsuario: FormBuilder.control('initial value'),
+      consecutivo: FormBuilder.control('initial value'),
+      cantidadDirecto: FormBuilder.control('initial value'),
+      cantidadCaptura: FormBuilder.control('initial value'),
+
+  
     });
   }
 
@@ -70,8 +79,6 @@ export class MapeosComponent implements OnInit {
     this.Mostrar();
     this.mapeosForm.get('idUsuario')?.disable();
     this.mapeosForm.get('nombreUsuario')?.disable();
-    this.mapeosForm.get('codigo')?.disable();
-    this.mapeosForm.get('descripcionArticulo')?.disable();
     this.mapeosForm.get('estante')?.disable();
     this.mapeosForm.get('consecutivo')?.disable();
   }
@@ -87,20 +94,57 @@ export class MapeosComponent implements OnInit {
     this.error = "";
     const request: InsertMapeosRequest = {
       id: 0,
-      idArea: this.mapeosForm.controls['idArea'].value,
-      idSucursal: this.mapeosForm.controls['idSucursal'].value,
-      idUsuario: this.mapeosForm.controls['idUsuario'].value,
+      idArea: 0,
+      idSucursal: 0,
+      idUsuario: 0,
       mueble: this.mapeosForm.controls['mueble'].value,
       zona: this.mapeosForm.controls['zona'].value,
       cara: this.mapeosForm.controls['cara'].value,
       area: this.mapeosForm.controls['area'].value,
       sucursal: this.mapeosForm.controls['sucursal'].value,
-      nombreUsuario: this.mapeosForm.controls['nombreUsuario'].value,
+      nombreUsuario: "svillarreal",
       fecha: this.mapeosForm.controls['fecha'].value,
-      estado: this.mapeosForm.controls['estado'].value,
-      tipo: this.mapeosForm.controls['tipo'].value,
+      estado: "Estado",
+      tipo: 0,
     }
     this.mapeosService.insertMapeos(request).subscribe(res => {
+      if(res.success == true){
+        this.message = res.message;
+        setTimeout(()=>{
+          this.message = "";
+        }, 3000);
+        this.Reset();
+      }else{
+        this.error = res.message;
+        setTimeout(()=>{
+          this.error = "";
+        }, 3000);
+      }
+    })
+  }
+
+  onSubmitDetalles(): void {
+    if(this.mapeosForm.invalid){
+      this.error = "!Valida Campos De Detalles!";
+      setTimeout(()=>{
+        this.error = "";
+      }, 3000);
+      return;
+    }
+    this.error = "";
+    const request: InsertDetalleMapeosRequest = {
+      id: 0,
+      tipo: 0,
+      idMapeos: 2,
+      codigo:  this.mapeosForm.controls['codigo'].value,
+      estante: 0,
+      descripcionArticulo: this.mapeosForm.controls['descripcionArticulo'].value,
+      IdUsuario: 0,
+      consecutivo: 0,
+      cantidadDirecto: 0, 
+      cantidadCaptura: 0,
+    }
+    this.mapeosService.insertDetalleMapeos(request).subscribe(res => {
       if(res.success == true){
         this.message = res.message;
         setTimeout(()=>{
@@ -135,8 +179,8 @@ export class MapeosComponent implements OnInit {
 
       codigo: "",
       descripcionArticulo: "",
-      estante: "",
-      consecutivo: "",
+      estante: 0,
+      consecutivo: 0,
 
 
     });
