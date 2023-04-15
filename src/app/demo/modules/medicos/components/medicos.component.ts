@@ -219,13 +219,13 @@ export class MedicosComponent implements OnInit {
        this.MedicosService.getMedicos(request).subscribe(res=>{
     
       const medico = this.listMedicos.find(m => m.Id === cambiarEstatus.Id);
-      if (medico && cambiarEstatus.Estatus == 1) {
+      if (medico && cambiarEstatus.Estatus == 0) {
         // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
-        medico.Estatus = 0;
+        medico.Estatus = 1;
         this.listMedicosDelete=res.response.data
       } else if(medico) {
         // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
-        medico.Estatus = 1;
+        medico.Estatus = 0;
       }
       })
       // this.MedicosService.getMedicos(request).subscribe(res=>{
