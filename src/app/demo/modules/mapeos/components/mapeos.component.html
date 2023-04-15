@@ -48,10 +48,7 @@
                                 <label class="form-label">*Cara:</label>
                                 <input type="text" class="form-control" formControlName="cara" placeholder="Cara">
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label">*Fecha:</label>
-                                <input type="date" class="form-control" formControlName="fecha">
-                            </div>
+                            <div class="col-md-3"></div>
                             <div class="col-md-3"></div>
                             <div class="col-md-3"></div>
                         </div>
@@ -78,7 +75,7 @@
                 <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="onSubmitDetalles()" (click)="refrescar()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="onSubmitDetalles()">Guardar</button>
                     </div>
                 </div>
             </div>
