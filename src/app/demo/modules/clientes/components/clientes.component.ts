@@ -7,6 +7,7 @@ import { getClientesRequest } from 'src/app/demo/core/models/clientes/get-client
 import { InsertClienteRequest } from 'src/app/demo/core/models/clientes/insert-clientes.model';
 import { UpdateClienteRequest } from 'src/app/demo/core/models/clientes';
 import { ClientesService } from 'src/app/demo/core/services/clientes/clientes.service';
+import { DeleteCliente } from 'src/app/demo/core/models/clientes';
 import { Subject, Subscriber } from 'rxjs';
 
 
@@ -226,8 +227,30 @@ export class ClientesComponent implements OnInit {
     })
   }
 
-  Mostrar():void{
+  CambiarActivoMedico(cambiarEstatus:DeleteCliente):void{
+    const request: getClientesRequest = {
+      id: 1,
+      nombreCliente:"",
+      
+    }
+
+    this.clientesService.deleteCliente(cambiarEstatus.id,cambiarEstatus.activo).subscribe(() => {
+       this.clientesService.getclientes(request).subscribe(res=>{
     
+      const cliente = this.listClientes.find(item => item.Id === cambiarEstatus.id);
+      if (cliente && cambiarEstatus.activo == 1) {
+        // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
+        cliente.activo = 0;
+        this.listClientes=res.response.data
+      } else if(cliente) {
+        // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
+        cliente.activo = 1;
+      }
+      })
+      // this.MedicosService.getMedicos(request).subscribe(res=>{
+      // this.listMedicosDelete=res.response.data
+      // })
+    })
   }
 
   refrescar(): void{

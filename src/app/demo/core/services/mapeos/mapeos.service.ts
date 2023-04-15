@@ -40,7 +40,7 @@ export class MapeosService {
 
   insertDetalleMapeos(data:InsertDetalleMapeosRequest): Observable<InsertDetalleMapeosResponse> {
     const httpOptions = {headers:this.headers}
-    return this.http.post<InsertDetalleMapeosResponse>(mapeos.insertMapeos, data, httpOptions)
+    return this.http.post<InsertDetalleMapeosResponse>(mapeos.insertDetalleMapeos, data, httpOptions)
     .pipe(
       map(res => {
         return res;

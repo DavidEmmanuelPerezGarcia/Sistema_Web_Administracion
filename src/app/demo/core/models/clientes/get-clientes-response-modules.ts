@@ -25,6 +25,7 @@ export interface Clientes{
     Representante:string
     Rfc:string,
     LimiteCredito:string,
-    Telefono:string
+    Telefono:string,
+    activo:number
 
 }
