@@ -77,6 +77,7 @@ export class MapeosComponent implements OnInit {
     };  
     this.Reset();
     this.Mostrar();
+    this.MostrarDetalles()
     this.mapeosForm.get('idUsuario')?.disable();
     this.mapeosForm.get('nombreUsuario')?.disable();
     this.mapeosForm.get('estante')?.disable();
@@ -93,19 +94,14 @@ export class MapeosComponent implements OnInit {
     }
     this.error = "";
     const request: InsertMapeosRequest = {
-      id: 0,
-      idArea: 0,
-      idSucursal: 0,
-      idUsuario: 0,
+      idArea: this.mapeosForm.controls['idArea'].value,
+      idSucursal: this.mapeosForm.controls['idSucursal'].value,
+      idUsuario: this.mapeosForm.controls['idUsuario'].value,
       mueble: this.mapeosForm.controls['mueble'].value,
       zona: this.mapeosForm.controls['zona'].value,
       cara: this.mapeosForm.controls['cara'].value,
       area: this.mapeosForm.controls['area'].value,
-      sucursal: this.mapeosForm.controls['sucursal'].value,
-      nombreUsuario: "svillarreal",
-      fecha: this.mapeosForm.controls['fecha'].value,
-      estado: "Estado",
-      tipo: 0,
+
     }
     this.mapeosService.insertMapeos(request).subscribe(res => {
       if(res.success == true){
@@ -133,14 +129,14 @@ export class MapeosComponent implements OnInit {
     }
     this.error = "";
     const request: InsertDetalleMapeosRequest = {
-      id: 0,
+      id: this.mapeosForm.controls['descripcionArticulo'].value,
       tipo: 0,
-      idMapeos: 2,
+      idMapeos: this.mapeosForm.controls['idMapeos'].value,
       codigo:  this.mapeosForm.controls['codigo'].value,
-      estante: 0,
+      estante: this.mapeosForm.controls['descripcionArticulo'].value,
       descripcionArticulo: this.mapeosForm.controls['descripcionArticulo'].value,
       IdUsuario: 0,
-      consecutivo: 0,
+      consecutivo: this.mapeosForm.controls['descripcionArticulo'].value,
       cantidadDirecto: 0, 
       cantidadCaptura: 0,
     }
