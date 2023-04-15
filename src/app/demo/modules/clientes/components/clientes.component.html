@@ -164,10 +164,10 @@
                                         <td>{{item.Rfc}}</td>
                                         <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                             <button class="btn btn-warning"><i class="pi pi-pencil" (click)="editar(item)"></i></button>
-                                            <button class="btn btn-danger" (click)="CambiarActivoMedico(item)" [ngClass]="{'activo': item.activo, 'inactivo': !item.activo}">
+                                            <!-- <button class="btn btn-danger" (click)="CambiarActivoMedico(item)" [ngClass]="{'activo': item.activo, 'inactivo': !item.activo}">
                                                 {{ item.activo ? 'Activado' : 'Desactivado' }}
                                                 <i class="pi pi-trash"></i>
-                                               </button>
+                                               </button> -->
                                         </td>
                                     </tr> 
                                 </tbody>
