@@ -7,7 +7,7 @@ import { getClientesResponse } from '../../models/clientes/get-clientes-response
 import { getClientesRequest } from '../../models/clientes/get-clientes.model';
 import { InsertClientesResponse } from '../../models/clientes/insert-clientes-response-modules';
 import { InsertClienteRequest } from '../../models/clientes/insert-clientes.model';
-import { DeleteCliente, DeleteClienteResponse, DeleteclienteRequest, GetClienteByIdRequest, GetClienteByIdResponse, UpdateClienteRequest, UpdateClientesResponse } from '../../models/clientes';
+import { DeleteClienteResponse, DeleteClienteRequest, GetClienteByIdRequest, GetClienteByIdResponse, UpdateClienteRequest, UpdateClientesResponse } from '../../models/clientes';
 
 @Injectable({
   providedIn: 'root'
@@ -62,14 +62,14 @@ export class ClientesService {
     )
   }
 
-  deleteCliente(id:number,activo:number):Observable<DeleteClienteResponse> {
-    const httpOptions = {headers:this.headers}
-    const request:DeleteclienteRequest={id,activo}
-    return this.http.post<DeleteClienteResponse>(clientes.update,request, httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      })
-    )
-  }
+  // deleteCliente(id:number,activo:number):Observable<DeleteClienteResponse> {
+  //   const httpOptions = {headers:this.headers}
+  //   const request:DeleteClienteRequest={id,activo}
+  //   return this.http.post<DeleteClienteResponse>(clientes.update,request, httpOptions)
+  //   .pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //   )
+  // }
 }

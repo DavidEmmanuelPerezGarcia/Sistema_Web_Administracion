@@ -129,14 +129,14 @@ export class MapeosComponent implements OnInit {
     }
     this.error = "";
     const request: InsertDetalleMapeosRequest = {
-      id: this.mapeosForm.controls['descripcionArticulo'].value,
+      // id: this.mapeosForm.controls['descripcionArticulo'].value,
       tipo: 0,
-      idMapeos: this.mapeosForm.controls['idMapeos'].value,
+      idMapeos: 2,
       codigo:  this.mapeosForm.controls['codigo'].value,
-      estante: this.mapeosForm.controls['descripcionArticulo'].value,
+      estante: this.mapeosForm.controls['estante'].value,
       descripcionArticulo: this.mapeosForm.controls['descripcionArticulo'].value,
-      IdUsuario: 0,
-      consecutivo: this.mapeosForm.controls['descripcionArticulo'].value,
+      // IdUsuario: 0,
+      consecutivo: this.mapeosForm.controls['consecutivo'].value,
       cantidadDirecto: 0, 
       cantidadCaptura: 0,
     }
@@ -205,7 +205,7 @@ export class MapeosComponent implements OnInit {
   MostrarDetalles(): void{
     if(this.mapeosForm.controls){
       const request: getDetallesMapeosRequest = {
-        IdMapeos: 2
+        IdMapeo: 2
       }
       this.mapeosService.getDetalleMapeo(request).subscribe(res => {
         this.listDetalleMapeos = res.response.data;
@@ -219,5 +219,10 @@ export class MapeosComponent implements OnInit {
 
   refrescar(): void{
     window.location.reload();
- }
+ 
+  }
+
+  mostrarelformulario(x:boolean):void{
+    
+  }
 }

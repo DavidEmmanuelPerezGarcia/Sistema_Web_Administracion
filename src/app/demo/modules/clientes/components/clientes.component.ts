@@ -227,31 +227,31 @@ export class ClientesComponent implements OnInit {
     })
   }
 
-  CambiarActivoMedico(cambiarEstatus:DeleteCliente):void{
-    const request: getClientesRequest = {
-      id: 1,
-      nombreCliente:"",
+  // CambiarActivoMedico(cambiarEstatus:DeleteCliente):void{
+  //   const request: getClientesRequest = {
+  //     id: 1,
+  //     nombreCliente:"",
       
-    }
+  //   }
 
-    this.clientesService.deleteCliente(cambiarEstatus.id,cambiarEstatus.activo).subscribe(() => {
-       this.clientesService.getclientes(request).subscribe(res=>{
+  //   this.clientesService.deleteCliente(cambiarEstatus.id,cambiarEstatus.activo).subscribe(() => {
+  //      this.clientesService.getclientes(request).subscribe(res=>{
     
-      const cliente = this.listClientes.find(item => item.Id === cambiarEstatus.id);
-      if (cliente && cambiarEstatus.activo == 1) {
-        // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
-        cliente.activo = 0;
-        this.listClientes=res.response.data
-      } else if(cliente) {
-        // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
-        cliente.activo = 1;
-      }
-      })
-      // this.MedicosService.getMedicos(request).subscribe(res=>{
-      // this.listMedicosDelete=res.response.data
-      // })
-    })
-  }
+  //     const cliente = this.listClientes.find(item => item.Id === cambiarEstatus.id);
+  //     if (cliente && cambiarEstatus.activo == 1) {
+  //       // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
+  //       cliente.activo = 0;
+  //       this.listClientes=res.response.data
+  //     } else if(cliente) {
+  //       // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
+  //       cliente.activo = 1;
+  //     }
+  //     })
+  //     // this.MedicosService.getMedicos(request).subscribe(res=>{
+  //     // this.listMedicosDelete=res.response.data
+  //     // })
+  //   })
+  // }
 
   refrescar(): void{
     window.location.reload();

@@ -1,4 +1,4 @@
-export interface DeleteclienteRequest{
+export interface DeleteClienteRequest{
     id:number
     activo:number
 }

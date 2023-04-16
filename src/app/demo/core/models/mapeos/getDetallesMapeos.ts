@@ -1,3 +1,3 @@
 export interface getDetallesMapeosRequest{
-    IdMapeos: number
+    IdMapeo: number
 }

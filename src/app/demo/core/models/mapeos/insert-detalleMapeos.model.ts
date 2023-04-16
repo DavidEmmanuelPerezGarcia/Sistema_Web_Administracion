@@ -1,11 +1,11 @@
 export interface InsertDetalleMapeosRequest {
-    id: number;
+    // id: number;
     tipo: number;
     idMapeos: number;
     codigo: string;
     estante: number;
     descripcionArticulo: string;
-    IdUsuario: number;
+    // IdUsuario: number;
     consecutivo: number;
     cantidadDirecto: number;
     cantidadCaptura: number;
