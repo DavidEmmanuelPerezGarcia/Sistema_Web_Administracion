@@ -49,7 +49,7 @@ export class MapeosComponent implements OnInit {
       tipo: FormBuilder.control(''),
 
       id: FormBuilder.control(''),
-      //tipo: FormBuilder.control('initial value'),
+      // tipo: FormBuilder.control('initial value'),
       idMapeos: FormBuilder.control(''),
       codigo: FormBuilder.control(''),
       estante: FormBuilder.control(''),

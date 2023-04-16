@@ -98,7 +98,8 @@ export class MedicosComponent implements OnInit {
             cedula: item.Cedula,
             domicilio: item.Domicilio,
             telefono: item.Telefono,
-            telefonoCasa: item.TelefonoCasa
+            telefonoCasa: item.TelefonoCasa,
+            estatus:item.Estatus
           })
         })
     })
@@ -124,7 +125,7 @@ export class MedicosComponent implements OnInit {
       domicilio: this.medicosForm.controls['domicilio'].value,
       telefono: this.medicosForm.controls['telefono'].value,
       telefonoCasa: this.medicosForm.controls['telefonoCasa'].value,
-      estatus: 0
+      estatus: this.medicosForm.controls['estatus'].value
     }
     this.MedicosService.insertMedicos(request).subscribe(res => {
       if (res.success == true) {

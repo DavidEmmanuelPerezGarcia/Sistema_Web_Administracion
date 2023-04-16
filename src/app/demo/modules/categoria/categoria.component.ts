@@ -94,7 +94,7 @@ export class CategoriaComponent implements OnInit {
     }
     this.error = "";
     const request: InsertCategoriaResquest = {
-      // id: 0,
+       id: 0,
       nombre: this.Categoriaform.controls['nombreCategoria'].value,
       descripcion: this.Categoriaform.controls['descripcionCategoria'].value,
     

@@ -74,7 +74,7 @@
                                 <tr >
                                     <th>Nombre</th>
                                     <th>Descripcion</th>
-                                    <th width="5%">Opciones</th>
+                                   
                                    
                                 </tr>
                             </thead>
@@ -82,9 +82,6 @@
                                 <tr *ngFor="let categoria of listaCategoria" >
                                     <td>{{categoria.Nombre}}</td>
                                     <td>{{categoria.Descripcion}}</td>
-                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <button class="btn btn-danger" (click)="DeleteCategoria(categoria)" (click)="refrescar()"><i class="pi pi-trash"></i></button>
-                                    </td>
                                 </tr> 
                             </tbody>
                         </table>
