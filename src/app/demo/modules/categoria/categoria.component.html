@@ -78,10 +78,10 @@
                                    
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let categoria of listaCategoria">
-                                <tr *ngFor="let c of categoria.Modulos" >
-                                    <td>{{c.Nombre}}</td>
-                                    <td>{{c.Descripcion}}</td>
+                            <tbody >
+                                <tr *ngFor="let categoria of listaCategoria" >
+                                    <td>{{categoria.Nombre}}</td>
+                                    <td>{{categoria.Descripcion}}</td>
                                     <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button class="btn btn-danger" (click)="DeleteCategoria(categoria)" (click)="refrescar()"><i class="pi pi-trash"></i></button>
                                     </td>

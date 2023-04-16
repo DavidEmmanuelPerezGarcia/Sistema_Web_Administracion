@@ -80,8 +80,7 @@ export class MapeosComponent implements OnInit {
     this.MostrarDetalles()
     this.mapeosForm.get('idUsuario')?.disable();
     this.mapeosForm.get('nombreUsuario')?.disable();
-    this.mapeosForm.get('estante')?.disable();
-    this.mapeosForm.get('consecutivo')?.disable();
+    // this.mapeosForm.get('estante')?.disable();
   }
 
   onSubmit(): void {
@@ -129,13 +128,13 @@ export class MapeosComponent implements OnInit {
     }
     this.error = "";
     const request: InsertDetalleMapeosRequest = {
-      // id: this.mapeosForm.controls['descripcionArticulo'].value,
+      id: 0,
       tipo: 0,
-      idMapeos: 2,
+      idMapeo: 2,
       codigo:  this.mapeosForm.controls['codigo'].value,
       estante: this.mapeosForm.controls['estante'].value,
       descripcionArticulo: this.mapeosForm.controls['descripcionArticulo'].value,
-      // IdUsuario: 0,
+      idUsuario: 1,
       consecutivo: this.mapeosForm.controls['consecutivo'].value,
       cantidadDirecto: 0, 
       cantidadCaptura: 0,
