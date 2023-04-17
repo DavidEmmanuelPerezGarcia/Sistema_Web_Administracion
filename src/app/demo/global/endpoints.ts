@@ -23,7 +23,7 @@ export const mapeos = {
 // Categoria
 export const Categoria={
   insertCategoria:`${environment.urlBase2}InsertCategoria`,
-  getCategoria:`${environment.urlBase2}GetCategorias`,
+  getCategoria:`${environment.urlBase2}GetCatalogoCategorias`,
   deleteCategoria:`${environment.urlBase2}DeleteCategoria`
 }
 
