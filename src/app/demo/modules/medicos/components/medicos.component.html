@@ -78,8 +78,8 @@ button.inactivo{
                 <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="refrescar">Guardar</button>
-                        <button class="btn btn-primary" type="button" (click)="actualizar()" (click)="refrescar">Editar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="refrescar()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
                     </div>
                 </div>
             </div>
@@ -106,10 +106,10 @@ button.inactivo{
                                     <th>ApMaterno</th>
                                     <th>Numero</th>
                                     <th>Cedula</th>
-                                    <th>Domicilio</th>
+                                    <th width="50%">Domicilio</th>
                                     <th>Telefono</th>
                                     <th>TelefonoCasa</th>
-                                    <th>Estatus</th>
+                                    <!-- <th>Estatus</th> -->
                                     <th width="5%">Opciones</th>
                                 </tr>
                             </thead>
@@ -124,7 +124,7 @@ button.inactivo{
                                    <td>{{m.Domicilio}}</td>
                                    <td>{{m.Telefono}}</td>
                                    <td>{{m.TelefonoCasa}}</td>
-                                   <td>{{m.Estatus}}</td>
+                                   <!-- <td>{{m.Estatus}}</td> -->
                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="EditarMedicos(m)"><i class="pi pi-pencil"></i></button>
                                        <button class="btn btn-danger" (click)="CambiarActivoMedico(m)" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">

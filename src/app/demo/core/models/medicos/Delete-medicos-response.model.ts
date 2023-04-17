@@ -12,4 +12,12 @@ interface Response{
 export interface DeleteMedicos{
     Id:number
     Estatus:number
+    Numero:string,
+    Cedula:string
+    Nombre:string,
+    ApPaterno:string,
+    ApMaterno:string
+    Domicilio:string
+    Telefono:string
+    TelefonoCasa:string
 }

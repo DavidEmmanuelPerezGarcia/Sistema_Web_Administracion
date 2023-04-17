@@ -211,35 +211,45 @@ export class MedicosComponent implements OnInit {
   
   CambiarActivoMedico(cambiarEstatus:DeleteMedicos):void{
     const request: getMedicosRequest = {
-      id: "",
-      estatus:cambiarEstatus.Estatus
+      Id: "",
+      Estatus:cambiarEstatus.Estatus,
+      Numero:cambiarEstatus.Numero,
+      Nombre:cambiarEstatus.Nombre,
+      ApPaterno:cambiarEstatus.ApPaterno,
+      ApMaterno:cambiarEstatus.ApMaterno,
+      Domicilio:cambiarEstatus.Domicilio,
+      Telefono:cambiarEstatus.Telefono,
+      TelefonoCasa:cambiarEstatus.TelefonoCasa
+      
       
     }
 
-    this.MedicosService.deleteMedicos(cambiarEstatus.Id,cambiarEstatus.Estatus).subscribe(() => {
+    this.MedicosService.deleteMedicos(cambiarEstatus.Id,cambiarEstatus.Estatus, cambiarEstatus.Numero, cambiarEstatus.Cedula,cambiarEstatus.Nombre,cambiarEstatus.ApPaterno,cambiarEstatus.ApPaterno,cambiarEstatus.Domicilio,cambiarEstatus.Telefono,cambiarEstatus.TelefonoCasa).subscribe(() => {
        this.MedicosService.getMedicos(request).subscribe(res=>{
     
-      const medico = this.listMedicos.find(m => m.Id === cambiarEstatus.Id);
+      const medico = this.listMedicos.find(m => m.Id == cambiarEstatus.Id);
       if (medico && cambiarEstatus.Estatus == 0) {
-        // medico.BtnActivo = '<button type="button" class="btn btn-danger" (click)="CambiarActivoMedico(' + medico.Id + ',0)"></button>';
         medico.Estatus = 1;
         this.listMedicosDelete=res.response.data
       } else if(medico) {
-        // medico.BtnActivo = '<button type="button" class="btn btn-success" (click)="CambiarActivoMedico(' + medico.Id + ',1)"></button>';
         medico.Estatus = 0;
       }
       })
-      // this.MedicosService.getMedicos(request).subscribe(res=>{
-      // this.listMedicosDelete=res.response.data
-      // })
     })
   }
 
   mostrar():void{
     if (this.medicosForm.controls) {
       const request: getMedicosRequest = {
-        id: "",
-        estatus:0
+        Id: "",
+        Estatus:0,
+        Numero:"",
+        Nombre:"",
+        ApPaterno:"",
+        ApMaterno:"",
+        Domicilio:"",
+        Telefono:"",
+        TelefonoCasa:""
       }
       this.MedicosService.getMedicos(request).subscribe(res => {
         this.listMedicos = res.response.data;

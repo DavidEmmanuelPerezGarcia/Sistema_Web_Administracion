@@ -65,14 +65,14 @@ export class DashboardComponent implements OnInit  {
                         routerLink:['/modulos']
                         
                     },
-                    {   
+                    // {   
 
-                        styleClass:'card m-3 border-1 surface col-5',
-                        label: 'Perfiles',
-                        icon: 'pi pi-fw pi-tags',
-                        routerLink:['/perfiles']
+                    //     styleClass:'card m-3 border-1 surface col-5',
+                    //     label: 'Perfiles',
+                    //     icon: 'pi pi-fw pi-tags',
+                    //     routerLink:['/perfiles']
                         
-                    },
+                    // },
                    
                    
                    
@@ -185,15 +185,6 @@ export class DashboardComponent implements OnInit  {
         //]
     }
 
-   cargarDatos(){
-    const request: getCategoriaRequest = {
-        Id: 0
-      }
-  
-      this.cagoriaSercive.getCategoria(request).subscribe(res => {
-        this.panelCategoria = res.response.data;
-      })
-   } 
 }
 
     

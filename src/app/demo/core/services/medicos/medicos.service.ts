@@ -76,9 +76,9 @@ export class MedicosService {
     )
   }
 
-  deleteMedicos( id:number, estatus:number):Observable<DeleteMedicosResponse>{
+    deleteMedicos( id:number, estatus:number , numero:string, cedula:string,nombre:string,apPaterno:string,apMaterno:string,domicilio:string,telefono:string,telefonoCasa:string):Observable<DeleteMedicosResponse>{
     const httpOptions = {headers:this.headers}
-    const request:DeleteMedicosRequest={id,estatus}
+    const request:DeleteMedicosRequest={id,estatus,numero,cedula,nombre,apPaterno,apMaterno,domicilio,telefono,telefonoCasa}
     return this.http.post<DeleteMedicosResponse>(medicos.updateMedicos,request, httpOptions)
     .pipe(
       map(res => {
