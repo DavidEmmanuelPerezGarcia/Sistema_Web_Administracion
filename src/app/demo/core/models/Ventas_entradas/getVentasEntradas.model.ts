@@ -1,5 +1,5 @@
 export interface getVentasEntradasRequest{
-    sucursal:number,
+    // sucursal:number,
     codigo:string
     departamento:number,
     familia:number,
