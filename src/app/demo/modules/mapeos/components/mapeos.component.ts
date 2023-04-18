@@ -26,8 +26,10 @@ export class MapeosComponent implements OnInit {
   listMapeos: Mapeos[]=[];
   listDetalleMapeos: detalleMapeos[]=[];
   mapeosForm: FormGroup;
+  detalleMapeosForm:FormGroup;
   public error = '';
   public message = '';
+  public idMapeo=0;
 
   constructor(
     private mapeosService: MapeosService,
@@ -35,32 +37,24 @@ export class MapeosComponent implements OnInit {
     private FormBuilder: FormBuilder,
   ) {
     this.mapeosForm = FormBuilder.group({
-      idArea: FormBuilder.control(''),
+      idArea: FormBuilder.control('initial value',Validators.required),
       idSucursal: FormBuilder.control(''),
       idUsuario: FormBuilder.control(''),
       mueble: FormBuilder.control(''),
       zona: FormBuilder.control(''),
       cara: FormBuilder.control(''),
       area: FormBuilder.control(''),
-      sucursal: FormBuilder.control(''),
-      nombreUsuario: FormBuilder.control(''),
-      fecha: FormBuilder.control(''),
-      estado: FormBuilder.control(''),
-      tipo: FormBuilder.control(''),
+      sucursal: FormBuilder.control('')
+    });
 
-      id: FormBuilder.control(''),
-      // tipo: FormBuilder.control('initial value'),
-      idMapeos: FormBuilder.control(''),
+    this.detalleMapeosForm = FormBuilder.group({
+      idMapeo: FormBuilder.control(''),
       codigo: FormBuilder.control(''),
       estante: FormBuilder.control(''),
       descripcionArticulo: FormBuilder.control(''),
-      IdUsuario: FormBuilder.control(''),
       consecutivo: FormBuilder.control(''),
-      cantidadDirecto: FormBuilder.control(''),
-      cantidadCaptura: FormBuilder.control(''),
-
-  
-    });
+     
+    })
   }
 
   get form(): any {
@@ -77,9 +71,8 @@ export class MapeosComponent implements OnInit {
     };  
     this.Reset();
     this.Mostrar();
-    this.MostrarDetalles()
-    this.mapeosForm.get('idUsuario')?.disable();
-    this.mapeosForm.get('nombreUsuario')?.disable();
+    this.MostrarDetalles();
+    this.detalleMapeosForm.disable();
     // this.mapeosForm.get('estante')?.disable();
   }
 
@@ -95,7 +88,7 @@ export class MapeosComponent implements OnInit {
     const request: InsertMapeosRequest = {
       idArea: this.mapeosForm.controls['idArea'].value,
       idSucursal: this.mapeosForm.controls['idSucursal'].value,
-      idUsuario: this.mapeosForm.controls['idUsuario'].value,
+      idUsuario: Number(localStorage.getItem('idUsuario')),
       mueble: this.mapeosForm.controls['mueble'].value,
       zona: this.mapeosForm.controls['zona'].value,
       cara: this.mapeosForm.controls['cara'].value,
@@ -103,12 +96,23 @@ export class MapeosComponent implements OnInit {
 
     }
     this.mapeosService.insertMapeos(request).subscribe(res => {
+      console.log(res)
       if(res.success == true){
         this.message = res.message;
         setTimeout(()=>{
           this.message = "";
         }, 3000);
-        this.Reset();
+        // this.Reset();
+        this.idMapeo=res.response.data;
+        this.detalleMapeosForm.reset({
+          idMapeo:this.idMapeo,
+          codigo: "",
+          descripcionArticulo: "",
+          estante: 0,
+          consecutivo: 0,
+        });
+        this.detalleMapeosForm.enable();
+        this.mapeosForm.disable();
       }else{
         this.error = res.message;
         setTimeout(()=>{
@@ -118,7 +122,9 @@ export class MapeosComponent implements OnInit {
     })
   }
 
-  onSubmitDetalles(): void {
+
+
+  onSubmitDetalle(): void {
     if(this.mapeosForm.invalid){
       this.error = "!Valida Campos De Detalles!";
       setTimeout(()=>{
@@ -130,12 +136,12 @@ export class MapeosComponent implements OnInit {
     const request: InsertDetalleMapeosRequest = {
       id: 0,
       tipo: 0,
-      idMapeo: 2,
-      codigo:  this.mapeosForm.controls['codigo'].value,
-      estante: this.mapeosForm.controls['estante'].value,
-      descripcionArticulo: this.mapeosForm.controls['descripcionArticulo'].value,
-      idUsuario: 1,
-      consecutivo: this.mapeosForm.controls['consecutivo'].value,
+      idMapeo: this.detalleMapeosForm.controls['idMapeo'].value,
+      codigo:  this.detalleMapeosForm.controls['codigo'].value,
+      estante: Number(this.detalleMapeosForm.controls['estante'].value),
+      descripcionArticulo: this.detalleMapeosForm.controls['descripcionArticulo'].value,
+      idUsuario: Number(localStorage.getItem('idUsuario')),
+      consecutivo: Number(this.detalleMapeosForm.controls['consecutivo'].value),
       cantidadDirecto: 0, 
       cantidadCaptura: 0,
     }
@@ -146,6 +152,9 @@ export class MapeosComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
+        this.MostrarDetalles();
       }else{
         this.error = res.message;
         setTimeout(()=>{
@@ -180,6 +189,15 @@ export class MapeosComponent implements OnInit {
 
     });
   }
+
+  ResetDetalle():void {
+    this.detalleMapeosForm.reset({
+      codigo: "",
+      descripcionArticulo: "",
+      estante: 0,
+      consecutivo: 0,
+    });
+  }
   
   LogOut():void {
     localStorage.clear();
@@ -204,7 +222,7 @@ export class MapeosComponent implements OnInit {
   MostrarDetalles(): void{
     if(this.mapeosForm.controls){
       const request: getDetallesMapeosRequest = {
-        IdMapeo: 2
+        IdMapeo: this.idMapeo
       }
       this.mapeosService.getDetalleMapeo(request).subscribe(res => {
         this.listDetalleMapeos = res.response.data;
@@ -216,12 +234,10 @@ export class MapeosComponent implements OnInit {
     }
   }
 
-  refrescar(): void{
+  Finalizar(): void{
     window.location.reload();
  
   }
 
-  mostrarelformulario(x:boolean):void{
-    
-  }
+ 
 }

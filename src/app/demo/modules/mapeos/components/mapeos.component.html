@@ -41,28 +41,54 @@
                                     <option value="3">Area 3</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label class="form-label">*Zona:</label>
                                 <input type="text" class="form-control" formControlName="zona" placeholder="Zona">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label class="form-label">*Mueble:</label>
                                 <input type="text" class="form-control" formControlName="mueble" placeholder="Mueble">
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label class="form-label">*Cara:</label>
                                 <input type="text" class="form-control" formControlName="cara" placeholder="Cara">
                             </div>
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3"></div>
                         </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger" type="button" (click)="Reset()" [disabled]="(this.idMapeo!=0)">Limpiar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()" [disabled]="(this.idMapeo!=0)">Guardar</button>
+                        <!-- (click)="onSubmitDetalles()" (click)="MostrarDetalles()" -->
+                        <button class="btn btn-warning" type="button" (click)="Finalizar()" [disabled]="(this.idMapeo==0)">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!--Formulario DEtalleMapeos-->
+     <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Detalle Mapeo | Formulario
+                </div>
+                <div class="card-body">
+                    <!-- <div class="alert alert-danger" role="alert" *ngIf="error">
+                        {{error}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="message">
+                        {{message}}
+                      </div> -->
+                    <form [formGroup]="detalleMapeosForm" id="formDetalle">
+                        
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <label class="form-label">*Codigo:</label>
-                                <input type="text" class="form-control" formControlName="codigo" >
+                                <input type="text" class="form-control" formControlName="codigo" [disabled]="true">
+                                <input type="text" class="form-control" formControlName="idMapeo" hidden>
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">*Descripcion:</label>
@@ -81,16 +107,18 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="onSubmitDetalles()" (click)="MostrarDetalles()">Guardar</button>
+                        <button class="btn btn-danger" type="button" (click)="ResetDetalle()" [disabled]="(this.idMapeo==0)">Limpiar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmitDetalle()" [disabled]="(this.idMapeo==0)">Guardar</button>
+                        <!-- (click)="onSubmitDetalles()" (click)="MostrarDetalles()" -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <!--Tabla Mapeos -->
-    <div class="row">
+    <div class="row hidden">
         <div class="col">
             <div class="card mt-4">
                 <div class="card-header">
