@@ -1,9 +1,9 @@
 <style>
-button.activo{
+span.activo{
     background-color:green;
 }
 
-button.inactivo{
+span.inactivo{
     background-color: red;
 }
 </style>
@@ -79,7 +79,7 @@ button.inactivo{
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
                         <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="refrescar()">Guardar</button>
-                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()" (click)="refrescar()">Editar</button>
                     </div>
                 </div>
             </div>
@@ -126,11 +126,11 @@ button.inactivo{
                                    <td>{{m.TelefonoCasa}}</td>
                                    <!-- <td>{{m.Estatus}}</td> -->
                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                       <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="EditarMedicos(m)"><i class="pi pi-pencil"></i></button>
-                                       <button class="btn btn-danger" (click)="CambiarActivoMedico(m)" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">
+                                       <button class="btn btn-warning" (click)="EditarMedicos(m)"><i class="pi pi-pencil"></i></button>
+                                       <span class="btn btn-danger" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">
                                         {{ m.Estatus ? 'Activado' : 'Desactivado' }}
                                         <i class="pi pi-trash"></i>
-                                       </button>
+                                       </span	>
                                        
                                    </td>
                                </tr> 
