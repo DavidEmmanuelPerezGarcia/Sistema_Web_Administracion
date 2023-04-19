@@ -103,7 +103,7 @@ import { Subject, Subscriber } from 'rxjs';
       const request: InsertModulosRequest = {
         id: 0,
         nombre: this.modulosForm.controls['nombre'].value,
-        categoria: this.modulosForm.controls['categoria'].value,
+        categoria: Number(this.modulosForm.controls['categoria'].value),
         descripcion: this.modulosForm.controls['descripcion'].value,
         tema: this.modulosForm.controls['tema'].value,
         ruta: this.modulosForm.controls['ruta'].value,

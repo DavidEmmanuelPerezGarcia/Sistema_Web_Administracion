@@ -133,8 +133,8 @@ export class MedicosComponent implements OnInit {
         setTimeout(() => {
           this.message = "";
         }, 3000);
-        this.Reset();
         this.mostrar();
+        this.Reset();
       } else {
         this.error = res.message;
         setTimeout(() => {
@@ -192,8 +192,8 @@ export class MedicosComponent implements OnInit {
         setTimeout(() => {
           this.message = "";
         }, 3000);
-        this.Reset();
         this.mostrar();
+        this.Reset();
       } else {
         this.error = res.message;
         setTimeout(() => {
