@@ -89,12 +89,6 @@
                                 <input type="text" class="form-control" formControlName="comentarios" placeholder="Comentarios">
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">*Usuario</label>
-                                <select name="usuario" id="usuario" formControlName="usuario" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.usuario.errors}">
-                                    <option value="1" selected>Svillarreal</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
                                 <label class="form-label">*Contacto</label>
                                 <input type="text" class="form-control" formControlName="contacto" placeholder="Contacto">
                             </div>
@@ -111,8 +105,8 @@
                 <div class="card-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-danger" type="button" (click)="Reset()">Limpiar</button>
-                        <button class="btn btn-primary" type="button" (click)="onSubmit()" (click)="refrescar()">Guardar</button>
-                        <button class="btn btn-primary" type="button" (click)="actualizar()" (click)="refrescar()">Editar</button>
+                        <button class="btn btn-primary" type="button" (click)="onSubmit()">Guardar</button>
+                        <button class="btn btn-primary" type="button" (click)="actualizar()">Editar</button>
                         <!-- <button class="btn btn-primary" type="button" (click)="Cargar()">Cargar</button> -->
                     </div>
                 </div>

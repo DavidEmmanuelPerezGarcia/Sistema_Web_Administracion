@@ -127,10 +127,14 @@ span.inactivo{
                                    <!-- <td>{{m.Estatus}}</td> -->
                                    <td class="d-grid gap-2 d-md-flex justify-content-md-end">
                                        <button class="btn btn-warning" (click)="EditarMedicos(m)"><i class="pi pi-pencil"></i></button>
-                                       <span class="btn btn-danger" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">
+                                       <!-- <span class="btn btn-danger" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">
                                         {{ m.Estatus ? 'Activado' : 'Desactivado' }}
                                         <i class="pi pi-trash"></i>
-                                       </span	>
+                                       </span	> -->
+                                       <span class="badgeñ" [ngClass]="{'activo': m.Estatus, 'inactivo': !m.Estatus}">
+                                        {{ m.Estatus ? 'Activado' : 'Desactivado' }}
+                                        <i class="pi pi-trash"></i>
+                                        </span>
                                        
                                    </td>
                                </tr> 

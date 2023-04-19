@@ -49,7 +49,6 @@ export class ClientesComponent implements OnInit {
         banco: FormBuilder.control('initial value', Validators.required),
         cuenta: FormBuilder.control('initial value', Validators.required),
         comentarios: FormBuilder.control('initial value', Validators.required),
-        usuario: FormBuilder.control('initial value', Validators.required),
         contacto: FormBuilder.control('initial value', Validators.required),
         regimen: FormBuilder.control('initial value', Validators.required),
       });
@@ -101,7 +100,7 @@ export class ClientesComponent implements OnInit {
       banco: this.clientesForm.controls['banco'].value,
       cuenta: this.clientesForm.controls['cuenta'].value,
       comentarios: this.clientesForm.controls['comentarios'].value,
-      usuario: this.clientesForm.controls['usuario'].value,
+      usuario:Number(localStorage.getItem('usuario')),
       contacto: this.clientesForm.controls['contacto'].value,
        regimen: this.clientesForm.controls['regimen'].value,
       activo: 1
@@ -114,6 +113,7 @@ export class ClientesComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
+        this.Cargar();
       }else{
         this.error = res.message;
         setTimeout(()=>{
@@ -124,22 +124,17 @@ export class ClientesComponent implements OnInit {
   }
 
   Cargar():void{
-    if(this.clientesForm.controls){
-     
-      const request: getClientesRequest = {
-        id:1,
-        nombreCliente:""
-        
-      }
-  
-      this.clientesService.getclientes(request).subscribe(res => {
-        this.listClientes = res.response.data;
-        this.dtTrigger.next(null);
-        this.dtTrigger.unsubscribe();
-      })
-    }else if(this.clientesForm.invalid){
-      return
+    const request: getClientesRequest = {
+      id:1,
+      nombreCliente:""
+      
     }
+
+    this.clientesService.getclientes(request).subscribe(res => {
+      this.listClientes = res.response.data;
+      this.dtTrigger.next(null);
+      this.dtTrigger.unsubscribe();
+    })
   }
 
   editar(clientes:Clientes):void{
@@ -170,6 +165,7 @@ export class ClientesComponent implements OnInit {
       comentarios: item.Comentarios,
       // usuario: this.clientesForm.controls['usuario'].value,
       contacto: item.Contacto,
+      regimen:item.Regimen
       });
     });
   });

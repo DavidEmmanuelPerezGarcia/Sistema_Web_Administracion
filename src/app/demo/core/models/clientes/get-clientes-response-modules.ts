@@ -27,5 +27,6 @@ export interface Clientes{
     LimiteCredito:string,
     Telefono:string,
     activo:number
+    Regimen:string
 
 }

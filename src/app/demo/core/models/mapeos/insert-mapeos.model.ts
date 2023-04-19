@@ -6,5 +6,5 @@ export interface InsertMapeosRequest {
     mueble: string;
     zona: string;
     cara: string;
-    area: string;
+    // area: string;
 }

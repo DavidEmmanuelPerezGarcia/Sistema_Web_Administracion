@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { detalleMapeos } from 'src/app/demo/core/models/mapeos/getDetalleMapeosResponse.model';
+import { getDetallesMapeosRequest } from 'src/app/demo/core/models/mapeos/getDetallesMapeos';
 import { MapeosRequest } from 'src/app/demo/core/models/mapeos/getMapeos';
 import { Mapeos } from 'src/app/demo/core/models/mapeos/getMapeosResponse.model';
 import { MapeosService } from 'src/app/demo/core/services/mapeos/mapeos.service';
@@ -16,7 +18,8 @@ export class ListaMapeosComponent implements OnInit{
   dtTrigger:Subject<any>=new Subject<any>();
   mapeosForm: FormGroup;
   listMapeos: Mapeos[]=[];
-  public Id=0;
+  listDetalleMapeos: detalleMapeos[]=[];
+  public idMapeo=0;
   constructor( private mapeosService: MapeosService,
   private readonly router: Router,
   private FormBuilder: FormBuilder){
@@ -57,7 +60,17 @@ export class ListaMapeosComponent implements OnInit{
     }
   }
   
-  ListaDetalle(Lista:Mapeos):void{
-    console.log(Lista.Id)
+  ListaDetalle(idMapeo:number):void{
+    console.log(idMapeo)
+    const request: getDetallesMapeosRequest = {
+      IdMapeo: idMapeo
+    }
+    this.mapeosService.getDetalleMapeo(request).subscribe(res => {
+      this.listDetalleMapeos = res.response.data;
+      this.dtTrigger.next(null);
+      this.dtTrigger.unsubscribe();
+    })
   }
+
+  
 }

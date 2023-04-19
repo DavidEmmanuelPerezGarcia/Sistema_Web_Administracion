@@ -76,12 +76,12 @@
                     Detalle Mapeo | Formulario
                 </div>
                 <div class="card-body">
-                    <!-- <div class="alert alert-danger" role="alert" *ngIf="error">
-                        {{error}}
+                    <div class="alert alert-danger" role="alert" *ngIf="detalleError">
+                        {{detalleError}}
                     </div>
-                    <div class="alert alert-success" role="alert" *ngIf="message">
-                        {{message}}
-                      </div> -->
+                    <div class="alert alert-success" role="alert" *ngIf="detalleMessage">
+                        {{detalleMessage}}
+                      </div>
                     <form [formGroup]="detalleMapeosForm" id="formDetalle">
                         
                         <div class="row mb-3">
@@ -193,11 +193,11 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Tipo</th>
-                                        <th>IdMapeos</th>
+                                        <!-- <th>IdMapeos</th> -->
                                         <th>Codigo</th>
                                         <th>Estante</th>
                                         <th>Describcion Articulos</th>
-                                        <th>IdUsuario</th>
+                                        <!-- <th>IdUsuario</th> -->
                                         <th>Consecutivo</th>
                                         <th>Cantidad Directo</th>
                                         <th>Cantidad Captura</th>
@@ -207,11 +207,11 @@
                                     <tr *ngFor="let item of listDetalleMapeos">
                                         <td>{{ item.Id }}</td>
                                         <td>{{ item.Tipo }}</td>
-                                        <td>{{ item.IdMapeo }}</td>
+                                        <!-- <td>{{ item.IdMapeo }}</td> -->
                                         <td>{{ item.Codigo}}</td>
                                         <td>{{ item.Estante }}</td>
                                         <td>{{ item.DescripcionArticulo }}</td>
-                                        <td>{{ item.IdUsuario }}</td>
+                                        <!-- <td>{{ item.IdUsuario }}</td> -->
                                         <td>{{ item.Consecutivo }}</td>
                                         <td>{{ item.CantidadDirecto }}</td>
                                         <td>{{ item.CantidadCaptura  }}</td>

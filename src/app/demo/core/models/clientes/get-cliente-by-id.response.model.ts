@@ -26,5 +26,6 @@ export interface GetClienteByIdResponse {
     Rfc:string,
     LimiteCredito:string,
     Telefono:string
+    Regimen:string
 
   }
