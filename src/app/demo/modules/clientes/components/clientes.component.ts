@@ -100,7 +100,7 @@ export class ClientesComponent implements OnInit {
       banco: this.clientesForm.controls['banco'].value,
       cuenta: this.clientesForm.controls['cuenta'].value,
       comentarios: this.clientesForm.controls['comentarios'].value,
-      usuario:Number(localStorage.getItem('usuario')),
+      usuario:Number(localStorage.getItem('idUsuario')),
       contacto: this.clientesForm.controls['contacto'].value,
        regimen: this.clientesForm.controls['regimen'].value,
       activo: 1
@@ -201,7 +201,7 @@ export class ClientesComponent implements OnInit {
       banco: this.clientesForm.controls['banco'].value,
       cuenta: this.clientesForm.controls['cuenta'].value,
       comentarios: this.clientesForm.controls['comentarios'].value,
-      usuario: this.clientesForm.controls['usuario'].value,
+      usuario:Number(localStorage.getItem('idUsuario')),
       contacto: this.clientesForm.controls['contacto'].value,
        regimen: this.clientesForm.controls['regimen'].value,
        activo:1

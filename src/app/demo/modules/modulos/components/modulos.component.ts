@@ -67,26 +67,22 @@ import { Subject, Subscriber } from 'rxjs';
       };
       this.Mostrar();
       this.Reset();
-      this.modulosForm.get('nombreCategoria')?.disable();
+      // this.modulosForm.get('nombreCategoria')?.disable();
       //this.modulosForm.reset({idSucursal: 1});
 
     }
 
      Mostrar(): void {
-       if(this.modulosForm.controls){
-         const request: getModulosRequest = {
-           categoria:"1",
-           usuario:"1"
-         }
-    
-         this.modulosService.getModulos(request).subscribe(res => {
-           this.listModulos = res.response.data;
-           this.dtTrigger.next(null);
-           this.dtTrigger.unsubscribe();
-         })
-       }else if(this.modulosForm.invalid){
-         return;
-       }
+      const request: getModulosRequest = {
+        categoria:"1",
+        usuario:"1"
+      }
+ 
+      this.modulosService.getModulos(request).subscribe(res => {
+        this.listModulos = res.response.data;
+        this.dtTrigger.next(null);
+        this.dtTrigger.unsubscribe();
+      })
       }
 
 
