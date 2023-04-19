@@ -39,8 +39,8 @@ export class MapeosComponent implements OnInit {
     private FormBuilder: FormBuilder,
   ) {
     this.mapeosForm = FormBuilder.group({
-      idArea: FormBuilder.control(0,Validators.min(1)),
-       idSucursal: FormBuilder.control(0,Validators.min(1)),
+      idArea: FormBuilder.control('',Validators.required),
+       idSucursal: FormBuilder.control('',Validators.required),
       mueble: FormBuilder.control('',Validators.required),
       zona: FormBuilder.control('',Validators.required),
       cara: FormBuilder.control('',Validators.required)
