@@ -6,6 +6,6 @@ export interface InsertModulosRequest {
     tema: string;
     ruta: number;
     icono: number;
-    nombreCategoria: string;
+    // nombreCategoria: string;
 
 }

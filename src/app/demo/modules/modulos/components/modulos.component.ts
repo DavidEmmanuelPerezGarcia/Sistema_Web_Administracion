@@ -50,7 +50,7 @@ import { Subject, Subscriber } from 'rxjs';
         tema: FormBuilder.control('initial value', Validators.required),
         ruta: FormBuilder.control('initial value', Validators.required),
         icono: FormBuilder.control('initial value', Validators.required),
-        nombreCategoria: FormBuilder.control('initial value', Validators.required),
+        // nombreCategoria: FormBuilder.control('initial value', Validators.required),
       });
     }
   
@@ -104,7 +104,7 @@ import { Subject, Subscriber } from 'rxjs';
         tema: this.modulosForm.controls['tema'].value,
         ruta: this.modulosForm.controls['ruta'].value,
         icono: this.modulosForm.controls['icono'].value,
-        nombreCategoria: this.modulosForm.controls['nombreCategoria'].value,
+        // nombreCategoria: this.modulosForm.controls['nombreCategoria'].value,
 
       }
       this.modulosService.insertModulos(request).subscribe(res => {
