@@ -113,7 +113,7 @@ export class ClientesComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
-        this.Cargar();
+        this.refrescar();
       }else{
         this.error = res.message;
         setTimeout(()=>{
@@ -213,7 +213,7 @@ export class ClientesComponent implements OnInit {
           this.message = "";
         }, 3000);
         this.Reset();
-        this.Cargar();
+        this.refrescar();
       } else {
         this.error = res.message;
         setTimeout(() => {

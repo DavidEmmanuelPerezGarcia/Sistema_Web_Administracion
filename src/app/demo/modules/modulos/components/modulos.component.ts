@@ -74,7 +74,7 @@ import { Subject, Subscriber } from 'rxjs';
 
      Mostrar(): void {
       const request: getModulosRequest = {
-        categoria:"1",
+        categoria:"0",
         usuario:"1"
       }
  
@@ -113,7 +113,7 @@ import { Subject, Subscriber } from 'rxjs';
           setTimeout(()=>{
             this.message = "";
           }, 3000);
-          this.Mostrar();
+          this.refrescar();
           this.Reset();
         }else{
           this.error = res.message;
@@ -153,6 +153,7 @@ import { Subject, Subscriber } from 'rxjs';
         this.listModulosPrueva=res.response.data
         })
       })
+      this.refrescar();
     }
 
     refrescar(): void{

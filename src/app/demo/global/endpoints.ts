@@ -2,7 +2,7 @@ import { env } from 'process';
 import { environment } from '../../../environments/environment';
 
 export const auth = {
-  login: `${environment.urlBase2}SignIn`,
+  login: `${environment.urlBase}SignIn`,
 }
 
 export const creditos = {

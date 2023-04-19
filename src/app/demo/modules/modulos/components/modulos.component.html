@@ -29,7 +29,8 @@
                             <label class="form-label">*Categoria:</label>
                             <select formControlName="categoria" class="form-select">
                                 <option value="1">Administrador y seguridad</option>
-                                <option value="2">Seguridad</option>
+                                <option value="2">Reportes</option>
+                                <option value="3">Sistemas</option>
 
                             </select>
                         </div>
@@ -93,11 +94,11 @@
                                <td>{{item.Nombre}}</td>
                                <td >{{item.NombreCategoria}}</td>
                                 <td class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-danger" type="button" (click)="DeleteModulo(item)" (click)="refrescar()"><i class="pi pi-trash"></i></button>
+                                <button class="btn btn-danger" type="button" (click)="DeleteModulo(item)"><i class="pi pi-trash"></i></button>
                                </td>
                            </tr> 
                         </tbody>
-                    </table>
+                    </table>    
                 </div>
               </div>
             </div>
