@@ -154,6 +154,7 @@ import { updateMedicosRequest } from 'src/app/demo/core/models/medicos/update-me
         this.personasService.deletePersonas(eliminar.Id).subscribe(() => {
          this.Mostrar();
         })
+        this.refrescar();
     }
    
     onSubmit(): void {
